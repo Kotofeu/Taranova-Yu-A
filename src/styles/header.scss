@@ -89,12 +89,16 @@
         gap: 30px;
     }
 
-    &__contact {
+    &__contact-item {
+
+
+
+    }
+    &__contact-link{
         position: relative;
         padding-left: 23px;
         font-weight: 500;
         color: $title-color;
-
         &::before {
             position: absolute;
             top: 0;

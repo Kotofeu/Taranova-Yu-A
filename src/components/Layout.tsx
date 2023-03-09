@@ -1,5 +1,4 @@
-import React from 'react'
-import { Outlet, useNavigate, useLocation } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import Header, { ILink } from './Header'
 const Layout = () => {
     const links: ILink[] = [

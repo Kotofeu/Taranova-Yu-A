@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
-import React, { FC, ReactNode } from 'react'
+import { FC, ReactNode } from 'react'
 import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionUp } from '../const/animation'
-import Title, { MTitle, TitleType } from './UI/Title/Title'
+import { MTitle, TitleType } from './UI/Title/Title'
 export enum SectionType {
     fullSize = 'section--full-size'
 }
@@ -22,7 +22,7 @@ const Section: FC<ISection> = (props) => {
                 className='container'
                 initial={ANIMATION_HIDDEN}
                 whileInView={ANIMATION_VISIBLE}
-                viewport={{ once: true, amount: 0.25 }}>
+                viewport={{ once: true, amount: 0.4 }}>
                 <MTitle
                     titleType={[TitleType.posCetner, TitleType.lineCenter, TitleType.sectionTitle]}
                     className='section__title'

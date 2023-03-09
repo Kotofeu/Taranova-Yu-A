@@ -1,6 +1,6 @@
 import Picture from '../components/UI/Picture'
 import Title, { MTitle, TitleType } from '../components/UI/Title/Title'
-import Card, { MCard } from '../components/Card'
+import { MCard } from '../components/Card'
 import UniversalList from '../components/UniversalList'
 import Section, { SectionType } from '../components/Section'
 import TextBlock from '../components/TextBlock'
@@ -10,10 +10,10 @@ import blog1 from '../assets/images/1.png'
 import blog2 from '../assets/images/2.png'
 import profile from '../assets/images/profile-picture.jpg'
 import profileWebp from '../assets/images/profile-picture.webp'
-import BlogCard, { MBlogCard } from '../components/BlogCard'
+import { MBlogCard } from '../components/BlogCard'
 
 import { motion } from 'framer-motion'
-import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionFlip, MotionLeft, MotionRight, MotionUp } from '../const/animation'
+import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionLeft, MotionRight, MotionUp } from '../const/animation'
 
 
 const Home = () => {
@@ -94,21 +94,19 @@ const Home = () => {
           className='bio__text-block'
           textBlock={[{ title: "Lorem", text: bio }]}
         />
-        <MTitle
-          className='bio__achievements-title'
-          titleType={[TitleType.posCetner]}
-          initial={ANIMATION_HIDDEN}
-          whileInView={ANIMATION_VISIBLE}
-          variants={MotionUp}
-          viewport={{ once: true }}
-        >
-          Победитель
-        </MTitle>
         <motion.div
           initial={ANIMATION_HIDDEN}
           whileInView={ANIMATION_VISIBLE}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.6 }}
         >
+          <MTitle
+            className='bio__achievements-title'
+            titleType={[TitleType.posCetner]}
+            variants={MotionUp}
+          >
+            Победитель
+          </MTitle>
+
           <UniversalList
             className='bio__achievements-list'
             items={achievements}
