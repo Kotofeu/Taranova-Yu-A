@@ -1,0 +1,191 @@
+.header {
+
+    &__inner {
+        position: fixed;
+        animation: animate-down .3s ease-in-out;
+        -webkit-box-shadow: 0px 9px 7px -3px rgba(54, 56, 56, 0.13);
+        -moz-box-shadow: 0px 9px 7px -3px rgba(54, 56, 56, 0.13);
+        box-shadow: 0px 9px 7px -3px rgba(54, 56, 56, 0.13);
+        background-color: #fff;
+        z-index: 999;
+        width: 100%;
+        top: 0;
+        left: 0;
+        padding-top: 3px;
+    }
+
+    &__nav {
+
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__nav-links {
+        display: flex;
+        height: 100%;
+        align-items: center;
+        gap: 30px;
+    }
+
+    &__nav-logo {
+        height: 40px;
+        // margin-right: 60px;
+    }
+
+    &__link {
+        font-size: 16px;
+        font-weight: 500;
+        position: relative;
+        overflow: hidden;
+        padding: 5px 0px;
+        color: $title-color;
+
+        &::after,
+        &::before {
+            content: '';
+            position: absolute;
+            bottom: 0px;
+            width: 100%;
+            height: 2px;
+            transition: transform .3s ease-in-out;
+            background-color: $title-color;
+
+        }
+
+        &.active {
+
+            &::after,
+            &::before {
+                transform: translateX(0%);
+
+            }
+        }
+
+        &::after {
+            left: 0;
+            transform: translateX(-110%);
+        }
+
+        &::before {
+            right: 0;
+            transform: translateX(110%);
+        }
+
+        &:hover {
+
+            &::after,
+            &::before {
+                transform: translateX(0%);
+
+            }
+        }
+    }
+
+    &__nav-contacts-list {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+    }
+
+    &__contact {
+        position: relative;
+        padding-left: 23px;
+        font-weight: 500;
+        color: $title-color;
+
+        &::before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            content: '';
+            height: 20px;
+            width: 20px;
+            display: block;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        &--email {
+            &::before {
+                background-image: url('../assets/icons/email.svg');
+                width: 17px;
+            }
+        }
+
+        &--phone {
+            &::before {
+                background-image: url('../assets/icons/phone.svg');
+            }
+        }
+    }
+
+    &__btn {
+        background-color: $secondary-color;
+        color: #fff;
+        padding: 10px 28px;
+        border: none;
+        position: relative;
+        overflow: hidden;
+        font-weight: 600;
+        border-radius: 10px;
+
+        &::after,
+        &::before {
+            position: absolute;
+            top: 0;
+            content: '';
+            height: 100%;
+            width: 20px;
+            display: block;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            transition: transform .3s ease-in-out;
+        }
+
+        &::after {
+            right: 4px;
+            background-image: url('../assets/icons/plan.svg');
+            transform: translateX(150%);
+
+        }
+
+        &::before {
+            left: 4px;
+            background-image: url('../assets/icons/message.svg');
+
+        }
+
+        &:hover {
+            &::after {
+                transform: translateX(0%);
+            }
+
+            &::before {
+                transform: translateX(-150%);
+            }
+        }
+    }
+
+    &__scrollYProgress {
+        width: 100%;
+        transform-origin: 0%;
+        height: 3px;
+        background-color: $secondary-color;
+        position: relative;
+        bottom: -3px;
+    }
+}
+
+@keyframes animate-down {
+    0% {
+        transform: translateY(-100%);
+
+    }
+    100% {
+        transform: translateY(0);
+
+    }
+}
