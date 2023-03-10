@@ -1,14 +1,10 @@
 import { Outlet } from 'react-router-dom'
-import Header, { ILink } from './Header'
+import { Header } from '../modules/Header'
 const Layout = () => {
-    const links: ILink[] = [
-        {title: "Главная", link: "/"},
-        {title: "Блог", link: "/blog"}
 
-    ]
     return (
         <>
-            <Header links={links}></Header>            
+            <Header/>            
             <Outlet />
         </>
     )

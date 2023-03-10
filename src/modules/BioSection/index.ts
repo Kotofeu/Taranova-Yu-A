@@ -1,0 +1,1 @@
+import { BioSection } from "./BioSectionComponents/BioSection";

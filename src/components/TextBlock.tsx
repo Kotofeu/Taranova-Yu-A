@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
-import Title from './UI/Title/Title'
 import { motion } from 'framer-motion'
 import { MotionUp } from '../const/animation'
+import Title from '../UI/Title/Title'
 export interface ITextBlockItem {
     title: string,
     text: string,
@@ -21,7 +21,7 @@ const TextBlock: FC<ITextBlock> = React.memo(
                     <motion.div
                         key={item.title}
                         variants={MotionUp}
-                        custom={index + 1}
+                        custom={index}
                     >
                         <Title className='text-block__title'>{item.title}</Title>
                         {

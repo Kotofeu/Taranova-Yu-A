@@ -1,10 +1,28 @@
-export const email: string = 'taranova@zaksob39.ru'
-export const tel: string = '+79114968216'
+import connection from '../../../assets/icons/connection.svg'
+import amberMercury from '../../../assets/icons/Amber Mercury.jpg'
+import futer from '../../../assets/icons/future.svg'
+import together from '../../../assets/icons/together.svg'
+import { ICard } from '../../../components/Card'
 
-
-
-export const slogan: string = 'Лозунг Lorem ipsum dolor sit, amet consectetur adipisicing elit'
-
+export const achievements: ICard[] = [
+    {
+        cardImage: connection,
+        title: 'Областного конкурса «Сопричастность»',
+        
+    },
+    {
+        cardImage: amberMercury,
+        title: 'Всероссийского конкурса «Лучший социальный проект в образовании»',
+    },
+    {
+        cardImage: futer,
+        title: 'Всероссийского конкурса фонда Наше Будущее «Лучший социальный проект»',
+    },
+    {
+        cardImage: together,
+        title: 'Бизнес-премии «Янтарный Меркурий»',
+    }
+]
 
 export const bio: string = `          Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis odit sit possimus velit, nobis ut! Officia totam repudiandae neque nihil ipsa alias voluptatibus, eveniet, magni, fugiat odit a ducimus beatae?
   Voluptatibus quia fuga iusto eveniet corporis nisi tempore velit, corrupti vel modi ut, laboriosam quaerat nostrum nihil consectetur hic fugiat maxime rerum repellendus tempora ipsum aspernatur ea voluptatum? Aliquam, placeat!

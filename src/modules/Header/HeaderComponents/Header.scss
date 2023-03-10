@@ -1,3 +1,5 @@
+@import '../../../styles/settings.scss';
+
 .header {
 
     &__inner {
@@ -31,7 +33,6 @@
 
     &__nav-logo {
         height: 40px;
-        // margin-right: 60px;
     }
 
     &__link {
@@ -89,11 +90,6 @@
         gap: 30px;
     }
 
-    &__contact-item {
-
-
-
-    }
     &__contact-link{
         position: relative;
         padding-left: 23px;
@@ -113,14 +109,14 @@
 
         &--email {
             &::before {
-                background-image: url('../assets/icons/email.svg');
+                background-image: url('../../../assets/icons/email.svg');
                 width: 17px;
             }
         }
 
         &--phone {
             &::before {
-                background-image: url('../assets/icons/phone.svg');
+                background-image: url('../../../assets/icons/phone.svg');
             }
         }
     }
@@ -151,14 +147,14 @@
 
         &::after {
             right: 4px;
-            background-image: url('../assets/icons/plan.svg');
+            background-image: url('../../../assets/icons/plan.svg');
             transform: translateX(150%);
 
         }
 
         &::before {
             left: 4px;
-            background-image: url('../assets/icons/message.svg');
+            background-image: url('../../../assets/icons/message.svg');
 
         }
 

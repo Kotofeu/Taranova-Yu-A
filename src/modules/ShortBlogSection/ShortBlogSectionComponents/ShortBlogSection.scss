@@ -1,0 +1,17 @@
+.short-blog{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    &__inner{
+      padding-top: calc(25px + 3vh);
+      padding-top: calc(25px + 3dvh);
+      padding-bottom: 10px;
+      display: flex;
+      gap: 30px;
+      
+    }
+    &__blog{
+      width: 100%;
+    }
+  }

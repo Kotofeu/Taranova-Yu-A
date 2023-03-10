@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
-import Title, { TitleType } from './UI/Title/Title'
 import { motion } from 'framer-motion'
 import { MotionFlip, MotionUp } from '../const/animation';
+import Title, { TitleType } from '../UI/Title/Title';
 export interface ICard {
     index?: number;
     cardImage: string;

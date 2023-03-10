@@ -1,0 +1,26 @@
+.bio {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.text_block {
+  padding-top: calc(20px + 3vh);
+  padding-top: calc(20px + 3dvh);
+
+  & p {
+    text-align: justify;
+  }
+}
+.achievements_title {
+  padding-top: calc(20px + 3vh);
+  padding-top: calc(20px + 3dvh);
+  font-size: 24px;
+}
+.achievements_list {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  width: 100%;
+  padding-top: calc(10px + 2vh);
+  padding-top: calc(10px + 2dvh);
+}
