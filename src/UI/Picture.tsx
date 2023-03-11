@@ -1,10 +1,7 @@
 import React, { FC } from 'react'
 import { motion } from 'framer-motion'
-interface IMyPictureProps {
-    src: string;
+interface IMyPictureProps extends React.ImgHTMLAttributes<HTMLImageElement> {
     srcWebp?: string;
-    className?: string;
-    alt: string;
 }
 const Picture: FC<IMyPictureProps> = React.memo(
     React.forwardRef(

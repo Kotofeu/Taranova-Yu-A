@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion'
 import { FC, ReactNode } from 'react'
-import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionUp } from '../const/animation'
-import { MTitle, TitleType } from '../UI/Title/Title'
+import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionUp } from '../../const/animation'
+import { MTitle, TitleType } from '../../UI/Title/Title'
+import classes from './Section.module.scss'
 
 export enum SectionType {
-    fullSize = 'section--full-size'
+    fullSize = classes.fullSize
 }
 interface ISection {
     title: string,
@@ -18,7 +19,7 @@ const Section: FC<ISection> = (props) => {
     const { title, className, children, sectionType } = props
 
     return (
-        <section className={`${className} section ${sectionType ? sectionType : ''}`}>
+        <section className={`${className ? className : ''} ${classes.section} ${sectionType ? sectionType : ''}`}>
             <motion.div
                 className='container'
                 initial={ANIMATION_HIDDEN}
@@ -26,7 +27,6 @@ const Section: FC<ISection> = (props) => {
                 viewport={{ once: true, amount: 0.4 }}>
                 <MTitle
                     titleType={[TitleType.posCetner, TitleType.lineCenter, TitleType.sectionTitle]}
-                    className='section__title'
                     variants={MotionUp}
                 >
                     {title}

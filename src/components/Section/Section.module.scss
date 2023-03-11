@@ -1,0 +1,18 @@
+.section {
+
+    padding: 20px 0;
+
+    &:nth-child(even) {
+        background-color: #F5F5F5;
+    }
+
+    &:first-child {
+        padding-top: 90px;
+    }
+
+}
+
+.fullSize {
+    min-height: 100vh;
+    min-height: 100dvh;
+}

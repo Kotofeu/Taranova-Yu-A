@@ -1,0 +1,23 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    width: 100%;
+}
+
+.img {
+    object-fit: contain;
+    width: 80px;
+    height: 80px;
+}
+
+.title {
+    padding-top: 10px;
+
+}
+
+.desc {
+    padding-top: 5px;
+    text-align: center;
+}

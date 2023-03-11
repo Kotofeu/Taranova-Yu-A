@@ -1,0 +1,41 @@
+@import '../../styles/settings.scss';
+
+.title {
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  position: relative;
+  line-height: 1.6em;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -.4em;
+    width: 100px;
+    height: 4px;
+    background-color: $text-color;
+    opacity: 0;
+  }
+}
+.posCetner {
+  text-align: center;
+
+}
+.lineCenter {
+  &::after {
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 1;
+
+  }
+}
+.lineRight {
+  &::after {
+    left: 0;
+    opacity: 1;
+
+  }
+}
+.sectionTitle {
+  font-size: 36px;
+
+}

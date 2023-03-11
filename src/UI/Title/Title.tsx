@@ -1,17 +1,14 @@
 import { motion } from 'framer-motion';
 import React, { FC, ReactNode } from 'react'
-import './Title.scss'
-interface ITitleProps {
-    className?: string;
+import classes from  './Title.module.scss'
+interface ITitleProps  extends React.ImgHTMLAttributes<HTMLHeadElement>  {
     titleType?: TitleType[];
-    children: ReactNode | ReactNode[];
-
 }
 export enum TitleType {
-    posCetner = 'title--posCetner',
-    lineCenter = 'title--lineCenter',
-    lineRight = 'title--lineRight',
-    sectionTitle = 'title--sectionTitle'
+    posCetner = classes.posCetner,
+    lineCenter  = classes.lineCenter,
+    lineRight = classes.lineRight,
+    sectionTitle = classes.sectionTitle,
 }
 const Title: FC<ITitleProps> =
     React.memo(
@@ -19,12 +16,12 @@ const Title: FC<ITitleProps> =
             (props, ref: React.LegacyRef<HTMLHeadingElement>) => 
             {
                 const { className, titleType, children } = props
-                const classList: string = titleType ? titleType.join(' ') : ''
+                const classList: any = titleType ? titleType.join(' ') : ''
                 const isSectionTitle: boolean = classList.includes(TitleType.sectionTitle)
                 const classNeme: string = `${className
                     ? className
                     : ''
-                    } title ${titleType
+                    } ${classes.title} ${titleType
                         ? `${classList}`
                         : ''
                     }`

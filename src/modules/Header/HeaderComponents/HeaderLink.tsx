@@ -1,7 +1,9 @@
 import { FC, ReactNode, memo } from 'react'
+import classes from './Header.module.scss'
+
 export enum HeaderLinkType {
-    phone = 'header__contact-link--phone',
-    email = 'header__contact-link--email'
+    phone =  classes.phone,
+    email =  classes.email,
 }
 interface IHeaderLink {
     headerLinkType?: HeaderLinkType,
@@ -10,19 +12,19 @@ interface IHeaderLink {
 }
 export const HeaderLink: FC<IHeaderLink> = memo((props) => {
     const { headerLinkType, href, children } = props
-    let className: string = 'header__contact-link'
+    let className: string = classes.contactLink 
     let link: string = href
     if (headerLinkType === HeaderLinkType.email) {
-        className = className + ` ${HeaderLinkType.email}`
+        className = [className, HeaderLinkType.email].join(' ')
         link = `mailto:${link}`
     }
     else if (headerLinkType === HeaderLinkType.phone) {
-        className = className + ` ${HeaderLinkType.phone}`
+        className  = [className, HeaderLinkType.phone].join(' ')
         link = `tel:${link}`
     }
 
     return (
-        <li className='header__contact-item'>
+        <li>
             <a
                 className={className}
                 href={link}

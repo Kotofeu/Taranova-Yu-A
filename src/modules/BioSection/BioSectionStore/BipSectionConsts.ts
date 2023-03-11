@@ -2,7 +2,7 @@ import connection from '../../../assets/icons/connection.svg'
 import amberMercury from '../../../assets/icons/Amber Mercury.jpg'
 import futer from '../../../assets/icons/future.svg'
 import together from '../../../assets/icons/together.svg'
-import { ICard } from '../../../components/Card'
+import { ICard } from '../../../components/Card/Card'
 
 export const achievements: ICard[] = [
     {

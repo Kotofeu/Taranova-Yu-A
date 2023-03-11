@@ -1,14 +1,23 @@
-import { MCard } from '../components/Card'
-import UniversalList from '../components/UniversalList'
-import Section, { SectionType } from '../components/Section'
-import TextBlock from '../components/TextBlock'
-import { motion } from 'framer-motion'
-import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionLeft, MotionRight, MotionUp } from '../const/animation'
 import { AboutSection } from '../modules/AboutSection'
 import { ShortBlogSection } from '../modules/ShortBlogSection'
-import { BioSection } from '../modules/BioSection/BioSectionComponents/BioSection'
+import { BioSection } from '../modules/BioSection/'
+/*
+import {lazy} from 'react'
 
+const AboutSection = lazy(() =>
+  import('../modules/AboutSection')
+    .then(({ AboutSection }) => ({ default: AboutSection })),
+);
 
+const ShortBlogSection = lazy(() =>
+  import('../modules/ShortBlogSection')
+    .then(({ ShortBlogSection }) => ({ default: ShortBlogSection })),
+);
+
+const BioSection = lazy(() =>
+  import('../modules/BioSection')
+    .then(({ BioSection }) => ({ default: BioSection })),
+);*/
 const Home = () => {
   return (
 

@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion'
 import {memo} from 'react'
-import { MCard } from '../../../components/Card'
-import Section, { SectionType } from '../../../components/Section'
-import TextBlock from '../../../components/TextBlock'
+import { MCard } from '../../../components/Card/Card'
+import Section, { SectionType } from '../../../components/Section/Section'
+import TextBlock from '../../../components/TextBlock/TextBlock'
 import UniversalList from '../../../components/UniversalList'
 import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionUp } from '../../../const/animation'
 import { MTitle, TitleType } from '../../../UI/Title/Title'
@@ -16,7 +16,7 @@ export const BioSection = memo(() => {
             sectionType={SectionType.fullSize}
         >
             <TextBlock
-                className={classes.text_block}
+                className={classes.textBlock}
                 textBlock={[{ title: "Lorem", text: bio }]}
             />
             <motion.div
@@ -25,7 +25,7 @@ export const BioSection = memo(() => {
                 viewport={{ once: true, amount: 0.6 }}
             >
                 <MTitle
-                    className={classes.achievements_title}
+                    className={classes.achievementsTitle}
                     titleType={[TitleType.posCetner]}
                     variants={MotionUp}
                 >
@@ -33,7 +33,7 @@ export const BioSection = memo(() => {
                 </MTitle>
 
                 <UniversalList
-                    className={classes.achievements_list}
+                    className={classes.achievementsList}
                     items={achievements}
                     renderItem={
                         (item, index) => <MCard
@@ -41,7 +41,6 @@ export const BioSection = memo(() => {
                             title={item.title}
                             desc={item.desc}
                             index={index}
-                            className='bio__achievements-card'
                             key={item.title} />
                     }
                 />

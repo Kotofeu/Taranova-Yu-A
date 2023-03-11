@@ -4,7 +4,7 @@ import logo from '../../../assets/icons/logo.png';
 import { email, tel, links } from '../HeaderStore/headerConsts'
 import { motion, useScroll, useSpring } from 'framer-motion'
 import { HeaderLink, HeaderLinkType } from './HeaderLink';
-import './Header.scss'
+import classes from './Header.module.scss'
 export const Header = React.memo(() => {
     const { scrollYProgress } = useScroll();
     const scaleX = useSpring(scrollYProgress, {
@@ -13,13 +13,12 @@ export const Header = React.memo(() => {
         restDelta: 0.001
     });
     return (
-        <header className='header'>
-            <div className='header__inner'>
+        <header className={classes.header}>
                 <div className='container'>
-                    <nav className='header__nav'>
-                        <div className='header__nav-links'>
+                    <nav className={classes.nav}>
+                        <div className={classes.linksList}>
                             <img
-                                className='header__nav-logo'
+                                className={classes.navLogo}
                                 src={logo}
                                 alt='logo'>
                             </img>
@@ -28,13 +27,13 @@ export const Header = React.memo(() => {
                                     <NavLink
                                         to={link.link}
                                         key={link.link}
-                                        className='header__link'>
+                                        className={classes.link}>
                                         {link.title}
                                     </NavLink>
                                 )
                             })}
                         </div>
-                        <ul className='header__nav-contacts-list'>
+                        <ul className={classes.contactsList}>
                             <HeaderLink
                                 headerLinkType={HeaderLinkType.email}
                                 href={email}
@@ -44,7 +43,7 @@ export const Header = React.memo(() => {
                                 href={tel}
                             />
                             <li>
-                            <button className='header__btn'>
+                            <button className={classes.btn}>
                             Написать обращение
                         </button>
                             </li>
@@ -53,11 +52,10 @@ export const Header = React.memo(() => {
                     </nav>
                 </div>
                 <motion.div
-                    className='header__scrollYProgress'
+                    className={classes.scrollYProgress}
                     style={{ scaleX: scaleX }}
                 />
 
-            </div>
 
         </header>
     )

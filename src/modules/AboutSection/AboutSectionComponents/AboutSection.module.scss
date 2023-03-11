@@ -1,0 +1,52 @@
+@import '../../../styles/settings.scss';
+
+.about {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.info {
+  padding-top: calc(20px + 3vh);
+  padding-top: calc(20px + 3dvh);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.infoRight {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+}
+
+.infoImg {
+  display: block;
+  border-radius: 20px;
+  max-width: 270px;
+  box-shadow: -2px 3px 9px -2px $title-color;
+}
+
+.infoSlogan {
+  padding-top: 20px;
+  text-align: center;
+  line-height: 1.3em;
+
+}
+
+.infoDesc {
+  max-width: 50%;
+
+}
+
+.includedIn {
+  gap: 10px;
+  display: flex;
+  justify-content: space-between;
+  padding-top: calc(15px + 3vh);
+  padding-top: calc(15px + 3dvh);
+
+}

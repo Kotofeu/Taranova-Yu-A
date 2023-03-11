@@ -1,0 +1,20 @@
+.shortBlog {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.inner {
+  padding-top: calc(25px + 3vh);
+  padding-top: calc(25px + 3dvh);
+  padding-bottom: 10px;
+  display: flex;
+  gap: 30px;
+
+}
+
+.blog {
+  width: 100%;
+}

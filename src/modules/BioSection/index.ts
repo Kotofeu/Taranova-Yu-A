@@ -1,1 +1,1 @@
-import { BioSection } from "./BioSectionComponents/BioSection";
+export {BioSection} from './BioSectionComponents/BioSection'

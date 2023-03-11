@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
 }
-.text_block {
+.textBlock {
   padding-top: calc(20px + 3vh);
   padding-top: calc(20px + 3dvh);
 
@@ -11,12 +11,12 @@
     text-align: justify;
   }
 }
-.achievements_title {
+.achievementsTitle {
   padding-top: calc(20px + 3vh);
   padding-top: calc(20px + 3dvh);
   font-size: 24px;
 }
-.achievements_list {
+.achievementsList {
   display: flex;
   gap: 10px;
   justify-content: space-between;

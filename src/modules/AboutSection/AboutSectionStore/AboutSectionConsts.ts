@@ -1,9 +1,9 @@
-import { ICard } from "../../../components/Card";
+import { ICard } from "../../../components/Card/Card";
 import ASEofKImage from '../../../assets/icons/Associations of Social Entrepreneurs of the Kaliningrad region.png'
 import CBRImage from '../../../assets/icons/CBR.png'
 import geniusesAcademy from '../../../assets/icons/academy_of_geniuses.png'
 import RFPEImage from '../../../assets/icons/Russian Federation of Private Education.ico'
-import { ITextBlockItem } from "../../../components/TextBlock";
+import { ITextBlockItem } from "../../../components/TextBlock/TextBlock";
 
 export const includedIn: ICard[] = [
     {

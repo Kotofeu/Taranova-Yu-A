@@ -1,7 +1,8 @@
 import React, { FC } from 'react'
 import { motion } from 'framer-motion'
-import { MotionFlip, MotionUp } from '../const/animation';
-import Title, { TitleType } from '../UI/Title/Title';
+import { MotionFlip, MotionUp } from '../../const/animation';
+import Title, { TitleType } from '../../UI/Title/Title';
+import classes from './Card.module.scss'
 export interface ICard {
     index?: number;
     cardImage: string;
@@ -15,10 +16,10 @@ const Card: FC<ICard> = React.memo(
             const { index, cardImage, title, desc, className } = props
             return (
                 <motion.article ref={ref}
-                    className={`${className} card`}
+                    className={`${className?className:'' } ${classes.card}`}
                 >
                     <motion.img
-                        className='card__img'
+                        className={classes.img}
                         src={cardImage}
                         alt={title}
                         variants={MotionFlip}
@@ -31,12 +32,12 @@ const Card: FC<ICard> = React.memo(
                         custom={index}
                     >
                         <Title
-                            className='card__title'
+                            className={classes.title}
                             titleType={[TitleType.posCetner]}
                         >
                             {title}
                         </Title>
-                        <p className='card__desc'>{desc}</p>
+                        <p className={classes.desc}>{desc}</p>
                     </motion.div>
 
                 </motion.article>
