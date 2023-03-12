@@ -1,11 +1,11 @@
-import React from 'react'
+import {memo} from 'react'
 import { NavLink } from 'react-router-dom'
 import logo from '../../../assets/icons/logo.png';
 import { email, tel, links } from '../HeaderStore/headerConsts'
 import { motion, useScroll, useSpring } from 'framer-motion'
 import { HeaderLink, HeaderLinkType } from './HeaderLink';
 import classes from './Header.module.scss'
-export const Header = React.memo(() => {
+export const Header = memo(() => {
     const { scrollYProgress } = useScroll();
     const scaleX = useSpring(scrollYProgress, {
         stiffness: 150,

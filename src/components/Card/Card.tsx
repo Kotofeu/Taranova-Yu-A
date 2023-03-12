@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC, memo, forwardRef } from 'react'
 import { motion } from 'framer-motion'
 import { MotionFlip, MotionUp } from '../../const/animation';
 import Title, { TitleType } from '../../UI/Title/Title';
@@ -10,13 +10,13 @@ export interface ICard {
     desc?: string;
     className?: string
 }
-const Card: FC<ICard> = React.memo(
-    React.forwardRef(
+const Card: FC<ICard> = memo(
+    forwardRef(
         (props, ref: React.Ref<HTMLElement>) => {
             const { index, cardImage, title, desc, className } = props
             return (
                 <motion.article ref={ref}
-                    className={`${className?className:'' } ${classes.card}`}
+                    className={`${className ? className : ''} ${classes.card}`}
                 >
                     <motion.img
                         className={classes.img}

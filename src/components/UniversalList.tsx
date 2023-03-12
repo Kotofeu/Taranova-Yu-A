@@ -1,9 +1,9 @@
-import React from 'react';
+import {ReactNode} from 'react';
 
 interface UniversalListProps<T> {
     className: string;
     items: T[];
-    renderItem: (item: T, index: number) => React.ReactNode;
+    renderItem: (item: T, index: number) => ReactNode;
 }
 
 export default function UniversalList<T> (props: UniversalListProps<T>){

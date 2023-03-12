@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC, memo } from 'react'
 import { motion } from 'framer-motion'
 import { MotionUp } from '../../const/animation'
 import Title from '../../UI/Title/Title'
@@ -12,7 +12,7 @@ interface ITextBlock {
     className?: string
 }
 
-const TextBlock: FC<ITextBlock> = React.memo(
+const TextBlock: FC<ITextBlock> = memo(
     (props) => {
         const { textBlock, className } = props
 
