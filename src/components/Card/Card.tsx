@@ -28,6 +28,7 @@ const Card: FC<ICard> = React.memo(
                         viewport={{ once: true }}
                     />
                     <motion.div
+                        className={classes.cardText}
                         variants={MotionUp}
                         custom={index}
                     >

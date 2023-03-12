@@ -8,16 +8,24 @@
 
 .img {
     object-fit: contain;
-    width: 80px;
+    max-width: 120px;
     height: 80px;
 }
-
+.cardText{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
 .title {
+
     padding-top: 10px;
 
 }
 
 .desc {
     padding-top: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     text-align: center;
 }

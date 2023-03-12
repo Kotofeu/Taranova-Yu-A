@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import {memo} from 'react'
+import { memo } from 'react'
 import { MCard } from '../../../components/Card/Card'
 import Section, { SectionType } from '../../../components/Section/Section'
 import TextBlock from '../../../components/TextBlock/TextBlock'
@@ -33,21 +33,19 @@ export const AboutSection = memo(() => {
                 </motion.div>
                 <TextBlock className={classes.infoDesc} textBlock={aboutText}></TextBlock>
             </div>
-            <div>
-                <UniversalList
-                    className={classes.includedIn}
-                    items={includedIn}
-                    renderItem={
-                        (item, index) => <MCard
-                            cardImage={item.cardImage}
-                            title={item.title}
-                            desc={item.desc}
-                            index={index}
-                            key={item.title}
-                        />
-                    }
-                />
-            </div>
+            <UniversalList
+                className={classes.includedIn}
+                items={includedIn}
+                renderItem={
+                    (item, index) => <MCard
+                        cardImage={item.cardImage}
+                        title={item.title}
+                        desc={item.desc}
+                        index={index}
+                        key={item.title}
+                    />
+                }
+            />
         </Section>
 
     )

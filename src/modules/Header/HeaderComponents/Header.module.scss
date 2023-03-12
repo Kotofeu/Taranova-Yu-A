@@ -53,16 +53,6 @@
         background-color: $title-color;
 
     }
-
-    &.active {
-
-        &::after,
-        &::before {
-            transform: translateX(0%);
-
-        }
-    }
-
     &::after {
         left: 0;
         transform: translateX(-110%);
@@ -80,6 +70,14 @@
             transform: translateX(0%);
 
         }
+    }
+}
+.linkActive {
+
+    &::after,
+    &::before {
+        transform: translateX(0%);
+
     }
 }
 
