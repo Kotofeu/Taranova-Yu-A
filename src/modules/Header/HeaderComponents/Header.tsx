@@ -1,4 +1,4 @@
-import {memo} from 'react'
+import { memo } from 'react'
 import { NavLink } from 'react-router-dom'
 import logo from '../../../assets/icons/logo.png';
 import { email, tel, links } from '../HeaderStore/headerConsts'
@@ -27,38 +27,41 @@ export const Header = memo(() => {
                                 <NavLink
                                     to={link.link}
                                     key={link.link}
-                                    className={({ isActive }) =>
-                                        [classes.link, isActive ? classes.linkActive : ''].join(' ')
+                                    className=
+                                    {
+                                        ({ isActive }) =>
+                                            [classes.link, isActive ? classes.linkActive : ''].join(' ')
                                     }
-
+                                    onClick = {() => scaleX.set(0)}
                                 >
-                        {link.title}
-                    </NavLink>
-                    )
+                                    {link.title}
+                                </NavLink>
+                            )
                         })}
-            </div>
-            <ul className={classes.contactsList}>
-                <HeaderLink
-                    headerLinkType={HeaderLinkType.email}
-                    href={email}
-                />
-                <HeaderLink
-                    headerLinkType={HeaderLinkType.phone}
-                    href={tel}
-                />
-                <li>
-                    <button className={classes.btn}>
-                        Написать обращение
-                    </button>
-                </li>
-            </ul>
+                    </div>
+                    <ul className={classes.contactsList}>
+                        <HeaderLink
+                            headerLinkType={HeaderLinkType.email}
+                            href={email}
 
-        </nav>
+                        />
+                        <HeaderLink
+                            headerLinkType={HeaderLinkType.phone}
+                            href={tel}
+                        />
+                        <li>
+                            <button className={classes.btn}>
+                                Написать обращение
+                            </button>
+                        </li>
+                    </ul>
+
+                </nav>
             </div >
-    <motion.div
-        className={classes.scrollYProgress}
-        style={{ scaleX: scaleX }}
-    />
+            <motion.div
+                className={classes.scrollProgress}
+                style={{ scaleX: scaleX }}
+            />
 
 
         </header >

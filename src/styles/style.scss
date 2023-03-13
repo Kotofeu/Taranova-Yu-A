@@ -6,3 +6,20 @@
   padding: 0 10px;
   margin: 0 auto;
 }
+.blogs-page{
+  padding-top: 90px;
+  &__blog{
+    width: calc(33% - 20px);
+  }
+}
+.blogs-page__list{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.blog{
+  display: flex;
+  height: 200vh;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 import { motion } from 'framer-motion'
+import imageFail from '../assets/images/NoPhoto.jpg'
 interface IMyPictureProps extends React.ImgHTMLAttributes<HTMLImageElement> {
     srcWebp?: string;
 }
@@ -8,7 +9,7 @@ const Picture: FC<IMyPictureProps> = React.memo(
         (props, ref: React.LegacyRef<HTMLElement>) => {
             const { src, srcWebp, className, alt } = props
             const imgBroke = (event: React.SyntheticEvent<HTMLImageElement, Event>) => {
-                event.currentTarget.src = "https://doukom.ru/upload/iblock/1289/67/product_image_113167_1103527.jpg"
+                event.currentTarget.src = imageFail
             }
             return (
                 <picture ref={ref}>

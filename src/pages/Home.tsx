@@ -18,7 +18,7 @@ const BioSection = lazy(() =>
   import('../modules/BioSection')
     .then(({ BioSection }) => ({ default: BioSection })),
 );*/
-const Home = () => {
+export const Home = () => {
   return (
 
     <main>
