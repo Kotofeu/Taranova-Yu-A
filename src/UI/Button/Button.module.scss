@@ -1,0 +1,10 @@
+@import '../../styles/settings.scss';
+.button{
+    background-color: $secondary-color;
+    color: #fff;
+    padding: 10px 28px;
+    border: none;
+    overflow: hidden;
+    font-weight: 600;
+    border-radius: 10px;
+}

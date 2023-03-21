@@ -1,6 +1,7 @@
 import { AboutSection } from '../modules/AboutSection'
 import { ShortBlogSection } from '../modules/ShortBlogSection'
 import { BioSection } from '../modules/BioSection/'
+import { ShortEventsSection } from '../modules/ShortEventsSection'
 /*
 import {lazy} from 'react'
 
@@ -25,7 +26,7 @@ export const Home = () => {
       <AboutSection/>
       <ShortBlogSection/>
       <BioSection/>
-
+      <ShortEventsSection/>
     </main>
   )
 }

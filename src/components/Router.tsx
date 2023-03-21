@@ -40,6 +40,10 @@ const Router = () => {
                         <Route index element={<Blogs />} />
                         <Route path=':id' element={<Blog />} />
                     </Route>
+                    <Route path='event'>
+                        <Route index element={<Blogs />} />
+                        <Route path=':id' element={<Blog />} />
+                    </Route>
                     <Route path='*' element={<Navigate to="/" replace />} />
                 </Route>
             </Routes>

@@ -5,6 +5,7 @@ import { email, tel, links } from '../HeaderStore/headerConsts'
 import { motion, useScroll, useSpring } from 'framer-motion'
 import { HeaderLink, HeaderLinkType } from './HeaderLink';
 import classes from './Header.module.scss'
+import Button from '../../../UI/Button/Button';
 export const Header = memo(() => {
     const { scrollYProgress } = useScroll();
     const scaleX = useSpring(scrollYProgress, {
@@ -32,7 +33,7 @@ export const Header = memo(() => {
                                         ({ isActive }) =>
                                             [classes.link, isActive ? classes.linkActive : ''].join(' ')
                                     }
-                                    onClick = {() => scaleX.set(0)}
+                                    onClick={() => scaleX.set(0)}
                                 >
                                     {link.title}
                                 </NavLink>
@@ -50,9 +51,9 @@ export const Header = memo(() => {
                             href={tel}
                         />
                         <li>
-                            <button className={classes.btn}>
+                            <Button className={classes.btn}>
                                 Написать обращение
-                            </button>
+                            </Button>
                         </li>
                     </ul>
 

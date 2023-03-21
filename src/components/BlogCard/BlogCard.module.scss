@@ -1,23 +1,68 @@
 .blogCard {
-    padding: 10px;
     background-color: #fff;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    &:hover .desc {
+        transform: translateY(0);
+        opacity: 1;
+
+    }
+    &:hover .img {
+        transform: scale(1.1);
+    }
+    &:hover::after {
+        
+        opacity: 1;
+        transform: translateY(0%);
+    }
+    &::after{
+        position: absolute;
+        transition: all .3s ease-in-out;
+        content: 'Нажмите для просмотра';
+        background-color: #fff;
+        border-radius: 0 0 10px 0;
+        font-weight: 500;
+        padding: 5px;
+        top: 0px;
+        left: 0px;
+        opacity: 0;
+        transform: translateY(-100%);
+        color: #000;
+    }
 }
 
 .img {
+    transition: transform .5s ease-in-out;
     width: 100%;
     height: 320px;
     object-fit: cover;
 }
 
 .desc {
+    transition: all .3s ease-in-out;
     padding-top: 5px;
+    position: absolute;
+    transform: translateY(100%);
+    opacity: 0;
+    background-color: #fff;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 10px;
 
 }
 
 .title {
-    padding-top: 0px;
 
-    font-size: 24px;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+
+    padding-top: 0px;
+    font-size: 18px;
 }
 
 .dateTime {

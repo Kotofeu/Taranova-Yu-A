@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import Picture from '../../UI/Picture';
 import Title from '../../UI/Title/Title';
 import classes from './BlogCard.module.scss'
+import Button from '../../UI/Button/Button';
 interface IBlockCard extends React.AllHTMLAttributes<HTMLHeadElement> {
     pictureSrc: string,
     time: string,
@@ -28,7 +29,6 @@ const BlogCard: FC<IBlockCard> = memo(
                             <p className={classes.date}>{date}</p>
                         </div>
                         <Title className={classes.title}>{title}</Title>
-
                     </div>
 
                 </motion.div>

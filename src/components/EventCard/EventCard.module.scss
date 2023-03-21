@@ -1,0 +1,33 @@
+.event{
+    height: 240px;
+    position: relative;
+    display: flex;
+    background-color: #fff;
+}
+.imageBox{
+    flex-grow: 1;
+}
+.img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.desc{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    
+}
+.title{
+
+}
+.desc{
+
+}
+.button{
+    margin-top: 30px;
+}
