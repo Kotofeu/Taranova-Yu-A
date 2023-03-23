@@ -1,11 +1,18 @@
 import { memo } from 'react'
-import { NavLink } from 'react-router-dom'
-import logo from '../../../assets/icons/logo.png';
-import { email, tel, links } from '../HeaderStore/headerConsts'
 import { motion, useScroll, useSpring } from 'framer-motion'
-import { HeaderLink, HeaderLinkType } from './HeaderLink';
+import { NavLink } from 'react-router-dom'
+
+import { HeaderLink, HeaderLinkType } from '../HeaderLink';
+import Button from '../../../../UI/Button/Button';
+
 import classes from './Header.module.scss'
-import Button from '../../../UI/Button/Button';
+import planImage from '../../../../assets/icons/plan.svg'
+import messageImage from '../../../../assets/icons/message.svg'
+import logo from '../../../../assets/icons/logo.png';
+
+import { email, tel, links } from '../../HeaderStore/headerConsts'
+
+
 export const Header = memo(() => {
     const { scrollYProgress } = useScroll();
     const scaleX = useSpring(scrollYProgress, {
@@ -51,7 +58,11 @@ export const Header = memo(() => {
                             href={tel}
                         />
                         <li>
-                            <Button className={classes.btn}>
+                            <Button
+                                className={classes.btn}
+                                beforeImg ={planImage}
+                                afterImg ={messageImage}
+                            >
                                 Написать обращение
                             </Button>
                         </li>

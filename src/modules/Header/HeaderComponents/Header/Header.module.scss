@@ -1,4 +1,4 @@
-@import '../../../styles/settings.scss';
+@import '../../../../styles/settings.scss';
 
 
 .header {
@@ -16,7 +16,10 @@
 }
 
 .nav {
-
+    /*max-width: 1920px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;*/
     height: 70px;
     display: flex;
     align-items: center;
@@ -111,57 +114,20 @@
 
 .email {
     &::before {
-        background-image: url('../../../assets/icons/email.svg');
+        background-image: url('../../../../assets/icons/email.svg');
         width: 17px;
     }
 }
 
 .phone {
     &::before {
-        background-image: url('../../../assets/icons/phone.svg');
+        background-image: url('../../../../assets/icons/phone.svg');
     }
 }
 
 .btn {
 
     position: relative;
-
-    &::after,
-    &::before {
-        position: absolute;
-        top: 0;
-        content: '';
-        height: 100%;
-        width: 20px;
-        display: block;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: contain;
-        transition: transform .3s ease-in-out;
-    }
-
-    &::after {
-        right: 4px;
-        background-image: url('../../../assets/icons/plan.svg');
-        transform: translateX(150%);
-
-    }
-
-    &::before {
-        left: 4px;
-        background-image: url('../../../assets/icons/message.svg');
-
-    }
-
-    &:hover {
-        &::after {
-            transform: translateX(0%);
-        }
-
-        &::before {
-            transform: translateX(-150%);
-        }
-    }
 }
 
 .scrollProgress {

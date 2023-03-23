@@ -1,1 +1,1 @@
-export {ShortBlogSection} from './ShortBlogSectionComponents/ShortBlogSection'
+export {ShortBlogSection} from './ShortBlogSectionComponents/ShortBlogSection/ShortBlogSection'

@@ -1,1 +1,1 @@
-export {Header} from './HeaderComponents/Header'
+export {Header} from './HeaderComponents/Header/Header'

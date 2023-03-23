@@ -1,5 +1,5 @@
 import { FC, ReactNode, memo } from 'react'
-import classes from './Header.module.scss'
+import classes from './Header/Header.module.scss'
 
 export enum HeaderLinkType {
     phone =  classes.phone,

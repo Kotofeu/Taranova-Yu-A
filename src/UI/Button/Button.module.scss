@@ -7,4 +7,30 @@
     overflow: hidden;
     font-weight: 600;
     border-radius: 10px;
+    position: relative;
+    &:hover {
+        & .before{
+            transform: translateX(-150%);
+        }
+
+        & .after{
+            transform: translateX(0%);
+        }
+    }
+}
+.before, .after{
+    position: absolute;
+    object-fit: contain;
+    top: 0;
+    height: 100%;
+    width: 20px;
+    display: block;
+    transition: transform .3s ease-in-out;
+}
+.before{
+    left: 5px;
+}
+.after{
+    right: 5px;
+    transform: translateX(150%);
 }

@@ -1,91 +1,170 @@
-.blogCard {
-    background-color: #fff;
+.blog {
+    width: 100%;
+    padding: 20px;
+    padding-bottom: 20px;
+    border-radius: 30px;
+    background: linear-gradient(to right, #f1f1f1, #fafafa);
+    margin-bottom: 15px;
+    margin-top: 30px;
+
+/*
+    &:nth-child(even) {
+        background: linear-gradient(to right, #fafafa, #f1ffff);
+
+    }
+
+    &:nth-child(odd) {
+        background: linear-gradient(to right, #fafafa, #fff1ff);
+
+    }*/
+}
+
+.content {
+    display: flex;
+
+}
+
+.leftPart {
+    margin-top: -40px;
+
+}
+
+.imageBox {
+    height: 100%;
+    max-height: 350px;
+    width: 250px;
+    border-radius: 30px;
+
+    overflow: hidden;
     position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    &:hover .desc {
-        transform: translateY(0);
-        opacity: 1;
 
-    }
-    &:hover .img {
-        transform: scale(1.1);
-    }
-    &:hover::after {
-        
-        opacity: 1;
-        transform: translateY(0%);
-    }
-    &::after{
-        position: absolute;
-        transition: all .3s ease-in-out;
-        content: 'Нажмите для просмотра';
-        background-color: #fff;
-        border-radius: 0 0 10px 0;
-        font-weight: 500;
-        padding: 5px;
-        top: 0px;
-        left: 0px;
-        opacity: 0;
-        transform: translateY(-100%);
-        color: #000;
-    }
+    box-shadow: -2px 3px 9px -2px #363838;
 }
 
-.img {
-    transition: transform .5s ease-in-out;
+.image {
+    height: 100%;
     width: 100%;
-    height: 320px;
     object-fit: cover;
+
 }
 
-.desc {
-    transition: all .3s ease-in-out;
-    padding-top: 5px;
+.scoreBox {
     position: absolute;
-    transform: translateY(100%);
-    opacity: 0;
-    background-color: #fff;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    padding: 10px;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    gap: 10px;
+    background-color: #fafafa;
+    padding: 7px 10px;
+    border-radius: 30px;
 
 }
 
-.title {
+.score {
+    box-sizing: content-box;
+    min-width: 20px;
+    height: 25px;
+    border-radius: 20px;
+    padding: 5px 10px;
+    text-align: center;
+    
+    color: #fff;
+    font-weight: 500;
 
-    display: -webkit-box;
-    -webkit-line-clamp: 5;
-    -webkit-box-orient: vertical;  
-    overflow: hidden;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
 
-    padding-top: 0px;
-    font-size: 18px;
+    &::before {
+        content: '';
+        display: block;
+        height: 100%;
+        width: 23px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        margin-right: 5px;
+
+    }
+}
+
+.likes {
+    background-color: #FD3145;
+
+    &::before {
+
+        background-image: url('../../assets/icons/like.svg');
+    }
+
+}
+
+.repost {
+    background-color: #8BB875;
+
+    &::before {
+
+        background-image: url('../../assets/icons/share.svg');
+
+    }
+}
+
+.tagBox {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px
+}
+
+.tag {
+    padding: 8px 12px;
+    border-radius: 2em;
+    color: #FFF;
+
+    &:nth-child(1n) {
+        background-image: linear-gradient(to right, #eb3941, #f15e64, #e14e53);
+    }
+
+    &:nth-child(2n) {
+        background-image: linear-gradient(to right, #667eea, #764ba2);
+    }
+
+    &:nth-child(3n) {
+        background-image: linear-gradient(to right, #0ba360, #30dd8a);
+    }
+
+}
+
+.rightPart {
+    padding-left: 30px;
 }
 
 .dateTime {
-    display: flex;
+    justify-content: right;
+    padding-bottom: 10px;
 }
 
-.date {
-    color: #707070;
-    font-weight: 600;
-    font-size: 14px;
-    padding-right: 30px;
+.desc {
+    display: -webkit-box;
+    -webkit-line-clamp: 10;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+    text-align: justify;
+
 }
-
-.timeField {
-
-    position: relative;
-
-    &::after {
-        content: "|";
-        position: absolute;
-        right: 15px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #707070;
+.break{
+    padding-top: 8px;
+    display: block;
+    &:first-child{
+        padding-top: 0px;  
     }
+}
+.buttons{
+    display: flex;
+    justify-content: end;
+    gap: 20px;
+    margin-top: 10px;
+    margin-bottom: -35px;
+}
+.button {
+    display: block;
 }

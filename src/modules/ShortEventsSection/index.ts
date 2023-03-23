@@ -1,1 +1,1 @@
-export {ShortEventsSection} from './ShortEventsSectionComponents/ShortEventsSection'
+export {ShortEventsSection} from './ShortEventsSectionComponents/ShortEventsSection/ShortEventsSection'
