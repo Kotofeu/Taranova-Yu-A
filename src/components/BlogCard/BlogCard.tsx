@@ -1,5 +1,6 @@
-import { FC, memo } from 'react'
-import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionUp } from '../../const/animation'
+import { FC, memo, forwardRef } from 'react'
+import { motion } from 'framer-motion'
+import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionChildDown, MotionParent, MotionChildRight, MotionChildUp } from '../../const/animation'
 import Button from '../../UI/Button/Button'
 import DateTime from '../../UI/DateTime/DateTime'
 import Picture from '../../UI/Picture'
@@ -18,19 +19,24 @@ interface IBlogCard {
     className?: string
 
 }
-const BlogCard: FC<IBlogCard> = memo((props) => {
+const BlogCard: FC<IBlogCard> = memo(forwardRef((props, ref: React.Ref<HTMLElement>) => {
     const { imageSrc, desc, dateTime, likes, repost, className } = props
     const tags: string[] = desc.split('#')
     const text = tags.shift()
     return (
-        <article
+        <motion.article
             className={`${className ? className : ''} ${classes.blog}`}
+            initial={ANIMATION_HIDDEN}
+            whileInView={ANIMATION_VISIBLE}
+            viewport={{ once: true, amount: 0.6 }}
+            variants={MotionParent}
+            ref={ref}
         >
             <div className={classes.content}>
                 <div className={classes.leftPart}>
-                    <div className={classes.imageBox}>
+                    <motion.div className={classes.imageBox} variants={MotionChildDown}>
                         <Picture className={classes.image} src={imageSrc} alt={desc} />
-                        <ul className={classes.scoreBox}>
+                        <ul className={classes.scoreBox} >
                             {
                                 likes !== 0 &&
                                 <li className={`${classes.score} ${classes.likes}`}>
@@ -44,7 +50,7 @@ const BlogCard: FC<IBlogCard> = memo((props) => {
                                 </li>
                             }
                         </ul>
-                    </div>
+                    </motion.div>
 
                 </div>
                 <div className={classes.rightPart}>
@@ -52,10 +58,18 @@ const BlogCard: FC<IBlogCard> = memo((props) => {
                     {
                         <p className={classes.desc}>
                             {text?.split('\\n').map(
-                                paragraph => {
+                                (paragraph, index) => {
                                     if (paragraph) {
                                         return (
-                                            <span className={classes.break} key={paragraph}>{paragraph}<br/></span>
+                                            <motion.span
+                                                className={classes.break}
+                                                key={paragraph}
+                                                variants={MotionChildRight}
+                                                custom={index}
+                                            >
+                                                {paragraph}
+                                                <br />
+                                            </motion.span>
                                         )
                                     }
 
@@ -68,18 +82,27 @@ const BlogCard: FC<IBlogCard> = memo((props) => {
                     <div className={classes.tagBox}>
                         {
                             tags.length !== 0 &&
-                            tags.map(tag =>
-                                <h6 className={classes.tag} key={tag}>
+                            tags.map((tag, index) =>
+                                <motion.h6
+                                    className={classes.tag}
+                                    key={tag}
+                                    variants={MotionChildRight}
+                                    custom={index}
+                                >
                                     #{tag}
-                                </h6>
+                                </motion.h6>
                             )
                         }
                     </div>
-                    <div className={classes.buttons}>
+                    <motion.div
+                        className={classes.buttons}
+                        variants={MotionChildUp}
+                    >
                         <Button
                             className={classes.button}
                             beforeImg={VKImage}
                             afterImg={stepOverImage}
+                            
                         >
                             Перейти в VK
                         </Button>
@@ -87,17 +110,19 @@ const BlogCard: FC<IBlogCard> = memo((props) => {
                             className={classes.button}
                             beforeImg={readMore1}
                             afterImg={readMore2}
+                            
                         >
                             Подробнее
                         </Button>
-                    </div>
+                    </motion.div>
 
                 </div>
             </div>
 
 
-        </article>
+        </motion.article>
     )
-})
+}))
 
 export default BlogCard
+export const MBlogCard = motion(BlogCard)

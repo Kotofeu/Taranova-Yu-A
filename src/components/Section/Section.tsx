@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { FC, ReactNode } from 'react'
-import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionUp } from '../../const/animation'
+import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionParent, MotionUp } from '../../const/animation'
 import { MTitle, TitleType } from '../../UI/Title/Title'
 import classes from './Section.module.scss'
 
@@ -24,7 +24,8 @@ const Section: FC<ISection> = (props) => {
                 className='container'
                 initial={ANIMATION_HIDDEN}
                 whileInView={ANIMATION_VISIBLE}
-                viewport={{ once: true, amount: 0.4 }}>
+                viewport={{ once: true, amount: 0.4 }}
+                >
                 <MTitle
                     titleType={[TitleType.posCetner, TitleType.lineCenter, TitleType.sectionTitle]}
                     variants={MotionUp}
