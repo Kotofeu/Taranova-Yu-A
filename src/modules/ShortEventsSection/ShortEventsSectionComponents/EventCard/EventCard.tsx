@@ -16,11 +16,14 @@ interface IEventCard extends React.AllHTMLAttributes<HTMLDivElement> {
 export const EventCard: FC<IEventCard> = memo(forwardRef((props, ref: React.Ref<HTMLDivElement>) => {
     const router = useNavigate()
     const { index, className, pictureSrc, date, title } = props
+    const setRoute = () => {
+        router(`/event/${index}`)
+    }
     return (
         <motion.article
             className={`${className ? className : className} ${classes.event}`}
             ref={ref}
-            onClick={() => router(`/event/${index}`)}
+            onClick={setRoute}
         >
             <div className={classes.imageBox}>
                 <Picture

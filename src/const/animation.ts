@@ -71,7 +71,8 @@ export const MotionOpacity = {
 }
 export const MotionParent = {
     [ANIMATION_HIDDEN]: {
-        opacity: 0
+        opacity: 0,
+
     },
     [ANIMATION_VISIBLE]: {
         opacity: 1,
@@ -94,23 +95,12 @@ export const MotionChildRight = {
         }
     }
 }
-export const MotionChildDown = {
-    [ANIMATION_HIDDEN]: {
-        y: -100,
-        opacity: 0
-    },
-    [ANIMATION_VISIBLE]: {
-        y: 0,
-        opacity: 1,
-        transition: {
-            type: "spring", bounce: 0.20, damping: 13
-        }
-    }
-}
+
 export const MotionChildUp= {
     [ANIMATION_HIDDEN]: {
         y: 100,
-        opacity: 0
+        opacity: 0,
+
     },
     [ANIMATION_VISIBLE]: {
         y: 0,

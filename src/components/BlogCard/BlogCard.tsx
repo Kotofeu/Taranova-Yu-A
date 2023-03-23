@@ -1,6 +1,6 @@
 import { FC, memo, forwardRef } from 'react'
 import { motion } from 'framer-motion'
-import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionChildDown, MotionParent, MotionChildRight, MotionChildUp } from '../../const/animation'
+import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionParent, MotionChildRight, MotionChildUp } from '../../const/animation'
 import Button from '../../UI/Button/Button'
 import DateTime from '../../UI/DateTime/DateTime'
 import Picture from '../../UI/Picture'
@@ -28,13 +28,13 @@ const BlogCard: FC<IBlogCard> = memo(forwardRef((props, ref: React.Ref<HTMLEleme
             className={`${className ? className : ''} ${classes.blog}`}
             initial={ANIMATION_HIDDEN}
             whileInView={ANIMATION_VISIBLE}
-            viewport={{ once: true, amount: 0.6 }}
+            viewport={{ once: true, amount: 0.5 }}
             variants={MotionParent}
             ref={ref}
         >
             <div className={classes.content}>
                 <div className={classes.leftPart}>
-                    <motion.div className={classes.imageBox} variants={MotionChildDown}>
+                    <motion.div className={classes.imageBox} variants={MotionChildUp}>
                         <Picture className={classes.image} src={imageSrc} alt={desc} />
                         <ul className={classes.scoreBox} >
                             {
@@ -54,7 +54,10 @@ const BlogCard: FC<IBlogCard> = memo(forwardRef((props, ref: React.Ref<HTMLEleme
 
                 </div>
                 <div className={classes.rightPart}>
-                    <DateTime className={classes.dateTime} date={dateTime} />
+                    <motion.div variants={MotionChildRight}>
+                        <DateTime className={classes.dateTime} date={dateTime} />
+
+                    </motion.div>
                     {
                         <p className={classes.desc}>
                             {text?.split('\\n').map(
@@ -72,8 +75,7 @@ const BlogCard: FC<IBlogCard> = memo(forwardRef((props, ref: React.Ref<HTMLEleme
                                             </motion.span>
                                         )
                                     }
-
-
+                                    return null
                                 }
                             )}
                         </p>
@@ -102,7 +104,7 @@ const BlogCard: FC<IBlogCard> = memo(forwardRef((props, ref: React.Ref<HTMLEleme
                             className={classes.button}
                             beforeImg={VKImage}
                             afterImg={stepOverImage}
-                            
+
                         >
                             Перейти в VK
                         </Button>
@@ -110,7 +112,7 @@ const BlogCard: FC<IBlogCard> = memo(forwardRef((props, ref: React.Ref<HTMLEleme
                             className={classes.button}
                             beforeImg={readMore1}
                             afterImg={readMore2}
-                            
+
                         >
                             Подробнее
                         </Button>
@@ -118,8 +120,6 @@ const BlogCard: FC<IBlogCard> = memo(forwardRef((props, ref: React.Ref<HTMLEleme
 
                 </div>
             </div>
-
-
         </motion.article>
     )
 }))

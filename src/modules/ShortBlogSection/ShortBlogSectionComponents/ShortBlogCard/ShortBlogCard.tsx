@@ -18,10 +18,13 @@ export const ShortBlogCard: FC<IBlockCard> = memo(
         (props, ref: React.Ref<HTMLDivElement>) => {
             const { index, pictureSrc, date, title, className } = props;
             const router = useNavigate()
+            const setRoute = () => {
+                router(`/blog/${index}`)
+            }
             return (
                 <motion.article
                     className={`${className ? className : ''} ${classes.blogCard}`} ref={ref}
-                    onClick={() => router(`/blog/${index}`)}
+                    onClick={setRoute}
                 >
                     <Picture
                         src={pictureSrc}

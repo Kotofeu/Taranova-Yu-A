@@ -1,4 +1,5 @@
-import { FC, memo } from 'react'
+//import { FC, memo } from 'react'
+
 import BlogCard from '../components/BlogCard/BlogCard'
 /* <header>
                     <input type="text" placeholder='Поиск' />
