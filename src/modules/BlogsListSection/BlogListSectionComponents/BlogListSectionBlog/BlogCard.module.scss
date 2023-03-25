@@ -31,7 +31,7 @@
     height: 100%;
     width: 100%;
     object-fit: cover;
-
+    display: inline;
 }
 
 .scoreBox {
@@ -79,7 +79,7 @@
 
     &::before {
 
-        background-image: url('../../assets/icons/like.svg');
+        background-image: url('../../../../assets/icons/like.svg');
     }
 
 }
@@ -89,7 +89,7 @@
 
     &::before {
 
-        background-image: url('../../assets/icons/share.svg');
+        background-image: url('../../../../assets/icons/share.svg');
 
     }
 }
@@ -123,6 +123,9 @@
 }
 
 .rightPart {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .dateTime {
@@ -132,7 +135,7 @@
 
 .desc {
     padding-left: 30px;
-
+    height: 100%;
     display: -webkit-box;
     -webkit-line-clamp: 10;
     -webkit-box-orient: vertical;  

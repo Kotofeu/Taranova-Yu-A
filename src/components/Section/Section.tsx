@@ -24,14 +24,17 @@ const Section: FC<ISection> = (props) => {
                 className='container'
                 initial={ANIMATION_HIDDEN}
                 whileInView={ANIMATION_VISIBLE}
-                viewport={{ once: true, amount: 0.4 }}
-                >
-                <MTitle
-                    titleType={[TitleType.posCetner, TitleType.lineCenter, TitleType.sectionTitle]}
-                    variants={MotionUp}
-                >
-                    {title}
-                </MTitle>
+                viewport={{ once: true, margin: "-200px"}}
+            >
+                <div>
+                    <MTitle
+                        titleType={[TitleType.posCetner, TitleType.lineCenter, TitleType.sectionTitle]}
+                        variants={MotionUp}
+                    >
+                        {title}
+                    </MTitle>
+                </div>
+
                 {children}
             </motion.div>
         </section>

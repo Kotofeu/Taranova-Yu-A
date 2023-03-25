@@ -7,15 +7,24 @@ interface IDateTime {
 
 const DateTime: FC<IDateTime> = memo((props) => {
     const { date, className } = props
-    const dateTime = new Date(date);
+    let unixTimestamp = date
+    if (unixTimestamp.toString().length < 11){
+        unixTimestamp = unixTimestamp * 1000;
+    }
+ 
+    const dateTime = new Date(unixTimestamp);
 
     const timeString: string = `${dateTime.getHours()}:${dateTime.getMinutes() < 10 ?
-            "0" + dateTime.getMinutes()
-            : dateTime.getMinutes()
+        "0" + dateTime.getMinutes()
+        : dateTime.getMinutes()
         }`
     const dateString: string =
-        `${dateTime.getUTCDate()
-        }.${dateTime.getMonth() + 1
+        `${dateTime.getUTCDate()  < 10 ?
+            "0" + dateTime.getUTCDate()
+            : dateTime.getUTCDate()
+        }.${dateTime.getMonth() + 1  < 10 ?
+            "0" + dateTime.getMonth()
+            : dateTime.getMonth()
         }.${dateTime.getFullYear()
         }`
     return (

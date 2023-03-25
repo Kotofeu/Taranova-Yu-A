@@ -1,14 +1,14 @@
 import { FC, memo, forwardRef } from 'react'
 import { motion } from 'framer-motion'
-import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionParent, MotionChildRight, MotionChildUp } from '../../const/animation'
-import Button from '../../UI/Button/Button'
-import DateTime from '../../UI/DateTime/DateTime'
-import Picture from '../../UI/Picture'
+import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionParent, MotionChildRight, MotionChildUp } from '../../../../const/animation'
+import Button from '../../../../UI/Button/Button'
+import DateTime from '../../../../UI/DateTime/DateTime'
+import Picture from '../../../../UI/Picture'
+import readMore1 from '../../../../assets/icons/read__more_1.svg'
+import readMore2 from '../../../../assets/icons/read__more_2.svg'
+import stepOverImage from '../../../../assets/icons/step over.svg'
+import VKImage from '../../../../assets/icons/VK.svg'
 import classes from './BlogCard.module.scss'
-import readMore1 from '../../assets/icons/read__more_1.svg'
-import readMore2 from '../../assets/icons/read__more_2.svg'
-import stepOverImage from '../../assets/icons/step over.svg'
-import VKImage from '../../assets/icons/VK.svg'
 
 interface IBlogCard {
     imageSrc: string,
@@ -60,7 +60,7 @@ const BlogCard: FC<IBlogCard> = memo(forwardRef((props, ref: React.Ref<HTMLEleme
                     </motion.div>
                     {
                         <p className={classes.desc}>
-                            {text?.split('\\n').map(
+                            {text?.split('\n').map(
                                 (paragraph, index) => {
                                     if (paragraph) {
                                         return (
