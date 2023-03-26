@@ -20,6 +20,10 @@ export const Header = memo(() => {
         damping: 30,
         restDelta: 0.001
     });
+    const onLinkClick = () => {
+        scaleX.set(0)
+        window.scrollTo(0, 0);
+    }
     return (
         <header className={classes.header}>
             <div className='container'>
@@ -40,7 +44,7 @@ export const Header = memo(() => {
                                         ({ isActive }) =>
                                             [classes.link, isActive ? classes.linkActive : ''].join(' ')
                                     }
-                                    onClick={() => scaleX.set(0)}
+                                    onClick={onLinkClick}
                                 >
                                     {link.title}
                                 </NavLink>
@@ -60,8 +64,8 @@ export const Header = memo(() => {
                         <li>
                             <Button
                                 className={classes.btn}
-                                beforeImg ={planImage}
-                                afterImg ={messageImage}
+                                beforeImg={planImage}
+                                afterImg={messageImage}
                             >
                                 Написать обращение
                             </Button>

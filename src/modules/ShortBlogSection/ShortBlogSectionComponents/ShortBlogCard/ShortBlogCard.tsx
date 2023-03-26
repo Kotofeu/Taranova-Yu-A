@@ -5,34 +5,35 @@ import Title from '../../../../UI/Title/Title';
 import classes from './ShortBlogCard.module.scss'
 import { useNavigate } from 'react-router-dom';
 import DateTime from '../../../../UI/DateTime/DateTime';
+import BlogsStore, { Item, SizeType } from '../../../../store/BlogsStore';
 interface IBlockCard {
-    index: number,
     className?: string,
-    pictureSrc: string,
-    date: number,
-    title: string,
+    blog: Item,
+
 }
 export const ShortBlogCard: FC<IBlockCard> = memo(
 
     forwardRef(
         (props, ref: React.Ref<HTMLDivElement>) => {
-            const { index, pictureSrc, date, title, className } = props;
+            const { blog, className } = props;
             const router = useNavigate()
             const setRoute = () => {
-                router(`/blog/${index}`)
+                router(`/blog/${blog.id}`)
             }
+            const imageSrc = BlogsStore.getItemImage(blog.attachments[0], 600)
+
             return (
                 <motion.article
                     className={`${className ? className : ''} ${classes.blogCard}`} ref={ref}
                     onClick={setRoute}
                 >
                     <Picture
-                        src={pictureSrc}
-                        alt={title}
+                        src={imageSrc}
+                        alt={blog.text}
                         className={classes.img} />
                     <div className={classes.desc} >
-                        <DateTime date={date} />
-                        <Title className={classes.title}>{title}</Title>
+                        <DateTime date={blog.date}/>
+                        <Title className={classes.title}>{blog.text}</Title>
                     </div>
 
                 </motion.article>

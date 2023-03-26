@@ -6,11 +6,12 @@ export interface IBlog {
     items: Item[];
     next_from: string;
 }
+
 export interface Item {
     comments: Comments;
     hash: string;
     type: string;
-    attachments: ItemAttachment[];
+    attachments: Attachment[];
     date: number;
     edited?: number;
     from_id: number;
@@ -18,15 +19,15 @@ export interface Item {
     is_favorite: boolean;
     likes: Likes;
     owner_id: number;
-    post_source: ItemPostSource;
+    post_source: PostSource;
     post_type: string;
     reposts: Reposts;
     text: string;
     views: Views;
-    copy_history?: CopyHistory[];
     activity?: Activity;
+    copy_history?: CopyHistory[];
 }
-export interface Activity {
+interface Activity {
     comments: Comment[];
     type: string;
     discriminator: string;
@@ -52,10 +53,20 @@ interface Likes {
 interface Views {
     count: number;
 }
-interface ItemAttachment {
+interface Attachment {
     type: string;
     photo?: Photo;
     video?: Video;
+    audio?: string;
+    link?: Link;
+}
+interface Link {
+    url: string;
+    description: string;
+    is_favorite: boolean;
+    title: string;
+    target: string;
+    photo?: any;
 }
 interface Photo {
     album_id: number;
@@ -73,11 +84,13 @@ interface Photo {
 }
 interface Size {
     height: number;
-    type?: SizeType | string;
+    type?: string;
     width: number;
     url: string;
     with_padding?: number;
 }
+
+
 interface Video {
     access_key: string;
     can_comment: number;
@@ -102,6 +115,7 @@ interface Video {
     type: string;
     views: number;
     can_dislike: number;
+    repeat?: number;
 }
 interface Comments {
     can_post: number;
@@ -110,40 +124,25 @@ interface Comments {
 }
 interface CopyHistory {
     type: string;
-    attachments: CopyHistoryAttachment[];
+    attachments: Attachment[];
     date: number;
     from_id: number;
     id: number;
     owner_id: number;
-    post_source: CopyHistoryPostSource;
+    post_source: PostSource;
     post_type: string;
     text: string;
 }
-interface CopyHistoryAttachment {
+interface PostSource {
     type: string;
-    photo?: Photo;
-    link?: Link;
-}
-interface Link {
-    url: string;
-    description: string;
-    is_favorite: boolean;
-    title: string;
-    target: string;
-}
-interface CopyHistoryPostSource {
-    type: string;
-}
-
-interface ItemPostSource {
-    platform: string;
-    type: string;
+    platform?: string;
 }
 interface Reposts {
     count: number;
     user_reposted: number;
 }
-enum SizeType {
+
+export enum SizeType {
     M = "m",
     O = "o",
     P = "p",
@@ -156,8 +155,16 @@ enum SizeType {
     Z = "z",
 }
 
+export enum AttachmentType {
+    Link = "link",
+    Photo = "photo",
+    Video = "video",
+}
+
 class BlogsStore {
-    _blogs: IBlog = JSONstring;
+    _blogs: IBlog | null = null;
+    _selectedBlog: Item | null = null
+    _ownerId: number = 236298625;
     constructor() {
         makeAutoObservable(this, {}, { deep: true })
     }
@@ -165,13 +172,65 @@ class BlogsStore {
         return this._blogs
     }
     get count() {
-        return this.blogs.count
+        return this.blogs?.count
     }
-    getSomeBlogs(count: number) {
-        return this.blogs?.items.slice(0, count)
+    get ownerId() {
+        return this._ownerId
+    }
+    get selectedBlog() {
+        return this._selectedBlog
+    }
+    getSelectedBlog(id: number) {
+        if (!this._blogs) {
+            this.loadBloags()
+        }
+        this._selectedBlog = this._blogs?.items.find(blog => blog.id === id) || null;
+
+        return this.selectedBlog
+    }
+    /* getSomeBlogs(count: number) {
+         if (this._blogs && this._blogs.items.length > 2) {
+             this._blogs.items = this._blogs.items.slice(0, count)
+         }
+         else {
+             setTimeout(() => {
+                 this._blogs = {
+                     count: JSONstring.count,
+                     items: JSONstring.items.filter(item => this.getItemImage(item) !== undefined ).slice(0, count),
+                     next_from: JSONstring.next_from
+                 }
+             }, 1)
+         }
+ 
+     }*/
+
+    getItemImage(blog: Attachment, maxHeight: number = 1080) {
+        const photoSrc = blog?.photo?.sizes.reduce((acc, photo) => {
+            if (photo.height <= maxHeight && acc.height < photo.height) acc = photo
+            return acc
+        })?.url
+        const videoSrc = blog?.video?.first_frame.reduce((acc, video) => {
+            if (video.height <= maxHeight && acc.height < video.height) acc = video
+            return acc
+        })?.url
+        const imageSrc = photoSrc || videoSrc
+        return imageSrc
+    }
+    callbackFunc(result: string) {
+        console.log(result);
     }
     loadBloags = () => {
-        this._blogs = JSONstring
+        setTimeout(() => {
+            if (this.blogs !== JSONstring) {
+
+                this._blogs = {
+                    count: JSONstring.count,
+                    items: JSONstring.items.filter(item => this.getItemImage(item.attachments[0])),
+                    next_from: JSONstring.next_from
+                }
+            }
+
+        }, 1)
     }
     /*
     loadBloags = (url: string) => {

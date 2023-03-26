@@ -6,7 +6,7 @@ import TextBlock from '../../../components/TextBlock/TextBlock'
 import UniversalList from '../../../components/UniversalList'
 import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionUp } from '../../../const/animation'
 import { MTitle, TitleType } from '../../../UI/Title/Title'
-import { achievements, bio } from '../BioSectionStore/BipSectionConsts'
+import { achievements, bio } from '../BioSectionStore/BioSectionConsts'
 import classes from './BioSection.module.scss'
 export const BioSection = memo(() => {
     return (

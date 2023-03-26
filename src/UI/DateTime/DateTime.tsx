@@ -22,9 +22,9 @@ const DateTime: FC<IDateTime> = memo((props) => {
         `${dateTime.getUTCDate()  < 10 ?
             "0" + dateTime.getUTCDate()
             : dateTime.getUTCDate()
-        }.${dateTime.getMonth() + 1  < 10 ?
-            "0" + dateTime.getMonth()
-            : dateTime.getMonth()
+        }.${(dateTime.getMonth() + 1)   < 10 ?
+            "0" + (dateTime.getMonth() + 1)
+            :(dateTime.getMonth() + 1)
         }.${dateTime.getFullYear()
         }`
     return (

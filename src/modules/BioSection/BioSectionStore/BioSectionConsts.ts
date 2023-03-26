@@ -1,5 +1,5 @@
 import connection from '../../../assets/icons/connection.svg'
-import amberMercury from '../../../assets/icons/Amber Mercury.jpg'
+import amberMercury from '../../../assets/icons/Amber-Mercury.svg'
 import futer from '../../../assets/icons/future.svg'
 import together from '../../../assets/icons/together.svg'
 import { ICard } from '../../../components/Card/Card'

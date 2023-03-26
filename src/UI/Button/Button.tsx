@@ -1,18 +1,26 @@
-import { FC, ReactNode } from 'react'
+import { FC, ReactNode, memo } from 'react'
 import classes from './Button.module.scss'
+import { useNavigate } from 'react-router-dom'
+
 interface IButtonProps {
     children: ReactNode,
     onClick?: () => void,
     className?: string,
     beforeImg?: string,
     afterImg?: string,
+    routeOption?: string,
 }
-const Button: FC<IButtonProps> = (props) => {
-    const { children, onClick, className, beforeImg, afterImg } = props
+const Button: FC<IButtonProps> = memo((props) => {
+    const { children, onClick, className, beforeImg, afterImg, routeOption } = props
+    const router = useNavigate()
+    const startRoute = () => {
+        if (routeOption) router(routeOption)
+    }
     return (
         <button
-            className={`${className ? className : ''} ${classes.button} `}
-            onClick={onClick}
+            className={`${className ? className : ''} 
+            ${classes.button} `}
+            onClick={routeOption ? startRoute : onClick}
         >
             {beforeImg ?
                 <img className={classes.before} src={beforeImg} alt="" />
@@ -25,6 +33,6 @@ const Button: FC<IButtonProps> = (props) => {
             }
         </button>
     )
-}
+})
 
 export default Button
