@@ -1,9 +1,11 @@
 .section {
     overflow: hidden;
     padding: 30px 0;
+    background-color: #fff;
 
     &:nth-child(even) {
         background-color: #F5F5F5;
+
     }
 
     &:first-child {

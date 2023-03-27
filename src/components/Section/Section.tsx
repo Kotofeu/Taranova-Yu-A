@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion, Variants } from 'framer-motion'
 import { FC, ReactNode } from 'react'
 import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionUp } from '../../const/animation'
 import { MTitle, TitleType } from '../../UI/Title/Title'
@@ -8,15 +8,15 @@ export enum SectionType {
     fullSize = classes.fullSize
 }
 interface ISection {
-    title: string,
+    title?: string,
     className?: string,
-    children?: ReactNode | ReactNode[]
-    sectionType?: SectionType
-
+    children?: ReactNode | ReactNode[],
+    sectionType?: SectionType,
+    sectionAnimation?: Variants
 
 }
 const Section: FC<ISection> = (props) => {
-    const { title, className, children, sectionType } = props
+    const { title, className, children, sectionType, sectionAnimation } = props
 
     return (
         <section className={`${className ? className : ''} ${classes.section} ${sectionType ? sectionType : ''}`}>
@@ -24,20 +24,23 @@ const Section: FC<ISection> = (props) => {
                 className='container'
                 initial={ANIMATION_HIDDEN}
                 whileInView={ANIMATION_VISIBLE}
-                viewport={{ once: true, margin: "-200px"}}
+                viewport={{ once: true, margin: "-200px" }}
+                variants={sectionAnimation}
             >
-                <div>
-                    <MTitle
-                        titleType={[TitleType.posCetner, TitleType.lineCenter, TitleType.sectionTitle]}
-                        variants={MotionUp}
-                    >
-                        {title}
-                    </MTitle>
-                </div>
+                {title &&
+                    <div>
+                        <MTitle
+                            titleType={[TitleType.posCetner, TitleType.lineCenter, TitleType.sectionTitle]}
+                            variants={MotionUp}
+                        >
+                            {title}
+                        </MTitle>
 
+                    </div>
+                }
                 {children}
             </motion.div>
-        </section>
+        </section >
     )
 }
 

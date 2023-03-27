@@ -181,11 +181,7 @@ class BlogsStore {
         return this._selectedBlog
     }
     getSelectedBlog(id: number) {
-        if (!this._blogs) {
-            this.loadBloags()
-        }
         this._selectedBlog = this._blogs?.items.find(blog => blog.id === id) || null;
-
         return this.selectedBlog
     }
     /* getSomeBlogs(count: number) {
