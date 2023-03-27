@@ -21,7 +21,6 @@ const BlogCard: FC<IBlogCard> = memo((props) => {
     const onVKButtonClick = () => {
         return `https://vk.com/taranova.yulia?w=wall${BlogsStore._ownerId}_${blog.id}`
     }
-
     const imageSrc = BlogsStore.getItemImage(blog.attachments[0], 500);
     return (
         <motion.article
@@ -56,7 +55,12 @@ const BlogCard: FC<IBlogCard> = memo((props) => {
                     <motion.div variants={MotionChildRight}>
                         <DateTime className={classes.dateTime} date={blog.date} />
                     </motion.div>
-                    <BlogText text={blog.text} ></BlogText>
+                    <BlogText
+                        className={classes.text}
+                        text={blog.text}
+                        animationType={MotionChildRight}
+                        textRowCount={6}
+                    />
 
                     <motion.div
                         className={classes.buttons}

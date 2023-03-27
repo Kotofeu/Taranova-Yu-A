@@ -1,1 +1,0 @@
-export {ShortBlogSection} from './ShortBlogSectionComponents/ShortBlogSection/ShortBlogSection'

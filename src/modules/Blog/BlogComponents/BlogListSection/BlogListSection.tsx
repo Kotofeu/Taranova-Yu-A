@@ -1,5 +1,5 @@
-import { memo } from 'react'
-import BlogCard from '../BlogListSectionBlog/BlogCard'
+import { memo} from 'react'
+import BlogCard from '../BlogCard/BlogCard'
 import Section, { SectionType } from '../../../../components/Section/Section'
 import classes from './BlogListSection.module.scss'
 import BlogsStore from '../../../../store/BlogsStore'

@@ -99,6 +99,10 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    & > * {
+        padding-left: 30px;
+
+    }
 }
 
 .dateTime {
@@ -116,4 +120,14 @@
 }
 .button {
     display: block;
+}
+
+.text {
+    height: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 10;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+    text-align: justify;
+
 }

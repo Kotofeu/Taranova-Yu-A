@@ -1,12 +1,8 @@
 import { AboutSection } from '../modules/AboutSection'
-import { ShortBlogSection } from '../modules/ShortBlogSection'
+import { ShortBlogSection } from '../modules/Blog'
 import { BioSection } from '../modules/BioSection/'
 import { ShortEventsSection } from '../modules/ShortEventsSection'
-import BlogsStore from '../store/BlogsStore'
-import {useEffect} from 'react'
 export const Home = () => {
-  
-
   return (
     <main>
       <AboutSection />

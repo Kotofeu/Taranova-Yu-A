@@ -1,4 +1,4 @@
-import { BlogListSection } from "../modules/BlogsListSection/BlogListSectionComponents/BlogListSection/BlogListSection"
+import { BlogListSection } from "../modules/Blog"
 
 export const Blogs = () => {
 

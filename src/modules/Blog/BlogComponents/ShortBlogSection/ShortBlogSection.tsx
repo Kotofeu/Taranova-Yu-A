@@ -5,6 +5,7 @@ import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionUp } from '../../../../const
 import classes from './ShortBlogSection.module.scss'
 import { observer } from 'mobx-react-lite'
 import BlogsStore from '../../../../store/BlogsStore'
+import BlogCard from '../BlogCard/BlogCard'
 
 export const ShortBlogSection = memo(observer(() => {
 
@@ -19,13 +20,7 @@ export const ShortBlogSection = memo(observer(() => {
             <MShortBlogCard
               className={classes.blog}
               key={blog.id}
-              initial={ANIMATION_HIDDEN}
-              whileInView={ANIMATION_VISIBLE}
-              variants={MotionUp}
-              custom={index}
-              viewport={{ once: true }}
               blog = {blog}
-
             />)
         })}
       </div>

@@ -6,6 +6,7 @@ import classes from './ShortBlogCard.module.scss'
 import { useNavigate } from 'react-router-dom';
 import DateTime from '../../../../UI/DateTime/DateTime';
 import BlogsStore, { Item, SizeType } from '../../../../store/BlogsStore';
+import BlogText from '../BlogText/BlogText';
 interface IBlockCard {
     className?: string,
     blog: Item,
@@ -32,8 +33,13 @@ export const ShortBlogCard: FC<IBlockCard> = memo(
                         alt={blog.text}
                         className={classes.img} />
                     <div className={classes.desc} >
-                        <DateTime date={blog.date}/>
-                        <Title className={classes.title}>{blog.text}</Title>
+                        <DateTime date={blog.date} />
+                        <BlogText
+                            className={classes.title}
+                            text={blog.text}
+                            tagsCount={2}
+                            textRowCount={3}
+                        />
                     </div>
 
                 </motion.article>
