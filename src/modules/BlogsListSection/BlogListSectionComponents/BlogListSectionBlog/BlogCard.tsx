@@ -10,6 +10,7 @@ import stepOverImage from '../../../../assets/icons/step over.svg'
 import VKImage from '../../../../assets/icons/VK.svg'
 import classes from './BlogCard.module.scss'
 import BlogsStore, { Item } from '../../../../store/BlogsStore'
+import BlogText from '../BlogText/BlogText'
 
 interface IBlogCard {
     blog: Item,
@@ -20,10 +21,7 @@ const BlogCard: FC<IBlogCard> = memo((props) => {
     const onVKButtonClick = () => {
         return `https://vk.com/taranova.yulia?w=wall${BlogsStore._ownerId}_${blog.id}`
     }
-    
-    const desc: string[] = blog.text.split(/(?=#)/g)
-    const text = desc.shift()
-    const tags: string[] = desc.map(item => item.split(' ')[0])
+
     const imageSrc = BlogsStore.getItemImage(blog.attachments[0], 500);
     return (
         <motion.article
@@ -58,40 +56,8 @@ const BlogCard: FC<IBlogCard> = memo((props) => {
                     <motion.div variants={MotionChildRight}>
                         <DateTime className={classes.dateTime} date={blog.date} />
                     </motion.div>
-                    <p className={classes.desc}>
-                        {text?.split('\n').map(
-                            (paragraph, index) => {
-                                if (index > 6) return null
-                                if (paragraph) {
-                                    return (
-                                        <motion.span
-                                            className={classes.break}
-                                            key={paragraph}
-                                            variants={MotionChildRight}
-                                            custom={index}
-                                        >
-                                            {paragraph}
-                                        </motion.span>
-                                    )
-                                }
-                                return null
-                            }
-                        )}
-                    </p>
-                    <div className={classes.tagBox}>
-                        {
-                            tags.length !== 0 &&
-                            tags.map((tag) =>
-                                <motion.h6
-                                    className={classes.tag}
-                                    key={tag}
-                                    variants={MotionChildRight}
-                                >
-                                    {tag}
-                                </motion.h6>
-                            )
-                        }
-                    </div>
+                    <BlogText text={blog.text} ></BlogText>
+
                     <motion.div
                         className={classes.buttons}
                         variants={MotionChildUp}
@@ -109,7 +75,7 @@ const BlogCard: FC<IBlogCard> = memo((props) => {
                             className={classes.button}
                             beforeImg={readMore1}
                             afterImg={readMore2}
-                            routeOption ={`/blog/${blog.id}`}
+                            routeOption={`/blog/${blog.id}`}
                         >
                             Подробнее
                         </Button>
