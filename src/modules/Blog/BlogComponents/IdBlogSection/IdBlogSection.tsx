@@ -9,6 +9,8 @@ import BlogText from '../BlogText/BlogText';
 import classes from './IdBlogSection.module.scss'
 import { useState } from 'react';
 import DateTime from '../../../../UI/DateTime/DateTime';
+import { MGrid } from '../../../../components/Grid/Grid';
+import Modal from '../../../../components/Modal/Modal';
 export const IdBlogSection = observer(() => {
     const params = useParams();
     const [selectedId, setSelectedId] = useState<string | null>('')
@@ -21,38 +23,34 @@ export const IdBlogSection = observer(() => {
         return <h1>Ошибка</h1>
     }
 
-    let itemsCountClass = classes.itemsCountMore;
-
-    const t: number = blog.attachments.length
-    switch (t) {
-        case 1: itemsCountClass = classes.itemsCount1; break
-        case 2: itemsCountClass = classes.itemsCount2; break
-        case 3: itemsCountClass = classes.itemsCount3; break
-        case 4: itemsCountClass = classes.itemsCount4; break
-        case 5: itemsCountClass = classes.itemsCount5; break
-        case 6: itemsCountClass = classes.itemsCount6; break
-        case 7: itemsCountClass = classes.itemsCount7; break
-        case 8: itemsCountClass = classes.itemsCount8; break
-        case 9: itemsCountClass = classes.itemsCount9; break
+    const itemsCount = blog.attachments.length
+    const closeModal = () => {
+        setSelectedId(null)
     }
-
     return (
-        <Section className={classes.blog} sectionAnimation={MotionParent} sectionType={SectionType.fullSize}>
-            <DateTime className={classes.dateTime} date={blog.date}></DateTime>
-
-            <BlogText text={blog.text} animationType={MotionChildRight}></BlogText>
-
-            <div className={[classes.grid, itemsCountClass].join(' ')}>
-
+        <Section
+            className={classes.blog}
+            sectionAnimation={MotionParent}
+            sectionType={SectionType.fullSize}
+        >
+            <DateTime className={classes.dateTime} date={blog.date} />
+            <BlogText text={blog.text} animationType={MotionChildRight} />
+            <MGrid
+                className={classes.grid}
+                itemsCount={itemsCount}
+                initial={ANIMATION_HIDDEN}
+                whileInView={ANIMATION_VISIBLE}
+                variants={MotionParent}
+            >
                 {blog.attachments.map((image, index) => {
                     const imageSrc = BlogsStore.getItemImage(blog.attachments[index], 1080)
-                    if (index > t - 1) return null
                     if (image.type === 'photo') {
                         return (
                             <motion.div
                                 layoutId={imageSrc}
                                 onClick={() => setSelectedId(imageSrc || '')}
                                 key={image.photo?.id}
+                                variants={MotionChildUp}
                             >
                                 <Picture
                                     className={classes.itemImage}
@@ -64,49 +62,36 @@ export const IdBlogSection = observer(() => {
                     }
                     if (image.type === 'video') {
                         return (
-                            <a
+                            <motion.a
                                 href={`https://vk.com/video${BlogsStore.ownerId}_${image.video?.id}`}
                                 target="_blank"
                                 rel="noreferrer"
                                 key={image.video?.id}
                                 className={classes.video}
+                                variants={MotionChildUp}
+
                             >
                                 <Picture className={classes.itemImage} src={imageSrc} />
-                            </a>
+                            </motion.a>
 
                         )
                     }
                 })}
-            </div>
-
-            <AnimatePresence>
-                {selectedId && (
-                    <motion.div className={classes.modal}>
-                        <motion.div className='container'>
-
-                            <motion.div className={classes.modalInner}>
-                                <motion.div layoutId={selectedId} className={classes.modalImageBox}>
-                                    <motion.img
-                                        className={classes.modalImage}
-                                        src={selectedId}
-                                    />
-                                    <motion.button
-                                        onClick={() => setSelectedId(null)}
-                                        className={classes.modalCross}
-                                    >
-                                        Закрыть окно
-                                    </motion.button>
-
-
-                                </motion.div>
-                            </motion.div>
-                            <motion.button onClick={() => setSelectedId(null)} className={classes.modalClose} initial={ANIMATION_HIDDEN} exit={ANIMATION_HIDDEN} animate={ANIMATION_VISIBLE} variants={MotionParent} />
-                        </motion.div >
-
-                    </motion.div>
-
-                )}
-            </AnimatePresence>
+            </MGrid>
+            <Modal selectedId={selectedId} closeModal={closeModal}>
+                <>
+                    <MPicture
+                        className={classes.modalImage}
+                        src={selectedId || ''}
+                    />
+                    <motion.button
+                        onClick={closeModal}
+                        className={classes.modalCross}
+                    >
+                        Закрыть окно
+                    </motion.button>
+                </>
+            </Modal>
 
         </Section>
     )

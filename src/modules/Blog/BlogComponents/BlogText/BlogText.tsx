@@ -20,7 +20,6 @@ const BlogText: FC<IBlogText> = memo((props) => {
                 {
                     desc && desc.map((paragraph, index) => {
                         if (textRowCount && (index + 1 > textRowCount) || !paragraph.trim()) return null
-                        console.log(paragraph.trim())
                         return (
                             <motion.p
                                 className={classes.paragraph}
