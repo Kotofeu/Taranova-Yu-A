@@ -24,7 +24,7 @@ const Section: FC<ISection> = (props) => {
                 className='container'
                 initial={ANIMATION_HIDDEN}
                 whileInView={ANIMATION_VISIBLE}
-                viewport={{ once: true, margin: "-200px" }}
+                viewport={{ once: true, margin: "-140px" }}
                 variants={sectionAnimation}
             >
                 {title &&

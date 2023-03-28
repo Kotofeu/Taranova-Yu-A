@@ -19,7 +19,8 @@ const BlogText: FC<IBlogText> = memo((props) => {
             <div className={[classes.text, className].join(' ')}>
                 {
                     desc && desc.map((paragraph, index) => {
-                        if (textRowCount && (index + 1 > textRowCount) || !paragraph) return null
+                        if (textRowCount && (index + 1 > textRowCount) || !paragraph.trim()) return null
+                        console.log(paragraph.trim())
                         return (
                             <motion.p
                                 className={classes.paragraph}

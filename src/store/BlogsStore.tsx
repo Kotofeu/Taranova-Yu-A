@@ -19,13 +19,13 @@ export interface Item {
     is_favorite: boolean;
     likes: Likes;
     owner_id: number;
-    post_source: PostSource;
+    post_source: any;
     post_type: string;
     reposts: Reposts;
     text: string;
     views: Views;
     activity?: Activity;
-    copy_history?: CopyHistory[];
+    copy_history?: any;
 }
 interface Activity {
     comments: Comment[];
@@ -41,7 +41,7 @@ interface Comment {
     owner_id: number;
     parents_stack: any[];
     likes: Likes;
-    thread: Views;
+    thread: any;
 }
 interface Likes {
     can_like: number;
@@ -58,16 +58,9 @@ interface Attachment {
     photo?: Photo;
     video?: Video;
     audio?: string;
-    link?: Link;
+    link?: any;
 }
-interface Link {
-    url: string;
-    description: string;
-    is_favorite: boolean;
-    title: string;
-    target: string;
-    photo?: any;
-}
+
 interface Photo {
     album_id: number;
     date: number;
@@ -89,8 +82,6 @@ interface Size {
     url: string;
     with_padding?: number;
 }
-
-
 interface Video {
     access_key: string;
     can_comment: number;
@@ -122,21 +113,7 @@ interface Comments {
     count: number;
     groups_can_post: boolean;
 }
-interface CopyHistory {
-    type: string;
-    attachments: Attachment[];
-    date: number;
-    from_id: number;
-    id: number;
-    owner_id: number;
-    post_source: PostSource;
-    post_type: string;
-    text: string;
-}
-interface PostSource {
-    type: string;
-    platform?: string;
-}
+
 interface Reposts {
     count: number;
     user_reposted: number;

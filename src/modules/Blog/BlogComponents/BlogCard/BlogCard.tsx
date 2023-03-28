@@ -27,7 +27,7 @@ const BlogCard: FC<IBlogCard> = memo((props) => {
             className={`${className ? className : ''} ${classes.blog}`}
             initial={ANIMATION_HIDDEN}
             whileInView={ANIMATION_VISIBLE}
-            viewport={{ once: true, amount: 0.5 }}
+            viewport={{ once: true }}
             variants={MotionParent}
         >
             <div className={classes.content}>

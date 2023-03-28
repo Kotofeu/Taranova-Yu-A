@@ -33,7 +33,7 @@ export const ShortBlogCard: FC<IBlockCard> = memo(
                         alt={blog.text}
                         className={classes.img} />
                     <div className={classes.desc} >
-                        <DateTime date={blog.date} />
+                        <DateTime className={classes.date} date={blog.date} />
                         <BlogText
                             className={classes.title}
                             text={blog.text}

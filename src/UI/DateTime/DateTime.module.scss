@@ -3,9 +3,9 @@
 }
 
 .date {
-    color: #707070;
+    color: inherit;
     font-weight: 600;
-    font-size: 14px;
+    font-size: inherit;
 }
 
 .timeField {
@@ -16,7 +16,7 @@
     &::after {
         content: "|";
         position: absolute;
-        right: 15px;
+        right: 12px;
         top: 50%;
         transform: translateY(-50%);
         color: #707070;

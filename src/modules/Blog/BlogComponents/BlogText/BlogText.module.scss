@@ -2,7 +2,7 @@
 .paragraph{
     padding-top: 8px;
     display: block;
-    &:first-child{
+    &:last-child{
         padding-top: 0px;  
     }
 }
@@ -17,7 +17,6 @@
     padding: 8px 12px;
     border-radius: 2em;
     color: #FFF;
-
     &:nth-child(1n) {
         background-image: linear-gradient(to right, #eb3941, #f15e64, #e14e53);
     }
