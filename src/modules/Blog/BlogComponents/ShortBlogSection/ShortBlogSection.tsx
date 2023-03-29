@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import { MShortBlogCard } from '../ShortBlogCard/ShortBlogCard'
 import Section from '../../../../components/Section/Section'
-import { MotionChildUp, MotionParent } from '../../../../const/animation'
+import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionUp } from '../../../../const/animation'
 import classes from './ShortBlogSection.module.scss'
 import { observer } from 'mobx-react-lite'
 import BlogsStore from '../../../../store/BlogsStore'
@@ -10,7 +10,7 @@ import BlogCard from '../BlogCard/BlogCard'
 export const ShortBlogSection = memo(observer(() => {
 
   return (
-    <Section className={classes.shortBlog} title='Последние публикации' sectionAnimation={MotionParent}>
+    <Section className={classes.shortBlog} title='Последние публикации'>
       <div
         className={classes.inner}
       >
@@ -21,7 +21,11 @@ export const ShortBlogSection = memo(observer(() => {
               className={classes.blog}
               key={blog.id}
               blog = {blog}
-              variants = {MotionChildUp}
+              initial = {ANIMATION_HIDDEN}
+              whileInView = {ANIMATION_VISIBLE}
+              viewport ={{ once: true, margin: "-140px" }}
+              variants = {MotionUp}
+              custom = {index}
             />)
         })}
       </div>

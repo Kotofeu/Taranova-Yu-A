@@ -11,6 +11,7 @@ import VKImage from '../../../../assets/icons/VK.svg'
 import classes from './BlogCard.module.scss'
 import BlogsStore, { Item } from '../../../../store/BlogsStore'
 import BlogText from '../BlogText/BlogText'
+import BlogRating from '../BlogRating/BlogRating'
 
 interface IBlogCard {
     blog: Item,
@@ -19,7 +20,7 @@ interface IBlogCard {
 const BlogCard: FC<IBlogCard> = memo((props) => {
     const { blog, className } = props
     const onVKButtonClick = () => {
-        return `https://vk.com/taranova.yulia?w=wall${BlogsStore._ownerId}_${blog.id}`
+        return `https://vk.com/taranova.yulia?w=wall${BlogsStore.ownerId}_${blog.id}`
     }
     const imageSrc = BlogsStore.getItemImage(blog.attachments[0], 500);
     return (
@@ -34,20 +35,7 @@ const BlogCard: FC<IBlogCard> = memo((props) => {
                 <div className={classes.leftPart}>
                     <motion.div className={classes.imageBox} variants={MotionChildUp}>
                         <Picture className={classes.image} src={imageSrc} alt={blog.text} />
-                        <ul className={classes.scoreBox} >
-                            {
-                                blog.likes.count !== 0 &&
-                                <li className={`${classes.score} ${classes.likes}`}>
-                                    {blog.likes.count}
-                                </li>
-                            }
-                            {
-                                blog.reposts.count !== 0 &&
-                                <li className={`${classes.score} ${classes.repost}`}>
-                                    {blog.reposts.count}
-                                </li>
-                            }
-                        </ul>
+                        <BlogRating blog={blog} className = {classes.blogScore}/>
                     </motion.div>
 
                 </div>

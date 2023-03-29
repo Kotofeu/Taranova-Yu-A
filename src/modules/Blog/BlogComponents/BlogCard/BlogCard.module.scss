@@ -33,66 +33,17 @@
     object-fit: cover;
     display: inline;
 }
-
-.scoreBox {
+.blogScore{
     position: absolute;
     bottom: 10px;
     right: 10px;
-    display: flex;
-    gap: 10px;
     background-color: #fafafa;
     padding: 7px 10px;
     border-radius: 30px;
-
-}
-
-.score {
-    box-sizing: content-box;
-    min-width: 20px;
-    height: 25px;
-    border-radius: 20px;
-    padding: 5px 10px;
-    text-align: center;
-    
-    color: #fff;
-    font-weight: 500;
-
     display: flex;
-    align-items: center;
-    font-weight: 600;
-
-    &::before {
-        content: '';
-        display: block;
-        height: 100%;
-        width: 23px;
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-position: center;
-        margin-right: 5px;
-
-    }
+    gap: 10px;
 }
 
-.likes {
-    background-color: #FD3145;
-
-    &::before {
-
-        background-image: url('../../../../assets/icons/like.svg');
-    }
-
-}
-
-.repost {
-    background-color: #8BB875;
-
-    &::before {
-
-        background-image: url('../../../../assets/icons/share.svg');
-
-    }
-}
 
 
 .rightPart {

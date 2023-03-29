@@ -10,7 +10,7 @@ export const BlogListSection = memo(observer(() => {
         <Section className={classes.blogs} title='Публикации'
             sectionType={SectionType.fullSize}>
             <div className={classes.list}>
-                {BlogsStore._blogs?.items.map(blog => {
+                {BlogsStore.blogs?.items.map(blog => {
                     return (<BlogCard
                         className={classes.blog}
                         blog = {blog}

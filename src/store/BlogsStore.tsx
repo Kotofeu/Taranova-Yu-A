@@ -57,7 +57,7 @@ interface Attachment {
     type: string;
     photo?: Photo;
     video?: Video;
-    audio?: string;
+    audio?: any;
     link?: any;
 }
 
@@ -139,9 +139,9 @@ export enum AttachmentType {
 }
 
 class BlogsStore {
-    _blogs: IBlog | null = null;
-    _selectedBlog: Item | null = null
-    _ownerId: number = 236298625;
+    private _blogs: IBlog | null = null;
+    private _selectedBlog: Item | null = null
+    private _ownerId: number = 236298625;
     constructor() {
         makeAutoObservable(this, {}, { deep: true })
     }
@@ -157,25 +157,15 @@ class BlogsStore {
     get selectedBlog() {
         return this._selectedBlog
     }
-    getSelectedBlog(id: number) {
-        this._selectedBlog = this._blogs?.items.find(blog => blog.id === id) || null;
-        return this.selectedBlog
+    setBlogs(blogs: IBlog) {
+        this._blogs = blogs
     }
-    /* getSomeBlogs(count: number) {
-         if (this._blogs && this._blogs.items.length > 2) {
-             this._blogs.items = this._blogs.items.slice(0, count)
-         }
-         else {
-             setTimeout(() => {
-                 this._blogs = {
-                     count: JSONstring.count,
-                     items: JSONstring.items.filter(item => this.getItemImage(item) !== undefined ).slice(0, count),
-                     next_from: JSONstring.next_from
-                 }
-             }, 1)
-         }
- 
-     }*/
+    setSelectedBlog(blog: Item | null){
+        this._selectedBlog = blog
+    }
+    findSelectedBlog(id: number) {
+        this.setSelectedBlog(this.blogs?.items.find(blog => blog.id === id) || null);
+    }
 
     getItemImage(blog: Attachment, maxHeight: number = 1080) {
         const photoSrc = blog?.photo?.sizes.reduce((acc, photo) => {
@@ -189,21 +179,19 @@ class BlogsStore {
         const imageSrc = photoSrc || videoSrc
         return imageSrc
     }
-    callbackFunc(result: string) {
-        console.log(result);
-    }
+
+
     loadBloags = () => {
         setTimeout(() => {
             if (this.blogs !== JSONstring) {
-
-                this._blogs = {
+                this.setBlogs({
                     count: JSONstring.count,
                     items: JSONstring.items.filter(item => this.getItemImage(item.attachments[0])),
                     next_from: JSONstring.next_from
-                }
+                })
             }
 
-        }, 1)
+        }, 500)
     }
     /*
     loadBloags = (url: string) => {
@@ -212,6 +200,21 @@ class BlogsStore {
             .then((data) => (this.blogs = data))
     }
     */
+    /* getSomeBlogs(count: number) {
+      if (this._blogs && this._blogs.items.length > 2) {
+          this._blogs.items = this._blogs.items.slice(0, count)
+      }
+      else {
+          setTimeout(() => {
+              this._blogs = {
+                  count: JSONstring.count,
+                  items: JSONstring.items.filter(item => this.getItemImage(item) !== undefined ).slice(0, count),
+                  next_from: JSONstring.next_from
+              }
+          }, 1)
+      }
+ 
+  }*/
 
 }
 export default new BlogsStore();

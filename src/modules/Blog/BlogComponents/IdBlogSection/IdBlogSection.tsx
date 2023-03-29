@@ -1,8 +1,8 @@
 import { observer } from 'mobx-react-lite';
 import { useParams } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Section, { SectionType } from '../../../../components/Section/Section';
-import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionChildRight, MotionChildUp, MotionDown, MotionFlip, MotionLeft, MotionParent, MotionRight, MotionUp } from '../../../../const/animation';
+import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionChildRight, MotionChildUp, MotionParent } from '../../../../const/animation';
 import BlogsStore from '../../../../store/BlogsStore';
 import Picture, { MPicture } from '../../../../UI/Picture'
 import BlogText from '../BlogText/BlogText';
@@ -11,16 +11,21 @@ import { useState } from 'react';
 import DateTime from '../../../../UI/DateTime/DateTime';
 import { MGrid } from '../../../../components/Grid/Grid';
 import Modal from '../../../../components/Modal/Modal';
+import Error404 from '../../../../components/Error404/Error404';
 export const IdBlogSection = observer(() => {
     const params = useParams();
     const [selectedId, setSelectedId] = useState<string | null>('')
-
-    if (!params.id) {
-        return <h1>Ошибка</h1>
-    }
-    const blog = BlogsStore.getSelectedBlog(+params.id)
+    if (!params.id) return null
+    BlogsStore.findSelectedBlog(+params.id)
+    const blog = BlogsStore.selectedBlog
     if (!blog) {
-        return <h1>Ошибка</h1>
+        return (
+            <Error404
+                errorText='Страница не найдена'
+                routTo='/blog'
+                buttonText='Вернуться к публикациям'
+            />
+        )
     }
 
     const itemsCount = blog.attachments.length
@@ -79,20 +84,20 @@ export const IdBlogSection = observer(() => {
                 })}
             </MGrid>
             <Modal selectedId={selectedId} closeModal={closeModal}>
-                <>
+                <motion.div className={classes.layout} layoutId={selectedId || ''}>
                     <MPicture
                         className={classes.modalImage}
                         src={selectedId || ''}
                     />
                     <motion.button
                         onClick={closeModal}
-                        className={classes.modalCross}
+                        className={classes.closeBtn}
                     >
                         Закрыть окно
                     </motion.button>
-                </>
+                </motion.div>
             </Modal>
 
-        </Section>
+        </Section >
     )
 })

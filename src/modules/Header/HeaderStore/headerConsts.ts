@@ -5,7 +5,7 @@ interface ILink {
 
 export const links: ILink[] = [
     {title: "Главная", link: "/"},
-    {title: "Блог", link: "/blog"},
+    {title: "Публикации", link: "/blog"},
     {title: "Мероприятия", link: "/event"}
 ]
 export const email: string = 'taranova@zaksob39.ru'

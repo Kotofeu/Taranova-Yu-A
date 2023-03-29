@@ -3,7 +3,7 @@ import { FC, ReactNode } from 'react'
 import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionParent } from '../../const/animation'
 import classes from './Modal.module.scss'
 interface IModal {
-    selectedId: string | null,
+    selectedId: any,
     children: ReactNode,
     closeModal: () => void
 }
@@ -13,11 +13,9 @@ const Modal: FC<IModal> = (props) => {
         <AnimatePresence>
             {selectedId && (
                 <motion.div className={classes.modal}>
-                    <motion.div className='container'>
-                        <motion.div className={classes.modalInner}>
-                            <motion.div layoutId={selectedId} className={classes.layoutBox}>
-                                {children}
-                            </motion.div>
+                        <motion.div className={[classes.modalInner, 'container'].join(' ')}>
+
+                            {children}
                         </motion.div>
                         <motion.button
                             onClick={closeModal}
@@ -28,7 +26,6 @@ const Modal: FC<IModal> = (props) => {
                             variants={MotionParent}
                         />
                     </motion.div >
-                </motion.div>
             )}
         </AnimatePresence>
     )
