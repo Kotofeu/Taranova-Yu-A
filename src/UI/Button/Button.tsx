@@ -21,8 +21,7 @@ const Button: FC<IButtonProps> = memo(
             }
             return (
                 <button
-                    className={`${className ? className : ''} 
-            ${classes.button} `}
+                    className={`${className ? className : ''} ${classes.button} `}
                     onClick={routeOption ? startRoute : onClick}
                     ref={ref}
                 >

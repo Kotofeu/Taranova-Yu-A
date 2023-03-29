@@ -191,7 +191,7 @@ class BlogsStore {
                 })
             }
 
-        }, 500)
+        }, 0)
     }
     /*
     loadBloags = (url: string) => {
