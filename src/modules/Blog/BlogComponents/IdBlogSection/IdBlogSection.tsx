@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useParams, useNavigate } from 'react-router-dom';
 
 import Section, { SectionType } from '../../../../components/Section/Section';
-import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionChildLeft, MotionLeft, MotionParent } from '../../../../const/animation';
+import { MotionChildLeft, MotionParent } from '../../../../const/animation';
 import BlogsStore from '../../../../store/BlogsStore';
 import BlogText from '../BlogText/BlogText';
 import { MDateTime } from '../../../../UI/DateTime/DateTime';
@@ -17,7 +17,6 @@ import arrorImage from '../../../../assets/icons/arror.svg'
 
 import classes from './IdBlogSection.module.scss'
 import Loader from '../../../../components/Loader/Loader';
-import BlogRating from '../BlogRating/BlogRating';
 
 export const IdBlogSection = observer(() => {
     const params = useParams();
