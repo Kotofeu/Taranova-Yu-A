@@ -19,7 +19,7 @@ const BlogText: FC<IBlogText> = memo((props) => {
             <div className={[classes.text, className].join(' ')}>
                 {
                     desc && desc.map((paragraph, index) => {
-                        if (textRowCount && (index + 1 > textRowCount) || !paragraph.trim()) return null
+                        if ((textRowCount && (index + 1 > textRowCount)) || !paragraph.trim()) return null
                         return (
                             <motion.p
                                 className={classes.paragraph}
@@ -35,7 +35,7 @@ const BlogText: FC<IBlogText> = memo((props) => {
             <div className={classes.tagBox}>
                 {
                     tags && tags.map((tag, index) => {
-                        if (tagsCount && (index + 1 > tagsCount) || !tag) return null
+                        if ((tagsCount && (index + 1 > tagsCount)) || !tag) return null
                         return (
                             <motion.h6
                                 className={classes.tag}

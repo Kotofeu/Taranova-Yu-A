@@ -142,6 +142,8 @@ class BlogsStore {
     private _blogs: IBlog | null = null;
     private _selectedBlog: Item | null = null
     private _ownerId: number = 236298625;
+    private _isLoading: boolean = false
+    private _error: string | null = null
     constructor() {
         makeAutoObservable(this, {}, { deep: true })
     }
@@ -157,10 +159,22 @@ class BlogsStore {
     get selectedBlog() {
         return this._selectedBlog
     }
+    get isLoading() {
+        return this._isLoading
+    }
+    get error() {
+        return this._error
+    }
+    setIsLoading(loading: boolean) {
+        this._isLoading = loading
+    }
+    setError(errorString: string) {
+        this._error = errorString
+    }
     setBlogs(blogs: IBlog) {
         this._blogs = blogs
     }
-    setSelectedBlog(blog: Item | null){
+    setSelectedBlog(blog: Item | null) {
         this._selectedBlog = blog
     }
     findSelectedBlog(id: number) {
@@ -182,39 +196,22 @@ class BlogsStore {
 
 
     loadBloags = () => {
-        setTimeout(() => {
-            if (this.blogs !== JSONstring) {
-                this.setBlogs({
-                    count: JSONstring.count,
-                    items: JSONstring.items.filter(item => this.getItemImage(item.attachments[0])),
-                    next_from: JSONstring.next_from
-                })
-            }
+        this.setIsLoading(true)
+        new Promise((resolve: (value: IBlog) => void) => {
+            setTimeout(() => {
+                if (this.blogs !== JSONstring) {
+                    resolve({
+                        count: JSONstring.count,
+                        items: JSONstring.items.filter(item => this.getItemImage(item.attachments[0])),
+                        next_from: JSONstring.next_from
+                    });
+                }
+            }, 500);
 
-        }, 0)
+        })
+            .then((resolve) => this.setBlogs(resolve))
+            .catch(error => this.setError(error))
+            .finally(() => this.setIsLoading(false))
     }
-    /*
-    loadBloags = (url: string) => {
-        fetch(url)
-            .then((resp) => resp.json())
-            .then((data) => (this.blogs = data))
-    }
-    */
-    /* getSomeBlogs(count: number) {
-      if (this._blogs && this._blogs.items.length > 2) {
-          this._blogs.items = this._blogs.items.slice(0, count)
-      }
-      else {
-          setTimeout(() => {
-              this._blogs = {
-                  count: JSONstring.count,
-                  items: JSONstring.items.filter(item => this.getItemImage(item) !== undefined ).slice(0, count),
-                  next_from: JSONstring.next_from
-              }
-          }, 1)
-      }
- 
-  }*/
-
 }
 export default new BlogsStore();

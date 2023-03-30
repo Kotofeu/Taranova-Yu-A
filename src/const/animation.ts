@@ -59,16 +59,6 @@ export const MotionFlip = {
         transition: { delay: custom * 0.3 }
     })
 }
-
-export const MotionOpacity = {
-    [ANIMATION_HIDDEN]: {
-        opacity: 0
-    },
-    [ANIMATION_VISIBLE]: (custom: number) => ({
-        opacity: 1,
-        transition: { delay: custom * 0.3 }
-    })
-}
 export const MotionParent = {
     [ANIMATION_HIDDEN]: {
         opacity: 0,
@@ -82,7 +72,7 @@ export const MotionParent = {
         }
     }
 };
-export const MotionChildRight = {
+export const MotionChildLeft = {
     [ANIMATION_HIDDEN]: {
         x: 100,
         opacity: 0

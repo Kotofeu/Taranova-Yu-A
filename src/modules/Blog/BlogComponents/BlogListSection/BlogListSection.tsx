@@ -4,8 +4,20 @@ import Section, { SectionType } from '../../../../components/Section/Section'
 import classes from './BlogListSection.module.scss'
 import BlogsStore from '../../../../store/BlogsStore'
 import { observer } from 'mobx-react-lite'
+import Loader from '../../../../components/Loader/Loader'
+import Error404 from '../../../../components/Error404/Error404'
 
 export const BlogListSection = memo(observer(() => {
+    if (BlogsStore.isLoading) {
+        return (
+            <Section sectionType={SectionType.fullSize}>
+                <Loader />
+            </Section>
+        )
+    }
+    if (BlogsStore.error){
+        return <Error404 errorText={BlogsStore.error}/>
+    }
     return (
         <Section className={classes.blogs} title='Публикации'
             sectionType={SectionType.fullSize}>

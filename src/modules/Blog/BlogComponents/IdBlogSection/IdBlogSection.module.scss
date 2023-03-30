@@ -4,14 +4,48 @@
     padding-top: 100px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.header {
+    padding-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
+}
+
+
+.buttons {
+    display: flex;
+    gap: 20px;
+
+}
+.backButton {
+    // background-color: red;
+}
+
+.text {
+    padding-bottom: 20px;
+    text-align: justify;
 }
 
 .dateTime {
     justify-content: center;
     color: $title-color;
     font-size: 24px;
-    padding-bottom: 10px;
+
 }
 
+.blogInner {
+    display: flex;
+    gap: 30px;
+    justify-content: flex-end;
+    flex-direction: row-reverse;
+
+    & .text {
+        padding-bottom: 0;
+        max-width: 60%;
+        text-align: justify;
+    }
+}

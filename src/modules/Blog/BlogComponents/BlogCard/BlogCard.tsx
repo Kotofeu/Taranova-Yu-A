@@ -1,17 +1,20 @@
 import { FC, memo } from 'react'
 import { motion } from 'framer-motion'
-import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionParent, MotionChildRight, MotionChildUp } from '../../../../const/animation'
+import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionParent, MotionChildLeft, MotionChildUp } from '../../../../const/animation'
 import Button from '../../../../UI/Button/Button'
-import DateTime from '../../../../UI/DateTime/DateTime'
+import { MDateTime } from '../../../../UI/DateTime/DateTime'
 import Picture from '../../../../UI/Picture'
+import BlogsStore, { Item } from '../../../../store/BlogsStore'
+import BlogText from '../BlogText/BlogText'
+import BlogRating from '../BlogRating/BlogRating'
+
 import readMore1 from '../../../../assets/icons/read__more_1.svg'
 import readMore2 from '../../../../assets/icons/read__more_2.svg'
 import stepOverImage from '../../../../assets/icons/step over.svg'
 import VKImage from '../../../../assets/icons/VK.svg'
+
 import classes from './BlogCard.module.scss'
-import BlogsStore, { Item } from '../../../../store/BlogsStore'
-import BlogText from '../BlogText/BlogText'
-import BlogRating from '../BlogRating/BlogRating'
+
 
 interface IBlogCard {
     blog: Item,
@@ -35,18 +38,18 @@ const BlogCard: FC<IBlogCard> = memo((props) => {
                 <div className={classes.leftPart}>
                     <motion.div className={classes.imageBox} variants={MotionChildUp}>
                         <Picture className={classes.image} src={imageSrc} alt={blog.text} />
-                        <BlogRating blog={blog} className = {classes.blogScore}/>
+                        <BlogRating blog={blog} className={classes.blogScore} />
                     </motion.div>
 
                 </div>
                 <div className={classes.rightPart}>
-                    <motion.div variants={MotionChildRight}>
-                        <DateTime className={classes.dateTime} date={blog.date} />
-                    </motion.div>
+
+                    <MDateTime className={classes.dateTime} date={blog.date} variants={MotionChildLeft} />
+
                     <BlogText
                         className={classes.text}
                         text={blog.text}
-                        animationType={MotionChildRight}
+                        animationType={MotionChildLeft}
                         textRowCount={6}
                     />
 

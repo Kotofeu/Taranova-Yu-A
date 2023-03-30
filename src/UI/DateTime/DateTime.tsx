@@ -1,11 +1,12 @@
-import { FC, memo } from 'react'
+import { motion } from 'framer-motion'
+import { FC, memo, forwardRef} from 'react'
 import classes from './DateTime.module.scss'
 interface IDateTime {
     className?: string,
     date: number,
 }
 
-const DateTime: FC<IDateTime> = memo((props) => {
+const DateTime: FC<IDateTime> = memo(forwardRef((props, ref:  React.Ref<HTMLUListElement>) => {
     const { date, className } = props
     let unixTimestamp = date
     if (unixTimestamp.toString().length < 11){
@@ -28,15 +29,16 @@ const DateTime: FC<IDateTime> = memo((props) => {
         }.${dateTime.getFullYear()
         }`
     return (
-        <ul className={`${className ? className : ''} ${classes.dateTime}`}>
+        <motion.ul className={`${className ? className : ''} ${classes.dateTime}`} ref = {ref}>
             <li className={[classes.date, classes.timeField].join(' ')}>
                 {timeString}
             </li>
             <li className={classes.date}>
                 {dateString}
             </li>
-        </ul>
+        </motion.ul>
     )
-})
+}))
 
 export default DateTime
+export const MDateTime = motion(DateTime)

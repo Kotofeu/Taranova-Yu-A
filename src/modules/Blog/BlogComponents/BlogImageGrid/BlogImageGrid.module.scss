@@ -1,7 +1,6 @@
 @import '../../../../styles/settings.scss';
 
 .grid {
-    padding-top: 20px;
     gap: 8px;
     display: flex;
     display: grid;
@@ -31,18 +30,23 @@
     }
 
     &::after {
-        border: 40px solid transparent;
-        border-left: 70px solid rgba($title-color, .9);
-        ;
-        left: 58%;
+        border: 12px solid transparent;
+        border-left: 20px solid #FFF;
+        left: 52.5%;
 
     }
 
     &::before {
 
-        padding: 60px;
+        padding: 25px;
         border-radius: 50%;
-        background-color: rgba($text-color, .3);
+        background-color: rgba(0,0,0,.5);
+    }
+    &:hover{
+        &::before{
+            background-color: rgba(0,0,0,.6);
+
+        }
     }
 }
 

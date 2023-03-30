@@ -8,10 +8,11 @@ import { MButton } from '../../../../UI/Button/Button'
 import Picture, { MPicture } from '../../../../UI/Picture'
 import classes from './BlogImageGrid.module.scss'
 interface IBlogImageGrid {
-    blog: Item
+    blog: Item,
+    className: string,
 }
 const BlogImageGrid: FC<IBlogImageGrid> = memo((props) => {
-    const { blog } = props
+    const { blog, className } = props
     const [selectedId, setSelectedId] = useState<string | null>('')
     const itemsCount = blog.attachments.length
     const closeModal = useCallback(() => {
@@ -23,11 +24,11 @@ const BlogImageGrid: FC<IBlogImageGrid> = memo((props) => {
             gridImage: attachments.map(image => BlogsStore.getItemImage(image, 720)),
             modalImage: attachments.map(image => BlogsStore.getItemImage(image))
         })
-    }, [])
+    }, [blog.attachments])
     return (
         <>
             <Grid
-                className={classes.grid}
+                className={[classes.grid, className].join(' ')}
                 itemsCount={itemsCount}
             >
                 {blog.attachments.map((image, index) => {
@@ -65,6 +66,7 @@ const BlogImageGrid: FC<IBlogImageGrid> = memo((props) => {
 
                         )
                     }
+                    return null
                 })}
             </Grid>
             {imagesSrc.modalImage.map(item => <img style={{ display: 'none' }} src={item} key={item} />)}
