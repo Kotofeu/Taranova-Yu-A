@@ -5,7 +5,6 @@
 }
 .textBlock {
   padding-top: calc(20px + 3vh);
-  padding-top: calc(20px + 3dvh);
 
   & p {
     text-align: justify;
@@ -13,7 +12,6 @@
 }
 .achievementsTitle {
   padding-top: calc(20px + 3vh);
-  padding-top: calc(20px + 3dvh);
   font-size: 24px;
 }
 .achievementsList {
@@ -22,5 +20,4 @@
   justify-content: space-between;
   width: 100%;
   padding-top: calc(10px + 2vh);
-  padding-top: calc(10px + 2dvh);
 }
