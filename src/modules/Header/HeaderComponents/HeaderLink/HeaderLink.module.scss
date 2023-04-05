@@ -1,0 +1,36 @@
+@import '../../../../styles/settings.scss';
+
+.contactLink {
+    display: block;
+    position: relative;
+    padding-left: 25px;
+    font-weight: 500;
+    color: $title-color;
+    white-space: nowrap;
+    &::before {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        content: '';
+        height: 20px;
+        width: 20px;
+        display: block;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+    }
+
+}
+
+.email {
+    &::before {
+        background-image: url('../../../../assets/icons/email.svg');
+    }
+}
+
+.phone {
+    &::before {
+        background-image: url('../../../../assets/icons/phone.svg');
+    }
+}

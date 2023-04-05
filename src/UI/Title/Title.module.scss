@@ -2,16 +2,19 @@
 
 .title {
   font-weight: 700;
-  letter-spacing: 0.05em;
   position: relative;
-  line-height: 1.6em;
-
+  //line-height: 1.6em;
+  //letter-spacing: 0.05em;
+  letter-spacing: 0.03em;
+  line-height: 1.4em;
   &::after {
     content: '';
     position: absolute;
-    bottom: -.4em;
+    bottom: -.8em;
     width: 100px;
-    height: 4px;
+    //height: 4px;
+    height: 3px;
+
     background-color: $text-color;
     opacity: 0;
   }
@@ -32,10 +35,62 @@
   &::after {
     left: 0;
     opacity: 1;
-
   }
 }
 .sectionTitle {
-  font-size: 36px;
+  font-size: 20px;
+}
 
+
+
+
+@media (min-width: 479.98px) {
+  .sectionTitle {
+    font-size: 24px;
+
+    &::after {
+      bottom: -.7em;
+    }
+    
+  }
+}
+
+@media (min-width: 575.98px) {
+  .sectionTitle {
+    font-size: 32px;
+    line-height: 1.5em;
+    letter-spacing: 0.05em;
+    &::after {
+      bottom: -.5em;
+      height: 4px;
+
+    }
+  }
+}
+
+@media (min-width: 767.98px) {
+  .sectionTitle {
+    font-size: 36px;
+    line-height: 1.6em;
+
+    &::after {
+      bottom: -.4em;
+
+    }
+  }
+}
+
+
+
+
+@keyframes animate-down {
+  0% {
+      transform: translateY(-100%);
+
+  }
+
+  100% {
+      transform: translateY(0);
+
+  }
 }

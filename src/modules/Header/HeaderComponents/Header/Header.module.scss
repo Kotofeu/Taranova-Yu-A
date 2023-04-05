@@ -4,8 +4,6 @@
 .header {
     position: fixed;
     animation: animate-down .3s ease-in-out;
-    -webkit-box-shadow: 0px 9px 7px -3px rgba(54, 56, 56, 0.13);
-    -moz-box-shadow: 0px 9px 7px -3px rgba(54, 56, 56, 0.13);
     box-shadow: 0px 9px 7px -3px rgba(54, 56, 56, 0.13);
     background-color: #fff;
     z-index: 999;
@@ -15,35 +13,55 @@
     padding-top: 3px;
 }
 
-.nav {
-    /*max-width: 1920px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 0 20px;*/
+.headerInner {
     height: 70px;
     display: flex;
     align-items: center;
+    gap: 20px;
     justify-content: space-between;
+}
+
+.nav {
+    flex-grow: 1;
+    position: fixed;
+    top: 70px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    align-items: center;
+    background-color: #fff;
+    gap: 40px;
+    transition: transform .3s ease-in-out;
+    transform: translateX(120%);
+
+}
+
+.navActive {
+    transform: translateX(0px);
 }
 
 .linksList {
     display: flex;
-    height: 100%;
+    flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 5px;
 }
 
-.navLogo {
+.logo {
     height: 40px;
 }
 
 .link {
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 500;
     position: relative;
     overflow: hidden;
-    padding: 5px 0px;
     color: $title-color;
+    padding: 5px 0;
 
     &::after,
     &::before {
@@ -88,46 +106,73 @@
 
 .contactsList {
     display: flex;
+    flex-direction: column;
     align-items: center;
+    gap: 10px;
+}
+
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
     gap: 20px;
 }
 
-.contactLink {
+.modalBtn {
     position: relative;
-    padding-left: 23px;
-    font-weight: 500;
-    color: $title-color;
+    padding: 10px 10px;
 
-    &::before {
+    & img {
+        display: none;
+    }
+}
+
+
+
+.burgerBtn {
+    position: relative;
+    display: flex;
+    padding: 0;
+    height: 27px;
+    width: 28px;
+    flex-direction: column;
+    background-color: transparent;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+
+    & span {
+        transition: all .2s;
+        background-color: $title-color;
+        height: 4px;
+        width: 100%;
+        margin-top: 5px;
+        border-radius: 4px;
+
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+}
+
+.burgerClose {
+    & span {
         position: absolute;
-        top: 0;
-        left: 0;
-        content: '';
-        height: 20px;
-        width: 20px;
-        display: block;
-        background-repeat: no-repeat;
-        background-position: center;
+        margin: 0;
+        padding: 0;
+        top: 50%;
+        right: 0;
+
+        &:nth-child(odd) {
+            transform: translateY(-50%) rotate(45deg);
+        }
+
+        &:nth-child(even) {
+            transform: translateY(-50%) rotate(-45deg);
+        }
     }
-
-}
-
-.email {
-    &::before {
-        background-image: url('../../../../assets/icons/email.svg');
-        width: 17px;
-    }
-}
-
-.phone {
-    &::before {
-        background-image: url('../../../../assets/icons/phone.svg');
-    }
-}
-
-.btn {
-
-    position: relative;
 }
 
 .scrollProgress {
@@ -138,6 +183,106 @@
     position: relative;
     bottom: -3px;
 }
+
+@media (min-width: 479.98px) {}
+
+@media (min-width: 575.98px) {}
+
+@media (min-width: 767.98px) {
+    .nav {
+        transform: none;
+        position: static;
+        background-color: transparent;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        flex-grow: 1;
+        padding: 0;
+        gap: 20px;
+        transition: none;
+    }
+
+    .linksList {
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+        align-items: center;
+        column-gap: 20px;
+        row-gap: 5px;
+        flex-wrap: wrap;
+    }
+
+    .link {
+        font-size: 16px;
+    }
+
+    .modalBtn {
+        padding: 10px 28px;
+
+        & img {
+            display: block;
+        }
+    }
+
+    .contactsList {
+        flex-direction: row;
+        gap: 20px;
+        & a {
+            font-size: 0px;
+            &::after,
+            &::before {
+                height: 25px;
+                width: 25px;
+            }
+        }
+    }
+
+    .burgerBtn {
+        display: none;
+    }
+}
+
+
+@media (min-width: 991.98px) {}
+
+@media (min-width: 1079.98px) {
+
+    .contactsList {
+        position: static;
+        padding: 0;
+        transform: none;
+        height: auto;
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        flex-direction: row;
+    }
+
+    /*  .contactsList {
+        position: static;
+        padding: 0;
+        transform: none;
+        height: auto;
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }*/
+    .contactsList {
+
+        & a {
+            font-size: 16px;
+            &::after,
+            &::before {
+                height: 20px;
+                width: 20px;
+            }
+        }
+    }
+}
+
 
 @keyframes animate-down {
     0% {
@@ -150,3 +295,4 @@
 
     }
 }
+
