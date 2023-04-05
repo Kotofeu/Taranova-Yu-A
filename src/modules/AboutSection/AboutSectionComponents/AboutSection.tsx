@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { memo } from 'react'
-import { useMediaQuery } from 'react-responsive'
+import { observer } from 'mobx-react-lite'
 
 import { MCard } from '../../../components/Card/Card'
 import Section, { SectionType } from '../../../components/Section/Section'
@@ -10,16 +10,16 @@ import Picture from '../../../UI/Picture'
 import Title from '../../../UI/Title/Title'
 
 import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionRight } from '../../../const/animation'
-import { aboutText, includedIn, slogan } from '../AboutSectionStore/AboutSectionConsts'
+import ApplicationStore from '../../../store/ApplicationStore'
 
 import profile from '../../../assets/images/profile-picture.jpg'
 import profileWebp from '../../../assets/images/profile-picture.webp'
 
 import classes from './AboutSection.module.scss'
-export const AboutSection = memo(() => {
-    const isDesktop = useMediaQuery({
-        query: "(min-width: 479.98px)"
-    });
+
+export const AboutSection = memo(observer(() => {
+    const isDesktop = ApplicationStore.isDesktop
+
     return (
         <Section
             className={classes.about}
@@ -37,13 +37,13 @@ export const AboutSection = memo(() => {
                         alt='about-section picture'
                         className={classes.infoImg}
                     />
-                    <Title className={classes.infoSlogan}>{slogan}</Title>
+                    <Title className={classes.infoSlogan}>{ApplicationStore.slogan}</Title>
                 </motion.div>
-                <TextBlock className={classes.infoDesc} textBlock={aboutText}></TextBlock>
+                <TextBlock className={classes.infoDesc} textBlock={ApplicationStore.aboutText}></TextBlock>
             </div>
             <UniversalList
                 className={classes.includedIn}
-                items={includedIn}
+                items={ApplicationStore.includedIn}
                 renderItem={
                     (item, index) => <MCard
                         initial={ANIMATION_HIDDEN}
@@ -53,7 +53,7 @@ export const AboutSection = memo(() => {
                         cardImage={item.cardImage}
                         title={item.title}
                         desc={item.desc}
-                        index={isDesktop? index : 0}
+                        index={isDesktop ? index : 0}
                         key={item.title}
                     />
                 }
@@ -61,4 +61,4 @@ export const AboutSection = memo(() => {
         </Section>
 
     )
-})
+}))

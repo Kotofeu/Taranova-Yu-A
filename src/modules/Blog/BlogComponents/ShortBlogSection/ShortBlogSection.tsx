@@ -2,11 +2,11 @@ import { memo } from 'react'
 import { MShortBlogCard } from '../ShortBlogCard/ShortBlogCard'
 import Section from '../../../../components/Section/Section'
 import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionUp } from '../../../../const/animation'
-import classes from './ShortBlogSection.module.scss'
 import { observer } from 'mobx-react-lite'
 import BlogsStore from '../../../../store/BlogsStore'
-import BlogCard from '../BlogCard/BlogCard'
 import Loader from '../../../../components/Loader/Loader'
+import classes from './ShortBlogSection.module.scss'
+import ApplicationStore from '../../../../store/ApplicationStore'
 
 export const ShortBlogSection = memo(observer(() => {
   if (BlogsStore.error) {
@@ -31,7 +31,7 @@ export const ShortBlogSection = memo(observer(() => {
               whileInView={ANIMATION_VISIBLE}
               viewport={{ once: true, margin: "-140px" }}
               variants={MotionUp}
-              custom={index}
+              custom={ApplicationStore.isDesktop ? index : 0}
             />)
         })}
       </div>

@@ -44,7 +44,7 @@
 .includedIn {
   gap: 20px;
   display: flex;
-  padding-top: 30px;
+  padding-top: 2em;
   justify-content: center;
   flex-wrap: wrap;
 }
@@ -106,7 +106,7 @@
 @media (min-width: 767.98px) {
 
   .infoLeft {
-    max-width: 40%;
+    max-width: 50%;
   }
 
   .infoImg {

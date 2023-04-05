@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: center;
 }
+
 .textBlock {
   padding-top: calc(20px + 3vh);
 
@@ -10,14 +11,90 @@
     text-align: justify;
   }
 }
+
 .achievementsTitle {
   padding-top: calc(20px + 3vh);
   font-size: 24px;
 }
+
 .achievementsList {
+  gap: 20px;
   display: flex;
-  gap: 10px;
-  justify-content: space-between;
-  width: 100%;
-  padding-top: calc(10px + 2vh);
+  padding-top: 2em;
+  justify-content: center;
+  flex-wrap: wrap;
 }
+
+.achievementsCard {
+  width: 100%;
+
+  & * {
+    font-size: 15px;
+  }
+
+  & img {
+    height: 80px;
+  }
+}
+
+@media (min-width: 479.98px) {
+  .achievementsCard {
+    width: calc(50% - 10px);
+
+    & * {
+      font-size: 14px;
+    }
+
+    & img {
+      height: 90px;
+    }
+  }
+
+  .achievementsList {
+    gap: 15px;
+  }
+}
+
+@media (min-width: 575.98px) {
+
+  .achievementsList {
+    gap: 20px;
+
+    & * {
+      font-size: 15px;
+    }
+  }
+
+
+}
+
+@media (min-width: 767.98px) {
+
+  .achievementsCard {
+    width: 100%;
+
+    & * {
+      font-size: 15px;
+    }
+
+    & img {
+      height: 80px;
+    }
+  }
+
+  .achievementsList {
+    gap: 20px;
+    flex-wrap: nowrap;
+  }
+}
+
+
+@media (min-width: 991.98px) {
+  .achievementsCard {
+    & * {
+      font-size: 16px;
+    }
+  }
+}
+
+@media (min-width: 1079.98px) {}

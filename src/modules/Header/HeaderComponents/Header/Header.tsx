@@ -9,12 +9,13 @@ import planImage from '../../../../assets/icons/plan.svg'
 import messageImage from '../../../../assets/icons/message.svg'
 import logo from '../../../../assets/icons/logo.png';
 
-import { email, tel, links } from '../../HeaderStore/headerConsts'
 
 import classes from './Header.module.scss'
+import ApplicationStore from '../../../../store/ApplicationStore';
+import { observer } from 'mobx-react-lite';
 
 
-export const Header = memo(() => {
+export const Header = observer(() => {
     const { scrollYProgress } = useScroll();
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
     const scaleX = useSpring(scrollYProgress, {
@@ -41,7 +42,7 @@ export const Header = memo(() => {
                     </img>
                     <nav className={`${classes.nav} ${isMenuOpen && classes.navActive}`}>
                         <div className={classes.linksList}>
-                            {links.map(link => {
+                            {ApplicationStore.headerLinks.map(link => {
                                 return (
                                     <NavLink
                                         to={link.link}
@@ -61,16 +62,16 @@ export const Header = memo(() => {
                         <ul className={classes.contactsList}>
                             <HeaderLink
                                 headerLinkType={HeaderLinkType.email}
-                                href={email}
+                                href={ApplicationStore.email}
 
                             />
                             <HeaderLink
                                 headerLinkType={HeaderLinkType.phone}
-                                href={tel}
+                                href={ApplicationStore.tel}
                             />
                         </ul>
                     </nav>
-                    <div  className={classes.buttons}>
+                    <div className={classes.buttons}>
                         <Button
                             className={classes.modalBtn}
                             beforeImg={planImage}
