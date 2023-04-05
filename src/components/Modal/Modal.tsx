@@ -13,19 +13,20 @@ const Modal: FC<IModal> = (props) => {
         <AnimatePresence>
             {selectedId && (
                 <motion.div className={classes.modal}>
-                        <motion.div className={[classes.modalInner, 'container'].join(' ')}>
-
-                            {children}
-                        </motion.div>
-                        <motion.button
-                            onClick={closeModal}
-                            className={classes.modalClose}
-                            initial={ANIMATION_HIDDEN}
-                            exit={ANIMATION_HIDDEN}
-                            animate={ANIMATION_VISIBLE}
-                            variants={MotionParent}
-                        />
-                    </motion.div >
+                    <motion.div
+                        className={[classes.modalInner, 'container'].join(' ')}
+                    >
+                        {children}
+                    </motion.div>
+                    <motion.button
+                        onClick={closeModal}
+                        className={classes.modalClose}
+                        initial={ANIMATION_HIDDEN}
+                        exit={ANIMATION_HIDDEN}
+                        animate={ANIMATION_VISIBLE}
+                        variants={MotionParent}
+                    />
+                </motion.div >
             )}
         </AnimatePresence>
     )

@@ -10,7 +10,8 @@ interface IError404 {
     buttonText?: string,
 }
 const Error404: FC<IError404> = memo((
-    { errorText,
+    {
+        errorText,
         routTo = '/',
         buttonText = 'Вернуться на главную'
     }: IError404) => {

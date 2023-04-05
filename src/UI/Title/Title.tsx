@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import React, { FC} from 'react'
+import React, { FC } from 'react'
 import classes from './Title.module.scss'
 interface ITitleProps extends React.AllHTMLAttributes<HTMLHeadElement> {
     titleType?: TitleType[];

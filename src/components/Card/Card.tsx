@@ -38,7 +38,11 @@ const Card: FC<ICard> = memo(
                         >
                             {title}
                         </Title>
-                        <p className={classes.desc}>{desc}</p>
+                        {
+                            desc
+                                ? <p className={classes.desc}>{desc}</p>
+                                : null
+                        }
                     </motion.div>
 
                 </motion.article>
