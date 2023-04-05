@@ -4,21 +4,6 @@
     display: flex;
     background-color: #fff;
     cursor: pointer;
-    &:hover {
-        & .button{
-            &::before{
-                transform: translateX(-150%);
-
-            }
-            &::after{
-                transform: translateX(0%);
-
-            }
-        }
-        & .img {
-            transform: scale(1.1);
-        }
-    }
 }
 
 .imageBox {
@@ -45,10 +30,42 @@
 
 }
 
-.title {}
-
-.desc {}
 
 .button {
     margin-top: 30px;
+}
+.eventVertical {    
+    height: auto;
+    flex-direction: column;
+    & .button{
+        margin-top: 10px;
+    }
+    & .desc{
+        padding: 20px;
+    }
+    .img {
+        max-height: 300px;
+    }
+}
+@media (any-hover: hover) {
+    .event {
+        &:hover {
+            & .button {
+                &::before {
+                    transform: translateX(-150%);
+
+                }
+
+                &::after {
+                    transform: translateX(0%);
+
+                }
+            }
+
+            & .img {
+                transform: scale(1.1);
+            }
+        }
+    }
+
 }

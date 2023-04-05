@@ -1,6 +1,6 @@
 import { FC, memo } from 'react'
 import { motion } from 'framer-motion'
-import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionChildLeft, MotionLeft, MotionParent, MotionUp } from '../../const/animation'
+import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionUp } from '../../const/animation'
 import Title from '../../UI/Title/Title'
 import classes from './TextBlock.module.scss'
 export interface ITextBlockItem {
@@ -13,15 +13,13 @@ interface ITextBlock {
 }
 
 const TextBlock: FC<ITextBlock> = memo(
-
     (props) => {
         const { textBlock, className } = props
-
         return (
             <motion.div
                 className={`${className ? className : ''}`}
             >
-                {textBlock.map((item, blockIndex) =>
+                {textBlock.map(item =>
                     <motion.div
                         key={item.title}
                         className={classes.textBlock}

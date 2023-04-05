@@ -5,7 +5,7 @@
 }
 
 .textBlock {
-  padding-top: calc(20px + 3vh);
+  padding-top: 3em;
 
   & p {
     text-align: justify;
@@ -13,14 +13,14 @@
 }
 
 .achievementsTitle {
-  padding-top: calc(20px + 3vh);
-  font-size: 24px;
+  padding-top: 1.2em;
+  padding-bottom: 1.1em;
+  font-size: 18px;
 }
 
 .achievementsList {
   gap: 20px;
   display: flex;
-  padding-top: 2em;
   justify-content: center;
   flex-wrap: wrap;
 }
@@ -64,7 +64,9 @@
       font-size: 15px;
     }
   }
-
+  .achievementsTitle {
+    font-size: 20px;
+  }
 
 }
 
@@ -94,6 +96,9 @@
     & * {
       font-size: 16px;
     }
+  }
+  .achievementsTitle {
+    font-size: 24px;
   }
 }
 

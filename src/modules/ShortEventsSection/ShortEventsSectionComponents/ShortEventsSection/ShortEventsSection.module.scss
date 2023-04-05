@@ -1,8 +1,39 @@
 .inner {
-  padding-top: calc(20px + 3vh);
+  padding-top: 3em;
   display: flex;
-  gap: 30px;
+  flex-direction: column;
+  gap: 20px;
 }
-.event{
+
+.event {
   width: 100%;
 }
+
+@media (min-width: 479.98px) {}
+
+@media (min-width: 575.98px) {
+  .inner {
+    flex-direction: row;
+    max-height: 400px;
+
+    gap: 10px;
+
+  }
+}
+
+@media (min-width: 767.98px) {
+  .inner {
+    gap: 20px;
+
+  }
+}
+
+
+@media (min-width: 991.98px) {
+  .inner {
+    gap: 30px;
+
+  }
+}
+
+@media (min-width: 1079.98px) {}

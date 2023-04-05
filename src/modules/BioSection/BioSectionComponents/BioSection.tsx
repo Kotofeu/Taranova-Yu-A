@@ -26,7 +26,7 @@ export const BioSection = memo(observer(() => {
             <motion.div
                 initial={ANIMATION_HIDDEN}
                 whileInView={ANIMATION_VISIBLE}
-                viewport={{ once: true, amount: 0.6 }}
+                viewport={{ once: true,margin: '-100px' }}
             >
                 <MTitle
                     className={classes.achievementsTitle}
