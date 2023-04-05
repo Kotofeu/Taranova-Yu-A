@@ -1,7 +1,7 @@
 import { FC, memo } from 'react'
 import { motion } from 'framer-motion'
-import { MotionUp } from '../../const/animation'
-import Title from '../../UI/Title/Title'
+import { MotionChildLeft, MotionParent, MotionUp } from '../../const/animation'
+import Title, { MTitle } from '../../UI/Title/Title'
 import classes from './TextBlock.module.scss'
 export interface ITextBlockItem {
     title: string,
@@ -17,25 +17,31 @@ const TextBlock: FC<ITextBlock> = memo(
         const { textBlock, className } = props
 
         return (
-            <div className={`${className ? className : ''}`}>
+            <motion.div className={`${className ? className : ''}`}
+                variants={MotionParent}>
                 {textBlock.map((item, index) =>
-                    <motion.div
+                    <div
                         key={item.title}
-                        variants={MotionUp}
-                        custom={index}
+                        className={classes.textBlock}
                     >
-                        <Title className={classes.title}>{item.title}</Title>
+                        <MTitle className={classes.title} variants={MotionChildLeft}>
+                            {item.title}
+                        </MTitle>
                         {
-                            item.text.split('<br/>')
+                            item.text.split('\n')
                                 .map(item =>
-                                    <p className={classes.text} key={item}>
+                                    <motion.p
+                                        className={classes.text}
+                                        key={item}
+                                        variants={MotionChildLeft}
+                                    >
                                         {item}
-                                    </p>
+                                    </motion.p>
                                 )}
 
-                    </motion.div>
+                    </div>
                 )}
-            </div>
+            </motion.div>
         )
     })
 
