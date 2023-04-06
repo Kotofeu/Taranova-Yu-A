@@ -15,25 +15,20 @@ const Title: FC<ITitleProps> =
         React.forwardRef(
             (props, ref: React.LegacyRef<HTMLHeadingElement>) => {
                 const { className, titleType, children } = props
-                const classList: any = titleType ? titleType.join(' ') : ''
-                const isSectionTitle: boolean = classList.includes(TitleType.sectionTitle)
-                const classNeme: string = `${className
-                    ? className
-                    : ''
-                    } ${classes.title} ${titleType
-                        ? `${classList}`
-                        : ''
-                    }`
+                const classList: string = titleType ? titleType.join(' ') : ''
+                const isSectionTitle: boolean = classList.includes(TitleType.sectionTitle.toString())
+                const classNameString: string = `${className ? className : ''} ${classes.title} ${classList}`
                 return (
                     <>
-                        {isSectionTitle
-                            ? <h2 className={classNeme} ref={ref}>
-                                {children}
-                            </h2>
-                            :
-                            <h5 className={classNeme} ref={ref}>
-                                {children}
-                            </h5>
+                        {
+                            isSectionTitle
+                                ? <h2 className={classNameString} ref={ref}>
+                                    {children}
+                                </h2>
+                                :
+                                <h5 className={classNameString} ref={ref}>
+                                    {children}
+                                </h5>
                         }
                     </>
                 )

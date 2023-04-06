@@ -1,35 +1,33 @@
 import { motion } from 'framer-motion'
-import { FC, memo, forwardRef} from 'react'
+import { FC, memo, forwardRef } from 'react'
 import classes from './DateTime.module.scss'
 interface IDateTime {
     className?: string,
     date: number,
 }
 
-const DateTime: FC<IDateTime> = memo(forwardRef((props, ref:  React.Ref<HTMLUListElement>) => {
+const DateTime: FC<IDateTime> = memo(forwardRef((props, ref: React.Ref<HTMLUListElement>) => {
     const { date, className } = props
     let unixTimestamp = date
-    if (unixTimestamp.toString().length < 11){
+    if (unixTimestamp.toString().length < 11) {
         unixTimestamp = unixTimestamp * 1000;
     }
- 
-    const dateTime = new Date(unixTimestamp);
+    const addZeros = (time: number): string => {
+        if (time < 10) {
+            return '0' + time
+        }
+        return time.toString()
+    }
 
-    const timeString: string = `${dateTime.getHours()}:${dateTime.getMinutes() < 10 ?
-        "0" + dateTime.getMinutes()
-        : dateTime.getMinutes()
-        }`
-    const dateString: string =
-        `${dateTime.getUTCDate()  < 10 ?
-            "0" + dateTime.getUTCDate()
-            : dateTime.getUTCDate()
-        }.${(dateTime.getMonth() + 1)   < 10 ?
-            "0" + (dateTime.getMonth() + 1)
-            :(dateTime.getMonth() + 1)
-        }.${dateTime.getFullYear()
-        }`
+    const dateTime = new Date(unixTimestamp);
+    const dateUTC = dateTime.getUTCDate()
+    const month = dateTime.getMonth() + 1
+    const minutes = dateTime.getMinutes()
+
+    const timeString: string = `${dateTime.getHours()}:${addZeros(minutes)}`
+    const dateString: string = `${addZeros(dateUTC)}.${addZeros(month)}.${dateTime.getFullYear()}`
     return (
-        <motion.ul className={`${className ? className : ''} ${classes.dateTime}`} ref = {ref}>
+        <motion.ul className={`${className ? className : ''} ${classes.dateTime}`} ref={ref}>
             <li className={[classes.date, classes.timeField].join(' ')}>
                 {timeString}
             </li>
