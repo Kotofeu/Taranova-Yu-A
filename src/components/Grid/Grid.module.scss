@@ -12,9 +12,10 @@
     display: flex !important;
 
     & * {
-        max-height: 600px !important;
+        min-height: 400px;
+        max-height: 70vh !important;
         height: 100%;
-        width: auto;
+        width: auto !important;
         margin: 0 auto;
         object-fit: contain;
 

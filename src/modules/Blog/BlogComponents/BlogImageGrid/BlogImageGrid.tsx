@@ -9,7 +9,7 @@ import Picture, { MPicture } from '../../../../UI/Picture'
 import classes from './BlogImageGrid.module.scss'
 interface IBlogImageGrid {
     blog: Item,
-    className: string,
+    className?: string,
 }
 const BlogImageGrid: FC<IBlogImageGrid> = memo((props) => {
     const { blog, className } = props
@@ -35,6 +35,7 @@ const BlogImageGrid: FC<IBlogImageGrid> = memo((props) => {
                     if (image.type === 'photo') {
                         return (
                             <motion.div
+                                className={classes.imageBox}
                                 layoutId={index.toString()}
                                 onClick={() => setSelectedId(index.toString())}
                                 key={image.photo?.id}
@@ -52,11 +53,11 @@ const BlogImageGrid: FC<IBlogImageGrid> = memo((props) => {
                     if (image.type === 'video') {
                         return (
                             <motion.a
+                                className={[classes.video, classes.imageBox].join(' ')}
                                 href={`https://vk.com/video${BlogsStore.ownerId}_${image.video?.id}`}
                                 target="_blank"
                                 rel="noreferrer"
                                 key={image.video?.id}
-                                className={classes.video}
                                 variants={MotionChildUp}
 
                             >

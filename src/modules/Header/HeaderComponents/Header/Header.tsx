@@ -1,4 +1,4 @@
-import {  useState } from 'react'
+import { useState } from 'react'
 import { motion, useScroll, useSpring } from 'framer-motion'
 import { NavLink } from 'react-router-dom'
 
@@ -16,11 +16,18 @@ import { observer } from 'mobx-react-lite';
 
 
 export const Header = observer(() => {
+    const { scrollYProgress } = useScroll();
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
-
+    const scaleX = useSpring(scrollYProgress, {
+        stiffness: 150,
+        damping: 30,
+        restDelta: 0.001
+    });
     const onLinkClick = () => {
         window.scrollTo(0, 0);
         setIsMenuOpen(false)
+        scaleX.set(0)
+
     }
     const onBurgerClick = () => {
         setIsMenuOpen((prev) => !prev)
@@ -89,12 +96,12 @@ export const Header = observer(() => {
                             <span />
                         </button>
                     </div>
-
-
-
                 </div>
             </div >
-
+            <motion.div
+                className={classes.scrollProgress}
+                style={{ scaleX: scaleX }}
+            />
         </header >
     )
 })

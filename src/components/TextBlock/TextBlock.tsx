@@ -1,7 +1,7 @@
-import { FC, memo, forwardRef } from 'react'
+import { FC, memo } from 'react'
 import { motion } from 'framer-motion'
-import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionChildLeft, MotionLeft, MotionParent } from '../../const/animation'
-import Title, { MTitle } from '../../UI/Title/Title'
+import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionChildLeft, MotionParent } from '../../const/animation'
+import { MTitle } from '../../UI/Title/Title'
 import classes from './TextBlock.module.scss'
 export interface ITextBlockItem {
     title: string,

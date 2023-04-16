@@ -13,39 +13,57 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
+    flex-direction:column;
+    gap: 15px;
 }
 
 
 .buttons {
     display: flex;
     gap: 20px;
-
 }
-.backButton {
-    // background-color: red;
-}
-
 .text {
-    padding-bottom: 20px;
+    padding-bottom: 15px;
     text-align: justify;
 }
 
 .dateTime {
     justify-content: center;
     color: $title-color;
-    font-size: 24px;
-
+    font-size: 20px;
 }
 
-.blogInner {
-    display: flex;
-    gap: 30px;
-    justify-content: flex-end;
-    flex-direction: row-reverse;
+.blogInner .grid {
+    & > * {
+        width: 100%;
+    }
+}
 
-    & .text {
-        padding-bottom: 0;
-        max-width: 60%;
-        text-align: justify;
+@media (min-width: 575.98px) {
+    .header {
+        flex-direction: row;
+    }
+    .dateTime {
+        font-size: 24px;
+    }
+    .text {
+        padding-bottom: 20px;
+    }
+}
+
+@media (min-width: 767.98px) {
+    .blogInner {
+        display: flex;
+        gap: 30px;
+        justify-content: flex-end;
+        flex-direction: row-reverse;
+    
+        & .text {
+            padding-bottom: 0;
+            max-width: 60%;
+            text-align: justify;
+        }
+
     }
 }
