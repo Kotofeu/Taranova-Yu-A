@@ -27,7 +27,7 @@ export const MotionLeft = {
 }
 export const MotionUp = {
     [ANIMATION_HIDDEN]: {
-        y: 100,
+        y: 50,
         opacity: 0
     },
     [ANIMATION_VISIBLE]: (custom: number) => ({
@@ -36,17 +36,7 @@ export const MotionUp = {
         transition: { delay: custom * 0.3, ...transition }
     })
 }
-export const MotionDown = {
-    [ANIMATION_HIDDEN]: {
-        y: -100,
-        opacity: 0
-    },
-    [ANIMATION_VISIBLE]: (custom: number) => ({
-        y: 0,
-        opacity: 1,
-        transition: { delay: custom * 0.3, ...transition }
-    })
-}
+
 export const MotionFlip = {
     [ANIMATION_HIDDEN]: {
         rotateY: 90

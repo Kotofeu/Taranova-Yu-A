@@ -1,22 +1,25 @@
 
 .paragraph{
-    padding-top: 8px;
+    padding-top: 5px;
     display: block;
     &:first-child{
         padding-top: 0px;  
     }
 }
 .tagBox {
-    margin-top: 6px;
+    margin-top: 5px;
     display: flex;
     flex-wrap: wrap;
-    gap: 8px
+    gap: 5px
 }
 
 .tag {
     padding: 8px 12px;
     border-radius: 2em;
     color: #FFF;
+    font-weight: 600;
+    word-break: break-all;
+    text-align: center;
     &:nth-child(1n) {
         background-image: linear-gradient(to right, #eb3941, #f15e64, #e14e53);
     }

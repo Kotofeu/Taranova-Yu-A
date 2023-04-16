@@ -1,11 +1,10 @@
 import { FC, memo, forwardRef } from 'react'
 import { motion } from 'framer-motion'
 import Picture from '../../../../UI/Picture';
-import Title from '../../../../UI/Title/Title';
 import classes from './ShortBlogCard.module.scss'
 import { useNavigate } from 'react-router-dom';
 import DateTime from '../../../../UI/DateTime/DateTime';
-import BlogsStore, { Item, SizeType } from '../../../../store/BlogsStore';
+import BlogsStore, { Item } from '../../../../store/BlogsStore';
 import BlogText from '../BlogText/BlogText';
 interface IBlockCard {
     className?: string,

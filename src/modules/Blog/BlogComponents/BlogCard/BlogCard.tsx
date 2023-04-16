@@ -31,53 +31,51 @@ const BlogCard: FC<IBlogCard> = memo((props) => {
             className={`${className ? className : ''} ${classes.blog}`}
             initial={ANIMATION_HIDDEN}
             whileInView={ANIMATION_VISIBLE}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: .5 }}
             variants={MotionParent}
         >
-            <div className={classes.content}>
-                <div className={classes.leftPart}>
-                    <motion.div className={classes.imageBox} variants={MotionChildUp}>
-                        <Picture className={classes.image} src={imageSrc} alt={blog.text} />
-                        <BlogRating blog={blog} className={classes.blogScore} />
-                    </motion.div>
+            <div className={classes.blogInner}>
+                <div className={classes.content}>
+                    <div className={classes.leftPart}>
+                        <motion.div className={classes.imageBox} variants={MotionChildUp}>
+                            <Picture className={classes.image} src={imageSrc} alt={blog.text} />
+                            <BlogRating blog={blog} className={classes.blogScore} />
+                        </motion.div>
 
+                    </div>
+                    <div className={classes.rightPart}>
+                        <MDateTime className={classes.dateTime} date={blog.date} variants={MotionChildLeft} />
+                        <BlogText
+                            className={classes.text}
+                            text={blog.text}
+                            animationType={MotionChildLeft}
+                            textRowCount={6}
+                        />
+                    </div>
                 </div>
-                <div className={classes.rightPart}>
-
-                    <MDateTime className={classes.dateTime} date={blog.date} variants={MotionChildLeft} />
-
-                    <BlogText
-                        className={classes.text}
-                        text={blog.text}
-                        animationType={MotionChildLeft}
-                        textRowCount={6}
-                    />
-
-                    <motion.div
-                        className={classes.buttons}
-                        variants={MotionChildUp}
-                    >
-                        <a href={onVKButtonClick()} target="_blank" rel="noreferrer">
-                            <Button
-                                className={classes.button}
-                                beforeImg={VKImage}
-                                afterImg={stepOverImage}
-                            >
-                                Перейти в VK
-                            </Button>
-                        </a>
+                <motion.div
+                    className={classes.buttons}
+                    variants={MotionChildLeft}
+                >
+                    <a href={onVKButtonClick()} target="_blank" rel="noreferrer">
                         <Button
                             className={classes.button}
-                            beforeImg={readMore1}
-                            afterImg={readMore2}
-                            routeOption={`/blog/${blog.id}`}
+                            beforeImg={VKImage}
+                            afterImg={stepOverImage}
                         >
-                            Подробнее
+                            Перейти в VK
                         </Button>
+                    </a>
+                    <Button
+                        className={classes.button}
+                        beforeImg={readMore1}
+                        afterImg={readMore2}
+                        routeOption={`/blog/${blog.id}`}
+                    >
+                        Подробнее
+                    </Button>
 
-                    </motion.div>
-
-                </div>
+                </motion.div>
             </div>
         </motion.article>
     )

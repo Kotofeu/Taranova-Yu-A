@@ -10,11 +10,9 @@
   &::after {
     content: '';
     position: absolute;
-    bottom: -.8em;
+    bottom: -.7em;
     width: 100px;
-    //height: 4px;
     height: 3px;
-
     background-color: $text-color;
     opacity: 0;
   }
@@ -49,7 +47,7 @@
     font-size: 24px;
 
     &::after {
-      bottom: -.7em;
+      bottom: -.6em;
     }
     
   }
@@ -57,7 +55,7 @@
 
 @media (min-width: 575.98px) {
   .sectionTitle {
-    font-size: 32px;
+    font-size: 28px;
     line-height: 1.5em;
     letter-spacing: 0.05em;
     &::after {
@@ -70,7 +68,7 @@
 
 @media (min-width: 767.98px) {
   .sectionTitle {
-    font-size: 36px;
+    font-size: 32px;
     line-height: 1.6em;
 
     &::after {

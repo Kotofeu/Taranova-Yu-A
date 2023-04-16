@@ -1,7 +1,7 @@
 import { FC, memo } from 'react'
 import { motion } from 'framer-motion'
-import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionUp } from '../../const/animation'
-import Title from '../../UI/Title/Title'
+import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionLeft, MotionUp } from '../../const/animation'
+import Title, { MTitle } from '../../UI/Title/Title'
 import classes from './TextBlock.module.scss'
 export interface ITextBlockItem {
     title: string,
@@ -23,21 +23,20 @@ const TextBlock: FC<ITextBlock> = memo(
                     <motion.div
                         key={item.title}
                         className={classes.textBlock}
-                        variants={MotionUp}
                         initial={ANIMATION_HIDDEN}
                         whileInView={ANIMATION_VISIBLE}
                         viewport={{ once: true, margin: '-50px' }}
                     >
-                        <Title className={classes.title}>
+                        <MTitle className={classes.title} variants={MotionLeft}>
                             {item.title}
-                        </Title>
+                        </MTitle>
                         {
                             item.text.split('\n')
                                 .map(item =>
                                     <motion.p
                                         className={classes.text}
                                         key={item}
-                                        variants={MotionUp}
+                                        variants={MotionLeft}
                                         initial={ANIMATION_HIDDEN}
                                         whileInView={ANIMATION_VISIBLE}
                                         viewport={{ once: true, margin: '-50px' }}

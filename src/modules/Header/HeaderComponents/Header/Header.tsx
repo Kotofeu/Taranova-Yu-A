@@ -1,4 +1,4 @@
-import { memo, useState } from 'react'
+import {  useState } from 'react'
 import { motion, useScroll, useSpring } from 'framer-motion'
 import { NavLink } from 'react-router-dom'
 
@@ -35,11 +35,14 @@ export const Header = observer(() => {
         <header className={classes.header}>
             <div className='container'>
                 <div className={classes.headerInner}>
-                    <img
-                        className={classes.logo}
-                        src={logo}
-                        alt='logo'>
-                    </img>
+                    <NavLink to={'/'}>
+                        <img
+                            className={classes.logo}
+                            src={logo}
+                            alt='logo'>
+                        </img>
+                    </NavLink>
+
                     <nav className={`${classes.nav} ${isMenuOpen && classes.navActive}`}>
                         <div className={classes.linksList}>
                             {ApplicationStore.headerLinks.map(link => {

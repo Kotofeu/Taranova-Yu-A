@@ -28,7 +28,12 @@
         background-image: url('../../../../assets/icons/email.svg');
     }
 }
+.vk {
+    &::before {
+        background-image: url('../../../../assets/icons/VK.svg');
 
+    }
+}
 .phone {
     &::before {
         background-image: url('../../../../assets/icons/phone.svg');

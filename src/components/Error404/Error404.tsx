@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion'
 import { memo, FC } from 'react'
 import { MotionChildUp } from '../../const/animation'
 import { MButton } from '../../UI/Button/Button'
