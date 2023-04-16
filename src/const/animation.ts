@@ -1,6 +1,6 @@
 export const ANIMATION_HIDDEN = 'hidden'
 export const ANIMATION_VISIBLE = 'visible'
-const transition = {type: "spring", bounce: 0.30, duration: 0.6 }
+const transition = { type: "spring", bounce: 0.30, duration: 0.6 }
 export const MotionRight = {
 
     [ANIMATION_HIDDEN]: {
@@ -54,14 +54,13 @@ export const MotionParent = {
     [ANIMATION_VISIBLE]: {
         opacity: 1,
         transition: {
-            delayChildren: 0.07,
-            staggerChildren: 0.07
+            staggerChildren: .07
         }
     }
 };
 export const MotionChildLeft = {
     [ANIMATION_HIDDEN]: {
-        x: 100,
+        x: 60,
         opacity: 0
     },
     [ANIMATION_VISIBLE]: {
@@ -75,7 +74,7 @@ export const MotionChildLeft = {
 
 export const MotionChildUp = {
     [ANIMATION_HIDDEN]: {
-        y: 100,
+        y: 60,
         opacity: 0,
 
     },

@@ -16,15 +16,9 @@ import { observer } from 'mobx-react-lite';
 
 
 export const Header = observer(() => {
-    const { scrollYProgress } = useScroll();
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
-    const scaleX = useSpring(scrollYProgress, {
-        stiffness: 150,
-        damping: 30,
-        restDelta: 0.001
-    });
+
     const onLinkClick = () => {
-        scaleX.set(0)
         window.scrollTo(0, 0);
         setIsMenuOpen(false)
     }
@@ -100,10 +94,7 @@ export const Header = observer(() => {
 
                 </div>
             </div >
-            <motion.div
-                className={classes.scrollProgress}
-                style={{ scaleX: scaleX }}
-            />
+
         </header >
     )
 })
