@@ -20,7 +20,6 @@ interface ILink {
 }
 
 class BlogsStore {
-    private _isDesktop: boolean = true;
     private _includedIn: ICard[] = [
         {
             cardImage: geniusesAcademy,
@@ -92,9 +91,7 @@ class BlogsStore {
     ]
     private _email: string = 'taranova@zaksob39.ru'
     private _tel: string = '+79114968216'
-    get isDesktop() {
-        return this._isDesktop
-    }
+
     get includedIn() {
         return this._includedIn
     }
@@ -119,9 +116,7 @@ class BlogsStore {
     get tel() {
         return this._tel
     }
-    setIsDesktop(isDesktop: boolean) {
-        this._isDesktop = isDesktop
-    }
+
     constructor() {
         makeAutoObservable(this, {}, { deep: true })
     }

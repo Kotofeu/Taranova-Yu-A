@@ -4,7 +4,6 @@ import { EventCardType, MEventCard } from '../EventCard/EventCard'
 import Section from '../../../../components/Section/Section'
 import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionLeft, MotionRight } from '../../../../const/animation'
 import classes from './ShortEventsSection.module.scss'
-import ApplicationStore from '../../../../store/ApplicationStore'
 import { observer } from 'mobx-react-lite'
 
 export const ShortEventsSection = observer(() => {
@@ -14,7 +13,10 @@ export const ShortEventsSection = observer(() => {
   const isSmall = useMediaQuery({
     query: "(min-width: 575.98px)"
   });
-  const isVerticalBlock: boolean = (!isMedium && isSmall) || !ApplicationStore.isDesktop
+  const isMobile = useMediaQuery({
+    query: "(min-width: 479.98px)"
+  });
+  const isVerticalBlock: boolean = (!isMedium && isSmall) || !isMobile
   return (
     <Section className={classes.shortBlog} title='Последние мероприятия'>
       <div

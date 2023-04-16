@@ -18,7 +18,6 @@ import profileWebp from '../../../assets/images/profile-picture.webp'
 import classes from './AboutSection.module.scss'
 
 export const AboutSection = memo(observer(() => {
-    const isDesktop = ApplicationStore.isDesktop
 
     return (
         <Section
@@ -41,23 +40,26 @@ export const AboutSection = memo(observer(() => {
                 </motion.div>
                 <TextBlock className={classes.infoDesc} textBlock={ApplicationStore.aboutText}></TextBlock>
             </div>
-            <UniversalList
-                className={classes.includedIn}
-                items={ApplicationStore.includedIn}
-                renderItem={
-                    (item, index) => <MCard
-                        initial={ANIMATION_HIDDEN}
-                        whileInView={ANIMATION_VISIBLE}
-                        viewport={{ once: true, margin: '-100px' }}
-                        className={classes.includedCard}
-                        cardImage={item.cardImage}
-                        title={item.title}
-                        desc={item.desc}
-                        index={isDesktop ? index : 0}
-                        key={item.title}
-                    />
-                }
-            />
+            <motion.div
+                initial={ANIMATION_HIDDEN}
+                whileInView={ANIMATION_VISIBLE}
+                viewport={{ once: true, margin: '-100px' }}
+            >
+                <UniversalList
+                    className={classes.includedIn}
+                    items={ApplicationStore.includedIn}
+                    renderItem={
+                        (item, index) => <MCard
+                            className={classes.includedCard}
+                            cardImage={item.cardImage}
+                            title={item.title}
+                            index={index}
+                            key={item.title}
+                        />
+                    }
+                />
+            </motion.div>
+
         </Section>
 
     )

@@ -12,7 +12,6 @@ import ApplicationStore from '../../../store/ApplicationStore'
 
 import classes from './BioSection.module.scss'
 export const BioSection = memo(observer(() => {
-    const isDesktop = ApplicationStore.isDesktop
     return (
         <Section
             className={classes.bio}
@@ -26,7 +25,7 @@ export const BioSection = memo(observer(() => {
             <motion.div
                 initial={ANIMATION_HIDDEN}
                 whileInView={ANIMATION_VISIBLE}
-                viewport={{ once: true,margin: '-100px' }}
+                viewport={{ once: true, margin: '-100px' }}
             >
                 <MTitle
                     className={classes.achievementsTitle}
@@ -35,23 +34,25 @@ export const BioSection = memo(observer(() => {
                 >
                     Победитель
                 </MTitle>
+                <motion.div
+                    initial={ANIMATION_HIDDEN}
+                    whileInView={ANIMATION_VISIBLE}
+                    viewport={{ once: true, margin: '-100px' }}
+                >
+                    <UniversalList
+                        className={classes.achievementsList}
+                        items={ApplicationStore.achievements}
+                        renderItem={
+                            (item, index) => <MCard
+                                className={classes.achievementsCard}
+                                cardImage={item.cardImage}
+                                title={item.title}
+                                index={index}
+                                key={item.title} />
+                        }
+                    />
+                </motion.div>
 
-                <UniversalList
-                    className={classes.achievementsList}
-                    items={ApplicationStore.achievements}
-                    renderItem={
-                        (item, index) => <MCard
-                            initial={ANIMATION_HIDDEN}
-                            whileInView={ANIMATION_VISIBLE}
-                            viewport={{ once: true, margin: '-100px' }}
-                            className={classes.achievementsCard}
-                            cardImage={item.cardImage}
-                            title={item.title}
-                            desc={item.desc}
-                            index={isDesktop ? index : 0}
-                            key={item.title} />
-                    }
-                />
             </motion.div>
 
 

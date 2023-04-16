@@ -21,10 +21,9 @@ const Modal: FC<IModal> = (props) => {
                     <motion.button
                         onClick={closeModal}
                         className={classes.modalClose}
-                        initial={ANIMATION_HIDDEN}
-                        exit={ANIMATION_HIDDEN}
-                        animate={ANIMATION_VISIBLE}
-                        variants={MotionParent}
+                        initial={{opacity: 0}}
+                        exit={{opacity: 0}}
+                        animate={{opacity: 1}}
                     />
                 </motion.div >
             )}

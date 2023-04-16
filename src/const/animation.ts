@@ -1,7 +1,9 @@
 export const ANIMATION_HIDDEN = 'hidden'
 export const ANIMATION_VISIBLE = 'visible'
 const transition = { type: "spring", bounce: 0.30, duration: 0.6 }
-export const MotionRight = {
+const isDesktop: boolean = window.innerWidth >= 768
+
+export const MotionRight = isDesktop ? {
 
     [ANIMATION_HIDDEN]: {
         x: -100,
@@ -12,8 +14,8 @@ export const MotionRight = {
         opacity: 1,
         transition: { delay: custom * 0.3, ...transition }
     })
-}
-export const MotionLeft = {
+} : undefined
+export const MotionLeft = isDesktop ? {
 
     [ANIMATION_HIDDEN]: {
         x: 100,
@@ -24,8 +26,8 @@ export const MotionLeft = {
         opacity: 1,
         transition: { delay: custom * 0.3, ...transition }
     })
-}
-export const MotionUp = {
+} : undefined
+export const MotionUp = isDesktop ? {
     [ANIMATION_HIDDEN]: {
         y: 50,
         opacity: 0
@@ -35,9 +37,9 @@ export const MotionUp = {
         opacity: 1,
         transition: { delay: custom * 0.3, ...transition }
     })
-}
+} : undefined
 
-export const MotionFlip = {
+export const MotionFlip = isDesktop ? {
     [ANIMATION_HIDDEN]: {
         rotateY: 90
     },
@@ -45,8 +47,8 @@ export const MotionFlip = {
         rotateY: 0,
         transition: { delay: custom * 0.3, ...transition }
     })
-}
-export const MotionParent = {
+} : undefined
+export const MotionParent = isDesktop ? {
     [ANIMATION_HIDDEN]: {
         opacity: 0,
 
@@ -57,8 +59,8 @@ export const MotionParent = {
             staggerChildren: .07
         }
     }
-};
-export const MotionChildLeft = {
+} : undefined;
+export const MotionChildLeft = isDesktop ? {
     [ANIMATION_HIDDEN]: {
         x: 60,
         opacity: 0
@@ -70,9 +72,9 @@ export const MotionChildLeft = {
             type: "spring", bounce: 0.20, damping: 13
         }
     }
-}
+} : undefined
 
-export const MotionChildUp = {
+export const MotionChildUp = isDesktop ? {
     [ANIMATION_HIDDEN]: {
         y: 60,
         opacity: 0,
@@ -85,4 +87,4 @@ export const MotionChildUp = {
             type: "spring", bounce: 0.20, damping: 13
         }
     }
-} 
+} : undefined

@@ -24,8 +24,6 @@ const Card: FC<ICard> = memo(
                         alt={title}
                         variants={MotionFlip}
                         custom={index}
-
-                        viewport={{ once: true }}
                     />
                     <motion.div
                         className={classes.cardText}
