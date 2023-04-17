@@ -1,11 +1,13 @@
 import { memo } from 'react'
+import { observer } from 'mobx-react-lite'
+
 import BlogCard from '../BlogCard/BlogCard'
 import Section, { SectionType } from '../../../../components/Section/Section'
-import classes from './BlogListSection.module.scss'
 import BlogsStore from '../../../../store/BlogsStore'
-import { observer } from 'mobx-react-lite'
 import Loader from '../../../../components/Loader/Loader'
 import Error404 from '../../../../components/Error404/Error404'
+
+import classes from './BlogListSection.module.scss'
 
 export const BlogListSection = memo(observer(() => {
 
