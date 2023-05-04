@@ -58,6 +58,7 @@ export const Header = observer(() => {
                                                 [classes.link, isActive ? classes.linkActive : ''].join(' ')
                                         }
                                         onClick={onLinkClick}
+                                        end
                                     >
                                         {({ isActive }) => (
                                             <>
