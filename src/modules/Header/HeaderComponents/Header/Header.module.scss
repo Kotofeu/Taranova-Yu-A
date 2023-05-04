@@ -59,11 +59,11 @@
     font-size: 20px;
     font-weight: 500;
     position: relative;
-    overflow: hidden;
+    //overflow: hidden;
     color: $title-color;
     padding: 5px 0;
-
-    &::after,
+    transition: color .3s ease-in-out;
+    /*  &::after,
     &::before {
         content: '';
         position: absolute;
@@ -84,24 +84,19 @@
         right: 0;
         transform: translateX(110%);
     }
-
+*/
     &:hover {
-
-        &::after,
-        &::before {
-            transform: translateX(0%);
-
-        }
+        color: $secondary-color;
     }
 }
 
 .linkActive {
-
-    &::after,
+    color: $secondary-color;
+    /*  &::after,
     &::before {
         transform: translateX(0%);
 
-    }
+    }*/
 }
 
 .contactsList {
@@ -228,8 +223,10 @@
     .contactsList {
         flex-direction: row;
         gap: 20px;
+
         & a {
             font-size: 0px;
+
             &::after,
             &::before {
                 height: 25px;
@@ -264,6 +261,7 @@
 
         & a {
             font-size: 16px;
+
             &::after,
             &::before {
                 height: 20px;
@@ -285,4 +283,3 @@
 
     }
 }
-

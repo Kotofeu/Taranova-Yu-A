@@ -13,6 +13,7 @@ import logo from '../../../../assets/icons/logo.png';
 import classes from './Header.module.scss'
 import ApplicationStore from '../../../../store/ApplicationStore';
 import { observer } from 'mobx-react-lite';
+import HeaderActiveLine from '../HeaderActiveLine/HeaderActiveLine';
 
 
 export const Header = observer(() => {
@@ -58,7 +59,12 @@ export const Header = observer(() => {
                                         }
                                         onClick={onLinkClick}
                                     >
-                                        {link.title}
+                                        {({ isActive }) => (
+                                            <>
+                                                {link.title}
+                                                {isActive && <HeaderActiveLine />}
+                                            </>
+                                        )}
                                     </NavLink>
                                 )
                             })}

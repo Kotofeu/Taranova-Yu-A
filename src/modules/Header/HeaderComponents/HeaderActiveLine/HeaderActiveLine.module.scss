@@ -1,0 +1,17 @@
+@import '../../../../styles/settings.scss';
+.activeLine{
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    bottom: -1px;
+    border-radius: 3px;
+    background-color: $secondary-color;
+    left: 0;
+}
+
+@media (min-width: 767.98px) {
+    .activeLine{
+        display: block;
+    }
+}

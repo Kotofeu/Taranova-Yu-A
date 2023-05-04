@@ -206,7 +206,7 @@ class BlogsStore {
                         next_from: JSONstring.next_from
                     });
                 }
-            }, 500);
+            }, 2000);
 
         })
             .then((resolve) => this.setBlogs(resolve))
