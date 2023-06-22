@@ -19,7 +19,7 @@ export const ShortBlogSection = memo(observer(() => {
       >
         {blogStore.isLoading && <Loader />}
 
-        {blogStore.blogs?.items.map((blog, index) => {
+        {blogStore.blogs?.publications.map((blog, index) => {
           if (index >= 3) return null
           return (
             <MShortBlogCard

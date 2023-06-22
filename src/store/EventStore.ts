@@ -1,12 +1,12 @@
-import axios, { AxiosResponse } from 'axios';
 import { makeAutoObservable } from 'mobx';
+import { $host, IBaseInerface } from '.';
 
-export interface EventsJSON {
+export interface EventsJSON extends IBaseInerface {
     events: Event[];
     serverTime: Date;
 }
 
-export interface Event {
+export interface Event extends IBaseInerface  {
     uid: string;
     type: Type;
     title: string;
@@ -16,20 +16,12 @@ export interface Event {
     location: string;
 }
 
-export interface Type {
+export interface Type extends IBaseInerface  {
     uid: string;
     name: string;
 }
 
-const fetchEvent = async () => {
-    const { data } = await axios.get(`${process.env.REACT_APP_EVENTS_GET_URL}`, { 
-        auth: { 
-            username: `${process.env.REACT_APP_USER_NAME}`, 
-            password: `${process.env.REACT_APP_USER_PASSWORD}` 
-        } 
-    });
-    return data
-}
+
 export class EventStore {
     private _events: EventsJSON | null = null;
     private _isLoading: boolean = false
@@ -52,13 +44,13 @@ export class EventStore {
     setError(errorString: string) {
         this._error = errorString
     }
-    setBlogs(events: EventsJSON) {
+    setEvents(events: EventsJSON) {
         this._events = events
     }
     loadEvents = async () => {
         this.setIsLoading(true)
-        fetchEvent()
-            .then((data) => console.log(data))
+        await $host.get('/getEvents')
+            .then((data) => this.setEvents(data.data))
             .catch(error => this.setError(error))
             .finally(() => this.setIsLoading(false))
     }

@@ -23,7 +23,7 @@ export const BlogListSection = memo(observer(() => {
                         <Loader />
                     </div>
                 }
-                {blogStore.blogs?.items.map(blog => {
+                {blogStore.blogs?.publications.map(blog => {
                     return (<BlogCard
                         className={classes.blog}
                         blog={blog}
