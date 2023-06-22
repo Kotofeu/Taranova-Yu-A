@@ -11,12 +11,12 @@ export enum EventCardType {
     vertical = classes.eventVertical,
 }
 interface IEventCard {
-    index: number,
-    className?: string,
-    pictureSrc: string,
-    date: string,
-    title: string,
-    type?: EventCardType
+    index: number;
+    className?: string;
+    pictureSrc: string;
+    date: string;
+    title: string;
+    type?: EventCardType;
 }
 export const EventCard: FC<IEventCard> = memo(forwardRef((props, ref: React.Ref<HTMLDivElement>) => {
     const router = useNavigate()

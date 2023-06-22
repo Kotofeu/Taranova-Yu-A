@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import { MShortBlogCard } from '../ShortBlogCard/ShortBlogCard'
 import Section from '../../../../components/Section/Section'
-import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionUp } from '../../../../const/animation'
+import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionUp } from '../../../../utils/const/animation'
 import { observer } from 'mobx-react-lite'
 import Loader from '../../../../components/Loader/Loader'
 import classes from './ShortBlogSection.module.scss'

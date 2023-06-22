@@ -3,9 +3,9 @@ import { FC, ReactNode, forwardRef, useMemo } from 'react'
 import classes from './Grid.module.scss'
 
 interface IGrid {
-    itemsCount: number,
-    children: ReactNode,
-    className?: string
+    itemsCount: number;
+    children: ReactNode;
+    className?: string;
 }
 
 export const Grid: FC<IGrid> = forwardRef((props, ref: React.Ref<HTMLDivElement>) => {

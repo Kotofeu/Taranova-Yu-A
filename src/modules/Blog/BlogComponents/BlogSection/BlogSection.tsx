@@ -3,8 +3,7 @@ import { motion } from 'framer-motion';
 import { useParams, useNavigate } from 'react-router-dom';
 
 import Section, { SectionType } from '../../../../components/Section/Section';
-import { MotionChildLeft, MotionParent } from '../../../../const/animation';
-import BlogText from '../BlogText/BlogText';
+import { MotionChildLeft, MotionParent } from '../../../../utils/const/animation';
 import { MDateTime } from '../../../../UI/DateTime/DateTime';
 import Error404 from '../../../../components/Error404/Error404';
 import BlogImageGrid from '../BlogImageGrid/BlogImageGrid';
@@ -14,11 +13,12 @@ import stepOverImage from '../../../../assets/icons/step over.svg'
 import VKImage from '../../../../assets/icons/VK.svg'
 import arrorImage from '../../../../assets/icons/arror.svg'
 
-import classes from './IdBlogSection.module.scss'
+import classes from './BlogSection.module.scss'
 import Loader from '../../../../components/Loader/Loader';
 import { blogStore } from '../../../../store';
+import { BlogText } from '../../../../components/BlogCard';
 
-export const IdBlogSection = observer(() => {
+export const BlogSection = observer(() => {
     const params = useParams();
     const navigate = useNavigate()
     if (!params.id) return null

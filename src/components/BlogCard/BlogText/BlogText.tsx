@@ -1,17 +1,17 @@
 import { memo, FC } from 'react'
 import { motion, Variants } from 'framer-motion'
-import useTextBlogСonversion from '../../BlogHooks/useTextBlogСonversion'
 import classes from './BlogText.module.scss'
+import useTextBlogСonversion from '../../../utils/hooks/useTextBlogСonversion'
 
 interface IBlogText {
-    text: string,
-    className?: string,
-    animationType?: Variants,
-    textRowCount?: number,
-    tagsCount?: number,
+    text: string;
+    className?: string;
+    animationType?: Variants;
+    textRowCount?: number;
+    tagsCount?: number;
 
 }
-const BlogText: FC<IBlogText> = memo((props) => {
+export const BlogText: FC<IBlogText> = memo((props) => {
     const { text, className, animationType, textRowCount, tagsCount } = props
     const [desc, tags] = useTextBlogСonversion(text)
     return (
@@ -53,5 +53,3 @@ const BlogText: FC<IBlogText> = memo((props) => {
 
     )
 })
-
-export default BlogText

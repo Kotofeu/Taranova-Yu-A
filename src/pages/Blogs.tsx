@@ -1,4 +1,5 @@
-import { BlogListSection } from "../modules/Blog"
+import { BlogListSection } from "../modules/BlogListSection"
+
 
 export const Blogs = () => {
 

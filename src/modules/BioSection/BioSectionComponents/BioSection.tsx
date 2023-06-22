@@ -6,7 +6,7 @@ import { MCard } from '../../../components/Card/Card'
 import Section, { SectionType } from '../../../components/Section/Section'
 import TextBlock from '../../../components/TextBlock/TextBlock'
 import UniversalList from '../../../components/UniversalList'
-import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionUp } from '../../../const/animation'
+import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionUp } from '../../../utils/const/animation'
 import { MTitle, TitleType } from '../../../UI/Title/Title'
 
 import classes from './BioSection.module.scss'

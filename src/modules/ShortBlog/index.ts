@@ -1,0 +1,1 @@
+export { ShortBlogSection } from "./ShortBlogCardComponents/ShortBlogSection/ShortBlogSection";

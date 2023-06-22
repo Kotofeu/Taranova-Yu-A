@@ -1,11 +1,10 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { FC, ReactNode } from 'react'
-import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionParent } from '../../const/animation'
 import classes from './Modal.module.scss'
 interface IModal {
-    selectedId: any,
-    children: ReactNode,
-    closeModal: () => void
+    selectedId: any;
+    children: ReactNode;
+    closeModal: () => void;
 }
 const Modal: FC<IModal> = (props) => {
     const { selectedId, children, closeModal } = props

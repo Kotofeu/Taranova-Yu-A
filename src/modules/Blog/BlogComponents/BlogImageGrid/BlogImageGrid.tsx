@@ -2,15 +2,15 @@ import { motion } from 'framer-motion'
 import { memo, useCallback, useState, FC, useMemo } from 'react'
 import { Grid } from '../../../../components/Grid/Grid'
 import Modal from '../../../../components/Modal/Modal'
-import { MotionChildUp } from '../../../../const/animation'
+import { MotionChildUp } from '../../../../utils/const/animation'
 import { Item } from '../../../../store/BlogsStore'
 import { MButton } from '../../../../UI/Button/Button'
 import Picture, { MPicture } from '../../../../UI/Picture'
 import classes from './BlogImageGrid.module.scss'
 import { blogStore } from '../../../../store'
 interface IBlogImageGrid {
-    blog: Item,
-    className?: string,
+    blog: Item;
+    className?: string;
 }
 const BlogImageGrid: FC<IBlogImageGrid> = memo((props) => {
     const { blog, className } = props
@@ -71,7 +71,7 @@ const BlogImageGrid: FC<IBlogImageGrid> = memo((props) => {
                     return null
                 })}
             </Grid>
-            {imagesSrc.modalImage.map(item => <img style={{ display: 'none' }} src={item} key={item} />)}
+            {imagesSrc.modalImage.map(image => <img style={{ display: 'none' }} src={image} key={image} alt={image}/>)}
             <Modal selectedId={selectedId} closeModal={closeModal}>
 
                 <motion.div className={classes.layout} layoutId={selectedId || ''}>

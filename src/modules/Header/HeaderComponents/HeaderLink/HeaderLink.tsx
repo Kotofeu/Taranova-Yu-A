@@ -7,9 +7,9 @@ export enum HeaderLinkType {
     vk = classes.vk,
 }
 interface IHeaderLink {
-    headerLinkType?: HeaderLinkType,
-    href: string,
-    children?: ReactNode
+    headerLinkType?: HeaderLinkType;
+    href: string;
+    children?: ReactNode;
 }
 export const HeaderLink: FC<IHeaderLink> = memo((props) => {
     const { headerLinkType, href, children } = props

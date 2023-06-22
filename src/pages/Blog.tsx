@@ -1,9 +1,9 @@
-import { IdBlogSection } from '../modules/Blog';
+import { BlogSection } from '../modules/Blog';
 
 export const Blog = () => {
 
   return (
-    <IdBlogSection/>
+    <BlogSection/>
   )
 }
 

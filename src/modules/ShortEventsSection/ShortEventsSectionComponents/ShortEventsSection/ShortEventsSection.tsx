@@ -1,8 +1,7 @@
-import { memo } from 'react'
 import { useMediaQuery } from 'react-responsive'
 import { EventCardType, MEventCard } from '../EventCard/EventCard'
 import Section from '../../../../components/Section/Section'
-import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionLeft, MotionRight } from '../../../../const/animation'
+import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionLeft, MotionRight } from '../../../../utils/const/animation'
 import classes from './ShortEventsSection.module.scss'
 import { observer } from 'mobx-react-lite'
 

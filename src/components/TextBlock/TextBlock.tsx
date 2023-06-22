@@ -1,6 +1,6 @@
 import { FC, memo } from 'react'
 import { motion } from 'framer-motion'
-import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionChildLeft, MotionParent } from '../../const/animation'
+import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionChildLeft, MotionParent } from '../../utils/const/animation'
 import { MTitle } from '../../UI/Title/Title'
 import classes from './TextBlock.module.scss'
 export interface ITextBlockItem {
@@ -8,8 +8,8 @@ export interface ITextBlockItem {
     text: string,
 }
 interface ITextBlock {
-    textBlock: ITextBlockItem[],
-    className?: string
+    textBlock: ITextBlockItem[];
+    className?: string;
 }
 
 const TextBlock: FC<ITextBlock> = memo(

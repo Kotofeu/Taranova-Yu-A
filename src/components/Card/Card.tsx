@@ -1,6 +1,6 @@
 import { FC, memo, forwardRef } from 'react'
 import { motion } from 'framer-motion'
-import { MotionFlip, MotionUp } from '../../const/animation';
+import { MotionFlip, MotionUp } from '../../utils/const/animation';
 import Title, { TitleType } from '../../UI/Title/Title';
 import classes from './Card.module.scss'
 export interface ICard {
@@ -8,7 +8,7 @@ export interface ICard {
     cardImage: string;
     title: string;
     desc?: string;
-    className?: string
+    className?: string;
 }
 const Card: FC<ICard> = memo(
     forwardRef(

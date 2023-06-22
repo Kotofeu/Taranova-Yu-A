@@ -1,11 +1,11 @@
 import { FC, memo } from 'react'
-import { Item } from '../../../../store/BlogsStore'
 import classes from './BlogRating.module.scss'
+import { Item } from '../../../store/BlogsStore'
 interface IBlogRating {
-    blog: Item,
-    className?: string,
+    blog: Item;
+    className?: string;
 }
-const BlogRating: FC<IBlogRating> = memo((props) => {
+export const BlogRating: FC<IBlogRating> = memo((props) => {
     const { blog, className } = props
     return (
         <ul className={className} >
@@ -24,5 +24,3 @@ const BlogRating: FC<IBlogRating> = memo((props) => {
         </ul>
     )
 })
-
-export default BlogRating

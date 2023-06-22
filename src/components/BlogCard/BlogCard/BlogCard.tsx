@@ -1,27 +1,27 @@
 import { FC, memo } from 'react'
 import { motion } from 'framer-motion'
-import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionParent, MotionChildLeft, MotionChildUp } from '../../../../const/animation'
-import Button from '../../../../UI/Button/Button'
-import { MDateTime } from '../../../../UI/DateTime/DateTime'
-import Picture from '../../../../UI/Picture'
-import { Item } from '../../../../store/BlogsStore'
-import BlogText from '../BlogText/BlogText'
-import BlogRating from '../BlogRating/BlogRating'
 
-import readMore1 from '../../../../assets/icons/read__more_1.svg'
-import readMore2 from '../../../../assets/icons/read__more_2.svg'
-import stepOverImage from '../../../../assets/icons/step over.svg'
-import VKImage from '../../../../assets/icons/VK.svg'
+import readMore1 from '../../../assets/icons/read__more_1.svg'
+import readMore2 from '../../../assets/icons/read__more_2.svg'
+import stepOverImage from '../../../assets/icons/step over.svg'
+import VKImage from '../../../assets/icons/VK.svg'
 
+import { Item } from '../../../store/BlogsStore'
+import { blogStore } from '../../../store'
+import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionChildLeft, MotionChildUp, MotionParent } from '../../../utils/const/animation'
+import Picture from '../../../UI/Picture'
+import { MDateTime } from '../../../UI/DateTime/DateTime'
+import Button from '../../../UI/Button/Button'
+import { BlogRating } from '../'
+import { BlogText } from '../'
 import classes from './BlogCard.module.scss'
-import { blogStore } from '../../../../store'
 
 
 interface IBlogCard {
-    blog: Item,
-    className?: string
+    blog: Item;
+    className?: string;
 }
-const BlogCard: FC<IBlogCard> = memo((props) => {
+export const BlogCard: FC<IBlogCard> = memo((props) => {
     const { blog, className } = props
     const onVKButtonClick = () => {
         return `https://vk.com/taranova.yulia?w=wall${blogStore.ownerId}_${blog.id}`
@@ -85,4 +85,3 @@ const BlogCard: FC<IBlogCard> = memo((props) => {
         </motion.article>
     )
 })
-export default BlogCard

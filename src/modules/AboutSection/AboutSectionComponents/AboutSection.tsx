@@ -9,7 +9,7 @@ import UniversalList from '../../../components/UniversalList'
 import Picture from '../../../UI/Picture'
 import Title from '../../../UI/Title/Title'
 
-import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionRight } from '../../../const/animation'
+import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionRight } from '../../../utils/const/animation'
 
 import profile from '../../../assets/images/profile-picture.jpg'
 import profileWebp from '../../../assets/images/profile-picture.webp'

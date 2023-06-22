@@ -1,3 +1,1 @@
-export { BlogListSection } from "./BlogComponents/BlogListSection/BlogListSection";
-export { ShortBlogSection } from "./BlogComponents/ShortBlogSection/ShortBlogSection";
-export { IdBlogSection } from "./BlogComponents/IdBlogSection/IdBlogSection";
+export { BlogSection } from "./BlogComponents/BlogSection/BlogSection";
