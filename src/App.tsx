@@ -3,9 +3,12 @@ import { useEffect } from 'react'
 import './styles/style.scss'
 import { blogStore, eventStore } from "./store";
 const App = () => {
-
+  useEffect(() => {
+    blogStore.loadBloags()
+    eventStore.loadEvents()
+  }, [])
   return (
-    <div>dfdf</div>
+    <Router></Router>
   );
 }
 
