@@ -1,15 +1,17 @@
+.text{
 
-.textBlock{
+}
+.text_block{
     padding-top: 10px;
     &:first-child{
         padding-top: 0;
     }
 }
-.title {
+.text_title {
    // padding-left: 10px;
 }
 
-.text {
+.text_text {
     padding-bottom: 5px;
     &:last-child{
         padding-bottom: 0px;

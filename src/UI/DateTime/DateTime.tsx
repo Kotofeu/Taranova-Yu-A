@@ -2,12 +2,12 @@ import { motion } from 'framer-motion'
 import { FC, memo, forwardRef } from 'react'
 import classes from './DateTime.module.scss'
 interface IDateTime {
-    className?: string,
-    date: number,
+    className?: string;
+    date: number;
 }
 
 const DateTime: FC<IDateTime> = memo(forwardRef((props, ref: React.Ref<HTMLUListElement>) => {
-    const { date, className } = props
+    const { date, className = ''} = props
     let unixTimestamp = date
     if (unixTimestamp.toString().length < 11) {
         unixTimestamp = unixTimestamp * 1000;
@@ -27,11 +27,11 @@ const DateTime: FC<IDateTime> = memo(forwardRef((props, ref: React.Ref<HTMLUList
     const timeString: string = `${dateTime.getHours()}:${addZeros(minutes)}`
     const dateString: string = `${addZeros(dateUTC)}.${addZeros(month)}.${dateTime.getFullYear()}`
     return (
-        <motion.ul className={`${className ? className : ''} ${classes.dateTime}`} ref={ref}>
-            <li className={[classes.date, classes.timeField].join(' ')}>
+        <motion.ul className={`${classes.dateTime} ${className}`} ref={ref}>
+            <li className={[classes.dateTime_date, classes.dateTime_date___time].join(' ')}>
                 {timeString}
             </li>
-            <li className={classes.date}>
+            <li className={classes.dateTime_date}>
                 {dateString}
             </li>
         </motion.ul>

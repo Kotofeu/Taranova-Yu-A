@@ -1,24 +1,24 @@
 @import '../../../../styles/settings.scss';
-.blogs {
+.blogList {
     padding-top: 100px;
 
 }
-.loader{
+.blogList_loader{
     padding-top: 180px;
 }
-.list {
+.blogList_list {
     padding-top: 40px;
     height: 100%;
     position: relative;
 }
 
-.blog {
+.blogList_blog {
     margin-bottom: 20px;
     &:last-child{
         margin-bottom: 0;
     }
 }
-.blogs_empty{
+.blogList_empty{
     font-size: 18px;
     color: $text-color;
 }

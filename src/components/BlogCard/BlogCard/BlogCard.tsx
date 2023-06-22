@@ -22,36 +22,36 @@ interface IBlogCard {
     className?: string;
 }
 export const BlogCard: FC<IBlogCard> = memo((props) => {
-    const { blog, className } = props
+    const { blog, className = ''} = props
     const onVKButtonClick = () => {
         return `https://vk.com/taranova.yulia?w=wall${blogStore.ownerId}_${blog.id}`
     }
     const imageSrc = blogStore.getItemImage(blog.attachments[0], 480);
     return (
         <motion.article
-            className={`${className ? className : ''} ${classes.blog}`}
+            className={`${classes.blogCard} ${className}`}
             initial={ANIMATION_HIDDEN}
             whileInView={ANIMATION_VISIBLE}
             viewport={{ once: true, amount: .5 }}
             variants={MotionParent}
         >
-            <div className={classes.blogInner}>
-                <div className={classes.content}>
-                    <div className={classes.leftPart}>
-                        <motion.div className={classes.imageBox} variants={MotionChildUp}>
-                            <Picture className={classes.image} src={imageSrc} alt={blog.text} />
-                            <BlogRating blog={blog} className={classes.blogScore} />
+            <div className={classes.blogCard_inner}>
+                <div className={classes.blogCard_content}>
+                    <div className={classes.blogCard_leftPart}>
+                        <motion.div className={classes.blogCard_imageBox} variants={MotionChildUp}>
+                            <Picture className={classes.blogCard_image} src={imageSrc} alt={blog.text} />
+                            <BlogRating blog={blog} className={classes.blogCard_blogScore} />
                         </motion.div>
 
                     </div>
-                    <div className={classes.rightPart}>
+                    <div className={classes.blogCard_rightPart}>
                         <MDateTime
-                            className={classes.dateTime}
+                            className={classes.blogCard_dateTime}
                             date={blog.date}
                             variants={MotionChildLeft}
                         />
                         <BlogText
-                            className={classes.text}
+                            className={classes.blogCard_text}
                             text={blog.text}
                             animationType={MotionChildLeft}
                             textRowCount={6}
@@ -59,12 +59,12 @@ export const BlogCard: FC<IBlogCard> = memo((props) => {
                     </div>
                 </div>
                 <motion.div
-                    className={classes.buttons}
+                    className={classes.blogCard_buttons}
                     variants={MotionChildLeft}
                 >
                     <a href={onVKButtonClick()} target="_blank" rel="noreferrer">
                         <Button
-                            className={classes.button}
+                            className={classes.blogCard_button}
                             beforeImg={VKImage}
                             afterImg={stepOverImage}
                         >
@@ -72,7 +72,7 @@ export const BlogCard: FC<IBlogCard> = memo((props) => {
                         </Button>
                     </a>
                     <Button
-                        className={classes.button}
+                        className={classes.blogCard_button}
                         beforeImg={readMore1}
                         afterImg={readMore2}
                         routeOption={`/blog/${blog.id}`}

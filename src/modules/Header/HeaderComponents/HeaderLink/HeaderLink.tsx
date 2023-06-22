@@ -2,9 +2,9 @@ import { FC, ReactNode, memo } from 'react'
 import classes from './HeaderLink.module.scss'
 
 export enum HeaderLinkType {
-    phone = classes.phone,
-    email = classes.email,
-    vk = classes.vk,
+    phone = classes.contactLink___phone,
+    email = classes.contactLink___email,
+    vk = classes.contactLink___vk,
 }
 interface IHeaderLink {
     headerLinkType?: HeaderLinkType;

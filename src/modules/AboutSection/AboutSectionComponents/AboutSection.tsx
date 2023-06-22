@@ -25,20 +25,20 @@ export const AboutSection = memo(observer(() => {
             title='Таранова Юлия Анатольевна'
             sectionType={SectionType.fullSize}
         >
-            <div className={classes.info}>
+            <div className={classes.about_info}>
                 <motion.div
-                    className={classes.infoLeft}
+                    className={classes.about_infoLeft}
                     variants={MotionRight}
                 >
                     <Picture
                         srcWebp={profileWebp}
                         src={profile}
                         alt='about-section picture'
-                        className={classes.infoImg}
+                        className={classes.about_proileImg}
                     />
-                    <Title className={classes.infoSlogan}>{applicationStore.slogan}</Title>
+                    <Title className={classes.about_slogan}>{applicationStore.slogan}</Title>
                 </motion.div>
-                <TextBlock className={classes.infoDesc} textBlock={applicationStore.aboutText}></TextBlock>
+                <TextBlock className={classes.about_desc} textBlock={applicationStore.aboutText}></TextBlock>
             </div>
             <motion.div
                 initial={ANIMATION_HIDDEN}
@@ -46,11 +46,11 @@ export const AboutSection = memo(observer(() => {
                 viewport={{ once: true, margin: '-100px' }}
             >
                 <UniversalList
-                    className={classes.includedIn}
+                    className={classes.about_includedIn}
                     items={applicationStore.includedIn}
                     renderItem={
                         (item, index) => <MCard
-                            className={classes.includedCard}
+                            className={classes.about_includedCard}
                             cardImage={item.cardImage}
                             title={item.title}
                             index={index}

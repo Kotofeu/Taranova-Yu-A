@@ -11,13 +11,13 @@ export const BlogRating: FC<IBlogRating> = memo((props) => {
         <ul className={className} >
             {
                 blog.likes.count !== 0 &&
-                <li className={[classes.score, classes.likes].join(' ')}>
+                <li className={[classes.rating, classes.rating___likes].join(' ')}>
                     {blog.likes.count}
                 </li>
             }
             {
                 blog.reposts.count !== 0 &&
-                <li className={[classes.score, classes.repost].join(' ')}>
+                <li className={[classes.rating, classes.rating___repost].join(' ')}>
                     {blog.reposts.count}
                 </li>
             }

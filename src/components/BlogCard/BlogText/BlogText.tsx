@@ -22,7 +22,7 @@ export const BlogText: FC<IBlogText> = memo((props) => {
                         if ((textRowCount && (index + 1 > textRowCount)) || !paragraph.trim()) return null
                         return (
                             <motion.p
-                                className={classes.paragraph}
+                                className={classes.text_paragraph}
                                 key={paragraph}
                                 variants={animationType}
                             >
@@ -32,13 +32,13 @@ export const BlogText: FC<IBlogText> = memo((props) => {
                     })
                 }
             </div>
-            <div className={classes.tagBox}>
+            <div className={classes.text_tagBox}>
                 {
                     tags && tags.map((tag, index) => {
                         if ((tagsCount && (index + 1 > tagsCount)) || !tag) return null
                         return (
                             <motion.h6
-                                className={classes.tag}
+                                className={classes.text_tag}
                                 key={tag}
                                 variants={animationType}
                             >

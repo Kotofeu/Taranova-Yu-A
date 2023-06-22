@@ -2,23 +2,23 @@
     display: flex;
 }
 
-.date {
+.dateTime_date {
     color: inherit;
     font-weight: 600;
     font-size: inherit;
-}
 
-.timeField {
-    padding-right: 30px;
+    &___time {
+        padding-right: 30px;
 
-    position: relative;
+        position: relative;
 
-    &::after {
-        content: "|";
-        position: absolute;
-        right: 12px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #707070;
+        &::after {
+            content: "|";
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #707070;
+        }
     }
 }

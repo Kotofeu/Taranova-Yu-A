@@ -1,16 +1,16 @@
-.error404{
+.error{
     padding-top: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
-.errorInner{
+.error_inner{
     display: flex;
     justify-content: center;
 
 }
-.goHomeBtn{
+.error_goHome{
     margin-top: 40px;
     font-size: 20px;
 }

@@ -6,23 +6,23 @@
     width: 100%;
 }
 
-.img {
+.card_img {
     object-fit: contain;
     max-width: 120px;
     height: 80px;
 }
-.cardText{
+.card_text{
     height: 100%;
     display: flex;
     flex-direction: column;
 }
-.title {
+.card_title {
     font-weight: 600;
     padding-top: 10px;
 
 }
 
-.desc {
+.card_desc {
     padding-top: 5px;
     display: flex;
     flex-direction: column;

@@ -9,16 +9,16 @@
     border-radius: 10px;
     position: relative;
     &:hover {
-        & .before{
+        & .button_before{
             transform: translateX(-150%);
         }
 
-        & .after{
+        & .button_after{
             transform: translateX(0%);
         }
     }
 }
-.before, .after{
+.button_before, .button_after{
     position: absolute;
     object-fit: contain;
     top: 0;
@@ -27,16 +27,16 @@
     display: none;
     transition: transform .3s ease-in-out;
 }
-.before{
+.button_before{
     left: 5px;
 }
-.after{
+.button_after{
     right: 5px;
     transform: translateX(150%);
 }
 
 @media (min-width: 767.98px) {
-    .before, .after{
+    .button_before, .button_after{
         display: block;
 
     }

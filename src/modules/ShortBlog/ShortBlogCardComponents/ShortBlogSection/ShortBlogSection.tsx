@@ -15,7 +15,7 @@ export const ShortBlogSection = memo(observer(() => {
   return (
     <Section className={classes.shortBlog} title='Последние публикации'>
       <div
-        className={classes.inner}
+        className={classes.shortBlog_inner}
       >
         {blogStore.isLoading && <Loader />}
 
@@ -23,7 +23,7 @@ export const ShortBlogSection = memo(observer(() => {
               if (index >= 3) return null
               return (
                 <MShortBlogCard
-                  className={classes.blog}
+                  className={classes.shortBlog_blog}
                   key={blog.id}
                   blog={blog}
                   initial={ANIMATION_HIDDEN}

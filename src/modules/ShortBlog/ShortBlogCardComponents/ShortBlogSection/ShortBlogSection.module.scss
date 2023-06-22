@@ -6,7 +6,7 @@
 
 }
 
-.inner {
+.shortBlog_inner {
   padding-top: 3em;
   display: flex;
   gap: 10px;
@@ -16,13 +16,13 @@
   min-height: 500px;
 }
 
-.blog {
+.shortBlog_blog {
   width: 100%;
 
 }
 
 @media (min-width: 479.98px) {
-  .blog {
+  .shortBlog_blog {
     width: 100%;
   
     &:nth-child(3) {
@@ -32,7 +32,7 @@
 }
 
 @media (min-width: 575.98px) {
-  .inner {
+  .shortBlog_inner {
     flex-direction: row;
     min-height: 260px;
     height: 260px;
@@ -41,12 +41,12 @@
 
 
 @media (min-width: 991.98px) {
-  .inner {
+  .shortBlog_inner {
     gap: 15px;
     height: 400px;
   }
 
-  .blog {
+  .shortBlog_blog {
     &:nth-child(3) {
       display: block;
     }

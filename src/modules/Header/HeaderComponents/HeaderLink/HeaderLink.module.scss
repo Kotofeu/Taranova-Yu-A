@@ -20,22 +20,20 @@
         background-position: center;
         background-size: contain;
     }
-
-}
-
-.email {
-    &::before {
-        background-image: url('../../../../assets/icons/email.svg');
+    &___phone {
+        &::before {
+            background-image: url('../../../../assets/icons/phone.svg');
+        }
     }
-}
-.vk {
-    &::before {
-        background-image: url('../../../../assets/icons/VK.svg');
-
+    &___email {
+        &::before {
+            background-image: url('../../../../assets/icons/email.svg');
+        }
     }
-}
-.phone {
-    &::before {
-        background-image: url('../../../../assets/icons/phone.svg');
+    &___vk {
+        &::before {
+            background-image: url('../../../../assets/icons/VK.svg');
+    
+        }
     }
 }

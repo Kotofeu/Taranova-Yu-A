@@ -4,35 +4,35 @@ import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 
 interface IButtonProps {
-    children: ReactNode,
-    onClick?: () => void,
-    className?: string,
-    beforeImg?: string,
-    afterImg?: string,
-    routeOption?: string,
+    children: ReactNode;
+    onClick?: () => void;
+    className?: string;
+    beforeImg?: string;
+    afterImg?: string;
+    routeOption?: string;
 }
 const Button: FC<IButtonProps> = memo(
     forwardRef(
         (props, ref: React.LegacyRef<HTMLButtonElement>) => {
-            const { children, onClick, className, beforeImg, afterImg, routeOption } = props
+            const { children, onClick, className = '', beforeImg, afterImg, routeOption } = props
             const router = useNavigate()
             const startRoute = () => {
                 if (routeOption) router(routeOption)
             }
             return (
                 <button
-                    className={`${className ? className : ''} ${classes.button} `}
+                    className={`${classes.button} ${className}`}
                     onClick={routeOption ? startRoute : onClick}
                     ref={ref}
                     type='button'
                 >
                     {beforeImg ?
-                        <img className={classes.before} src={beforeImg} alt="" />
+                        <img className={classes.button_before} src={beforeImg} alt="" />
                         : null
                     }
                     {children}
                     {afterImg ?
-                        <img className={classes.after} src={afterImg} alt="" />
+                        <img className={classes.button_after} src={afterImg} alt="" />
                         : null
                     }
                 </button>

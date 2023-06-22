@@ -4,7 +4,7 @@
   justify-content: center;
 }
 
-.textBlock {
+.bio_textBlock {
   padding-top: 3em;
 
   & p {
@@ -12,20 +12,20 @@
   }
 }
 
-.achievementsTitle {
+.bio_achievementsTitle {
   padding-top: 1.2em;
   padding-bottom: 1.1em;
   font-size: 18px;
 }
 
-.achievementsList {
+.bio_achievementsList {
   gap: 20px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
 }
 
-.achievementsCard {
+.bio_achievementsCard {
   width: 100%;
 
   & * {
@@ -38,7 +38,7 @@
 }
 
 @media (min-width: 479.98px) {
-  .achievementsCard {
+  .bio_achievementsCard {
     width: calc(50% - 10px);
 
     & * {
@@ -50,21 +50,21 @@
     }
   }
 
-  .achievementsList {
+  .bio_achievementsList {
     gap: 15px;
   }
 }
 
 @media (min-width: 575.98px) {
 
-  .achievementsList {
+  .bio_achievementsList {
     gap: 20px;
 
     & * {
       font-size: 15px;
     }
   }
-  .achievementsTitle {
+  .bio_achievementsTitle {
     font-size: 20px;
   }
 
@@ -72,7 +72,7 @@
 
 @media (min-width: 767.98px) {
 
-  .achievementsCard {
+  .bio_achievementsCard {
     width: 100%;
 
     & * {
@@ -84,7 +84,7 @@
     }
   }
 
-  .achievementsList {
+  .bio_achievementsList {
     gap: 20px;
     flex-wrap: nowrap;
   }
@@ -92,14 +92,12 @@
 
 
 @media (min-width: 991.98px) {
-  .achievementsCard {
+  .bio_achievementsCard {
     & * {
       font-size: 16px;
     }
   }
-  .achievementsTitle {
+  .bio_achievementsTitle {
     font-size: 24px;
   }
 }
-
-@media (min-width: 1079.98px) {}

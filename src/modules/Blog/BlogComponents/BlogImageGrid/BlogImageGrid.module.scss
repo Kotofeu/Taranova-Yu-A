@@ -6,11 +6,11 @@
     flex-direction: column;
 }
 
-.imageBox {
+.grid_imageBox {
     overflow: hidden;
 }
 
-.itemImage {
+.grid_image {
     display: block;
     object-fit: cover;
     height: 100%;
@@ -20,7 +20,7 @@
 }
 
 
-.video {
+.grid_video {
     position: relative;
     display: block;
     background-color: #FFF;
@@ -60,14 +60,14 @@
     }
 }
 
-.modalImage {
+.grid_modalImage {
     position: relative;
     height: 100%;
     min-width: 180px;
     object-fit: cover;
 }
 
-.layout {
+.grid_modal {
     position: relative;
     z-index: 1;
     max-height: 100%;
@@ -76,7 +76,7 @@
 
 }
 
-.closeBtn {
+.grid_closeBtn {
     position: absolute;
     bottom: 10px;
     right: 15px;

@@ -5,7 +5,7 @@ import { MTitle, TitleType } from '../../UI/Title/Title'
 import classes from './Section.module.scss'
 
 export enum SectionType {
-    fullSize = classes.fullSize
+    fullSize = classes.section___fullSize
 }
 interface ISection {
     title?: string;
@@ -16,10 +16,10 @@ interface ISection {
 
 }
 const Section: FC<ISection> = (props) => {
-    const { title, className, children, sectionType, sectionAnimation } = props
+    const { title, className = '', children, sectionType, sectionAnimation } = props
 
     return (
-        <section className={`${className ? className : ''} ${classes.section} ${sectionType ? sectionType : ''}`}>
+        <section className={`${classes.section} ${sectionType ? sectionType : ''} ${className}`}>
             <motion.div
                 className='container'
                 initial={ANIMATION_HIDDEN}

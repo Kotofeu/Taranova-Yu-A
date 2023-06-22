@@ -72,7 +72,7 @@ export class BlogsStore {
     private _blogs: IBlog | null = null;
     private _selectedBlog: Item | null = null
     private _ownerId: number = 236298625;
-    private _isLoading: boolean = false
+    private _isLoading: boolean = true
     private _error: string | null = null
     constructor() {
         makeAutoObservable(this, {}, { deep: true })

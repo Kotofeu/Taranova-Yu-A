@@ -16,22 +16,22 @@ export const ShortBlogCard: FC<IBlockCard> = memo(
 
     forwardRef(
         (props, ref: React.Ref<HTMLDivElement>) => {
-            const { blog, className } = props;
+            const { blog, className = '' } = props;
             const imageSrc = blogStore.getItemImage(blog.attachments[0], 600)
             return (
                 <motion.article
-                    className={`${className ? className : ''} ${classes.blogCard}`} ref={ref}
+                    className={`${classes.blogCard} ${className}`} ref={ref}
                 >
                     <NavLink to={`/blog/${blog.id}`}>
                         <Picture
                             src={imageSrc}
                             alt={blog.text}
-                            className={classes.img}
+                            className={classes.blogCard_img}
                         />
-                        <div className={classes.desc} >
-                            <DateTime className={classes.date} date={blog.date} />
+                        <div className={classes.blogCard_desc} >
+                            <DateTime className={classes.blogCard_date} date={blog.date} />
                             <BlogText
-                                className={classes.title}
+                                className={classes.blogCard_title}
                                 text={blog.text}
                                 tagsCount={2}
                                 textRowCount={3}

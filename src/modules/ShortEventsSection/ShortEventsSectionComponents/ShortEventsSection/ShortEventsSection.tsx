@@ -19,10 +19,10 @@ export const ShortEventsSection = observer(() => {
   return (
     <Section className={classes.shortBlog} title='Последние мероприятия'>
       <div
-        className={classes.inner}
+        className={classes.shortBlog_inner}
       >
         <MEventCard
-          className={classes.event}
+          className={classes.shortBlog_event}
           initial={ANIMATION_HIDDEN}
           whileInView={ANIMATION_VISIBLE}
           viewport={{once: true, margin: '-60px'}}
@@ -34,7 +34,7 @@ export const ShortEventsSection = observer(() => {
           variants={MotionRight}
         />
         <MEventCard
-          className={classes.event}
+          className={classes.shortBlog_event}
           initial={ANIMATION_HIDDEN}
           whileInView={ANIMATION_VISIBLE}
           viewport={{once: true, margin: '-60px'}}

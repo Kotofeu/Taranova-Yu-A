@@ -1,4 +1,4 @@
-.score {
+.rating {
     box-sizing: content-box;
     min-width: 20px;
     height: 25px;
@@ -26,7 +26,7 @@
     }
 }
 
-.likes {
+.rating___likes {
     background-color: #FD3145;
 
     &::before {
@@ -36,7 +36,7 @@
 
 }
 
-.repost {
+.rating___repost {
     background-color: #8BB875;
 
     &::before {

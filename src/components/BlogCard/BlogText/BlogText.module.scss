@@ -1,19 +1,19 @@
 
-.paragraph{
+.text_paragraph{
     padding-top: 5px;
     display: block;
     &:first-child{
         padding-top: 0px;  
     }
 }
-.tagBox {
+.text_tagBox {
     margin-top: 5px;
     display: flex;
     flex-wrap: wrap;
     gap: 5px
 }
 
-.tag {
+.text_tag {
     padding: 8px 12px;
     border-radius: 2em;
     color: #FFF;

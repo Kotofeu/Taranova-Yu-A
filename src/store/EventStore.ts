@@ -24,7 +24,7 @@ export interface Type extends IBaseInerface  {
 
 export class EventStore {
     private _events: EventsJSON | null = null;
-    private _isLoading: boolean = false
+    private _isLoading: boolean = true
     private _error: string | null = null
     constructor() {
         makeAutoObservable(this, {}, { deep: true })

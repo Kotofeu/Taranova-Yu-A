@@ -14,10 +14,10 @@ interface ITextBlock {
 
 const TextBlock: FC<ITextBlock> = memo(
     (props) => {
-        const { textBlock, className } = props
+        const { textBlock, className = ''} = props
         return (
             <motion.div
-                className={`${className ? className : ''}`}
+                className={[classes.text, className].join(' ')}
                 initial={ANIMATION_HIDDEN}
                 whileInView={ANIMATION_VISIBLE}
                 viewport={{ once: true, margin: '-100px' }}
@@ -26,16 +26,16 @@ const TextBlock: FC<ITextBlock> = memo(
                 {textBlock.map(item =>
                     <motion.div
                         key={item.title}
-                        className={classes.textBlock}
+                        className={classes.text_block}
                     >
-                        <MTitle className={classes.title} variants={MotionChildLeft}>
+                        <MTitle className={classes.text_title} variants={MotionChildLeft}>
                             {item.title}
                         </MTitle>
                         {
                             item.text.split('\n')
                                 .map(item =>
                                     <motion.p
-                                        className={classes.text}
+                                        className={classes.text_text}
                                         key={item}
                                         variants={MotionChildLeft}
                                     >

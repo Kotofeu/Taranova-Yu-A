@@ -6,8 +6,10 @@ import { MotionChildUp } from '../../../../utils/const/animation'
 import { Item } from '../../../../store/BlogsStore'
 import { MButton } from '../../../../UI/Button/Button'
 import Picture, { MPicture } from '../../../../UI/Picture'
-import classes from './BlogImageGrid.module.scss'
 import { blogStore } from '../../../../store'
+
+import classes from './BlogImageGrid.module.scss'
+
 interface IBlogImageGrid {
     blog: Item;
     className?: string;
@@ -36,14 +38,14 @@ const BlogImageGrid: FC<IBlogImageGrid> = memo((props) => {
                     if (image.type === 'photo') {
                         return (
                             <motion.div
-                                className={classes.imageBox}
+                                className={classes.grid_imageBox}
                                 layoutId={index.toString()}
                                 onClick={() => setSelectedId(index.toString())}
                                 key={image.photo?.id}
                                 variants={MotionChildUp}
                             >
                                 <Picture
-                                    className={classes.itemImage}
+                                    className={classes.grid_image}
                                     src={imagesSrc.gridImage[index]}
                                     alt={image.photo?.text}
                                 />
@@ -54,7 +56,7 @@ const BlogImageGrid: FC<IBlogImageGrid> = memo((props) => {
                     if (image.type === 'video') {
                         return (
                             <motion.a
-                                className={[classes.video, classes.imageBox].join(' ')}
+                                className={[classes.grid_video, classes.grid_imageBox].join(' ')}
                                 href={`https://vk.com/video${blogStore.ownerId}_${image.video?.id}`}
                                 target="_blank"
                                 rel="noreferrer"
@@ -62,7 +64,7 @@ const BlogImageGrid: FC<IBlogImageGrid> = memo((props) => {
                                 variants={MotionChildUp}
 
                             >
-                                <Picture className={classes.itemImage} src={imagesSrc.gridImage[index]} alt={image.video?.description}
+                                <Picture className={classes.grid_image} src={imagesSrc.gridImage[index]} alt={image.video?.description}
                                 />
                             </motion.a>
 
@@ -74,14 +76,14 @@ const BlogImageGrid: FC<IBlogImageGrid> = memo((props) => {
             {imagesSrc.modalImage.map(image => <img style={{ display: 'none' }} src={image} key={image} alt={image}/>)}
             <Modal selectedId={selectedId} closeModal={closeModal}>
 
-                <motion.div className={classes.layout} layoutId={selectedId || ''}>
+                <motion.div className={classes.grid_modal} layoutId={selectedId || ''}>
                     <MPicture
-                        className={classes.modalImage}
+                        className={classes.grid_modalImage}
                         src={imagesSrc.modalImage[selectedId ? +selectedId : 0]}
                     />
                     <MButton
                         onClick={closeModal}
-                        className={classes.closeBtn}
+                        className={classes.grid_closeBtn}
                     >
                         Закрыть окно
                     </MButton>

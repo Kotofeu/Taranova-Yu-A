@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import readMore1 from '../../../../assets/icons/read__more_1.svg'
 import readMore2 from '../../../../assets/icons/read__more_2.svg'
 export enum EventCardType {
-    vertical = classes.eventVertical,
+    vertical = classes.eventCard___vertical,
 }
 interface IEventCard {
     index: number;
@@ -20,28 +20,28 @@ interface IEventCard {
 }
 export const EventCard: FC<IEventCard> = memo(forwardRef((props, ref: React.Ref<HTMLDivElement>) => {
     const router = useNavigate()
-    const { index, className, pictureSrc, date, title, type } = props
+    const { index, className = '', pictureSrc, date, title, type } = props
     const setRoute = () => {
         router(`/event/${index}`)
     }
     return (
         <motion.article
-            className={`${className ? className : ''} ${classes.event} ${type ? type : ''}`}
+            className={`${classes.eventCard} ${type ? type : ''} ${className}`}
             ref={ref}
             onClick={setRoute}
         >
-            <div className={classes.imageBox}>
+            <div className={classes.eventCard_imageBox}>
                 <Picture
-                    className={classes.img}
+                    className={classes.eventCard_img}
                     src={pictureSrc}
                 />
             </div>
 
-            <div className={classes.desc}>
-                <Title className={classes.title}>{title}</Title>
-                <p className={classes.date}>{date}</p>
+            <div className={classes.eventCard_desc}>
+                <Title className={classes.eventCard_title}>{title}</Title>
+                <p className={classes.eventCard_date}>{date}</p>
                 <Button
-                    className={classes.button}
+                    className={classes.eventCard_button}
                     beforeImg={readMore1}
                     afterImg={readMore2}
                 >

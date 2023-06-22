@@ -5,7 +5,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Section, { SectionType } from '../../../../components/Section/Section';
 import { MotionChildLeft, MotionParent } from '../../../../utils/const/animation';
 import { MDateTime } from '../../../../UI/DateTime/DateTime';
-import Error404 from '../../../../components/Error404/Error404';
+import Error404 from '../../../../components/Error/Error';
 import BlogImageGrid from '../BlogImageGrid/BlogImageGrid';
 import Button, { MButton } from '../../../../UI/Button/Button';
 
@@ -49,12 +49,12 @@ export const BlogSection = observer(() => {
             sectionAnimation={MotionParent}
             sectionType={SectionType.fullSize}
         >
-            <header className={classes.header}>
+            <header className={classes.blog_header}>
                 <div
-                    className={classes.buttons}
+                    className={classes.blog_buttons}
                 >
                     <MButton
-                        className={classes.backButton}
+                        className={classes.blog_backButton}
                         onClick={() => navigate(-1)}
                         afterImg={arrorImage}
                         beforeImg={arrorImage}
@@ -74,17 +74,17 @@ export const BlogSection = observer(() => {
                     </motion.a>
                 </div>
                 <MDateTime
-                    className={classes.dateTime}
+                    className={classes.blog_dateTime}
                     date={blog.date}
                     variants={MotionChildLeft}
                 />
             </header>
 
-            <div className={blog.attachments.length < 2 ? classes.blogInner : null}>
-                <div className={classes.text}>
+            <div className={blog.attachments.length < 2 ? classes.blog_inner : null}>
+                <div className={classes.blog_text}>
                     <BlogText text={blog.text} animationType={MotionChildLeft} />
                 </div>
-                <BlogImageGrid className={classes.grid} blog={blog} />
+                <BlogImageGrid className={classes.blog_grid} blog={blog} />
             </div>
 
         </Section >

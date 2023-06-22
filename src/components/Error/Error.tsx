@@ -2,13 +2,13 @@ import { memo, FC } from 'react'
 import { MotionChildUp } from '../../utils/const/animation'
 import { MButton } from '../../UI/Button/Button'
 import Section, { SectionType } from '../Section/Section'
-import classes from './Error404.module.scss'
+import classes from './Error.module.scss'
 interface IError404 {
     errorText: string;
     routTo?: string;
     buttonText?: string;
 }
-const Error404: FC<IError404> = memo((
+const Error: FC<IError404> = memo((
     {
         errorText,
         routTo = '/',
@@ -16,13 +16,13 @@ const Error404: FC<IError404> = memo((
     }: IError404) => {
     return (
         <Section
-            className={classes.error404}
+            className={classes.error}
             title={errorText}
             sectionType={SectionType.fullSize}
         >
-            <div className={classes.errorInner}>
+            <div className={classes.error_inner}>
                 <MButton
-                    className={classes.goHomeBtn}
+                    className={classes.error_goHome}
                     variants={MotionChildUp}
                     routeOption={routTo}
                 >
@@ -34,4 +34,4 @@ const Error404: FC<IError404> = memo((
     )
 })
 
-export default Error404
+export default Error

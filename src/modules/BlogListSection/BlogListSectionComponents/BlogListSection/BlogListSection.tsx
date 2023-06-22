@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite'
 
 import Section, { SectionType } from '../../../../components/Section/Section'
 import Loader from '../../../../components/Loader/Loader'
-import Error404 from '../../../../components/Error404/Error404'
+import Error404 from '../../../../components/Error/Error'
 
 import classes from './BlogListSection.module.scss'
 import { blogStore } from '../../../../store'
@@ -16,17 +16,17 @@ export const BlogListSection = memo(observer(() => {
         return <Error404 errorText={blogStore.error} />
     }
     return (
-        <Section className={classes.blogs} title='Публикации'
+        <Section className={classes.blogList} title='Публикации'
             sectionType={SectionType.fullSize}>
-            <div className={classes.list}>
+            <div className={classes.blogList_list}>
                 {blogStore.isLoading &&
-                    <div className={classes.loader}>
+                    <div className={classes.blogList_loader}>
                         <Loader />
                     </div>
                 }
                 {
                     !blogStore.isLoading && !blogStore.blogs?.publications?.length
-                        ? <Title className={classes.blogs_empty} titleType={[TitleType.posCetner]}>Публикации отсутствуют</Title>
+                        ? <Title className={classes.blogList_empty} titleType={[TitleType.posCetner]}>Публикации отсутствуют</Title>
                         : null
                 }
                 {
@@ -34,7 +34,7 @@ export const BlogListSection = memo(observer(() => {
                         ?
                         blogStore.blogs?.publications.map(blog => {
                             return (<BlogCard
-                                className={classes.blog}
+                                className={classes.blogList_blog}
                                 blog={blog}
                                 key={blog.id}
                             />)

@@ -13,32 +13,32 @@ export interface ICard {
 const Card: FC<ICard> = memo(
     forwardRef(
         (props, ref: React.Ref<HTMLElement>) => {
-            const { index, cardImage, title, desc, className } = props
+            const { index, cardImage, title, desc, className = '' } = props
             return (
                 <motion.article ref={ref}
-                    className={`${className ? className : ''} ${classes.card}`}
+                    className={`${classes.card} ${className}`}
                 >
                     <motion.img
-                        className={classes.img}
+                        className={classes.card_img}
                         src={cardImage}
                         alt={title}
                         variants={MotionFlip}
                         custom={index}
                     />
                     <motion.div
-                        className={classes.cardText}
+                        className={classes.card_text}
                         variants={MotionUp}
                         custom={index}
                     >
                         <Title
-                            className={classes.title}
+                            className={classes.card_title}
                             titleType={[TitleType.posCetner]}
                         >
                             {title}
                         </Title>
                         {
                             desc
-                                ? <p className={classes.desc}>{desc}</p>
+                                ? <p className={classes.card_desc}>{desc}</p>
                                 : null
                         }
                     </motion.div>

@@ -3,10 +3,9 @@
 .title {
   font-weight: 700;
   position: relative;
-  //line-height: 1.6em;
-  //letter-spacing: 0.05em;
   letter-spacing: 0.03em;
   line-height: 1.4em;
+
   &::after {
     content: '';
     position: absolute;
@@ -16,48 +15,53 @@
     background-color: $text-color;
     opacity: 0;
   }
-}
-.posCetner {
-  text-align: center;
 
-}
-.lineCenter {
-  &::after {
-    left: 50%;
-    transform: translateX(-50%);
-    opacity: 1;
+  &___posCetner {
+    text-align: center;
+
+  }
+
+  &___lineCenter {
+    &::after {
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 1;
+
+    }
+  }
+
+  &___lineLeft {
+    &::after {
+      left: 0;
+      opacity: 1;
+    }
+  }
+
+  &___sectionTitle {
+    font-size: 20px;
 
   }
 }
-.lineRight {
-  &::after {
-    left: 0;
-    opacity: 1;
-  }
-}
-.sectionTitle {
-  font-size: 20px;
-}
-
-
 
 
 @media (min-width: 479.98px) {
-  .sectionTitle {
+
+  .title___sectionTitle {
     font-size: 24px;
 
     &::after {
       bottom: -.6em;
     }
-    
+
   }
 }
 
 @media (min-width: 575.98px) {
-  .sectionTitle {
+  .title___sectionTitle {
     font-size: 28px;
     line-height: 1.5em;
     letter-spacing: 0.05em;
+
     &::after {
       bottom: -.5em;
       height: 4px;
@@ -67,7 +71,7 @@
 }
 
 @media (min-width: 767.98px) {
-  .sectionTitle {
+  .title___sectionTitle {
     font-size: 32px;
     line-height: 1.6em;
 
@@ -78,17 +82,14 @@
   }
 }
 
-
-
-
 @keyframes animate-down {
   0% {
-      transform: translateY(-100%);
+    transform: translateY(-100%);
 
   }
 
   100% {
-      transform: translateY(0);
+    transform: translateY(0);
 
   }
 }

@@ -13,13 +13,13 @@ const Modal: FC<IModal> = (props) => {
             {selectedId && (
                 <motion.div className={classes.modal}>
                     <motion.div
-                        className={[classes.modalInner, 'container'].join(' ')}
+                        className={[classes.modal_inner, 'container'].join(' ')}
                     >
                         {children}
                     </motion.div>
                     <motion.button
                         onClick={closeModal}
-                        className={classes.modalClose}
+                        className={classes.modal_close}
                         initial={{opacity: 0}}
                         exit={{opacity: 0}}
                         animate={{opacity: 1}}

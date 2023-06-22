@@ -19,7 +19,7 @@ export const BioSection = memo(observer(() => {
             sectionType={SectionType.fullSize}
         >
             <TextBlock
-                className={classes.textBlock}
+                className={classes.bio_textBlock}
                 textBlock={[{ title: "Lorem", text: applicationStore.bio }]}
             />
             <motion.div
@@ -28,7 +28,7 @@ export const BioSection = memo(observer(() => {
                 viewport={{ once: true, margin: '-100px' }}
             >
                 <MTitle
-                    className={classes.achievementsTitle}
+                    className={classes.bio_achievementsTitle}
                     titleType={[TitleType.posCetner]}
                     variants={MotionUp}
                 >
@@ -40,11 +40,11 @@ export const BioSection = memo(observer(() => {
                     viewport={{ once: true, margin: '-100px' }}
                 >
                     <UniversalList
-                        className={classes.achievementsList}
+                        className={classes.bio_achievementsList}
                         items={applicationStore.achievements}
                         renderItem={
                             (item, index) => <MCard
-                                className={classes.achievementsCard}
+                                className={classes.bio_achievementsCard}
                                 cardImage={item.cardImage}
                                 title={item.title}
                                 index={index}

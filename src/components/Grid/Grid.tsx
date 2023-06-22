@@ -9,7 +9,7 @@ interface IGrid {
 }
 
 export const Grid: FC<IGrid> = forwardRef((props, ref: React.Ref<HTMLDivElement>) => {
-    const { itemsCount, children, className } = props
+    const { itemsCount, children, className = ''} = props
     const itemsCountClass = useMemo(() => {
         switch (itemsCount) {
             case 1: return classes.itemsCount1;
@@ -27,7 +27,7 @@ export const Grid: FC<IGrid> = forwardRef((props, ref: React.Ref<HTMLDivElement>
 
 
     return (
-        <motion.div className={[className, itemsCountClass].join(' ')} ref={ref}>
+        <motion.div className={[itemsCountClass, className].join(' ')} ref={ref}>
             {children}
         </motion.div>
     )

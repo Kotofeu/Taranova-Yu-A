@@ -36,17 +36,17 @@ export const Header = observer(() => {
     return (
         <header className={classes.header}>
             <div className='container'>
-                <div className={classes.headerInner}>
+                <div className={classes.header_inner}>
                     <NavLink to={'/'}>
                         <img
-                            className={classes.logo}
+                            className={classes.header_logo}
                             src={logo}
                             alt='logo'>
                         </img>
                     </NavLink>
 
-                    <nav className={`${classes.nav} ${isMenuOpen && classes.navActive}`}>
-                        <div className={classes.linksList}>
+                    <nav className={`${classes.header_nav} ${isMenuOpen && classes.header_nav___active}`}>
+                        <div className={classes.header_linksList}>
                             {applicationStore.headerLinks.map(link => {
                                 return (
                                     <NavLink
@@ -55,7 +55,7 @@ export const Header = observer(() => {
                                         className=
                                         {
                                             ({ isActive }) =>
-                                                [classes.link, isActive ? classes.linkActive : ''].join(' ')
+                                                [classes.header_link, isActive ? classes.header_link___active : ''].join(' ')
                                         }
                                         onClick={onLinkClick}
                                         end
@@ -70,7 +70,7 @@ export const Header = observer(() => {
                                 )
                             })}
                         </div>
-                        <ul className={classes.contactsList}>
+                        <ul className={classes.header_contactsList}>
                             <HeaderLink
                                 headerLinkType={HeaderLinkType.email}
                                 href={applicationStore.email}
@@ -82,9 +82,9 @@ export const Header = observer(() => {
                             />
                         </ul>
                     </nav>
-                    <div className={classes.buttons}>
+                    <div className={classes.header_buttons}>
                         <Button
-                            className={classes.modalBtn}
+                            className={classes.header_modalBtn}
                             beforeImg={planImage}
                             afterImg={messageImage}
                         >
@@ -92,8 +92,8 @@ export const Header = observer(() => {
                         </Button>
                         <button
                             className={
-                                `${classes.burgerBtn} ${isMenuOpen
-                                    ? classes.burgerClose
+                                `${classes.header_burgerBtn} ${isMenuOpen
+                                    ? classes.header_burgerBtn___close
                                     : ''
                                 }`}
                             onClick={onBurgerClick}
@@ -106,7 +106,7 @@ export const Header = observer(() => {
                 </div>
             </div >
             <motion.div
-                className={classes.scrollProgress}
+                className={classes.header_scrollProgress}
                 style={{ scaleX: scaleX }}
             />
         </header >
