@@ -1,14 +1,14 @@
 import Router from "./components/Router";
 import { useEffect } from 'react'
 import './styles/style.scss'
-import BlogsStore from "./store/BlogsStore";
 import { observer } from "mobx-react-lite";
+import { blogStore, eventStore } from "./store";
 const App = observer(() => {
-
   useEffect(() => {
-    BlogsStore.loadBloags()
+    blogStore.loadBloags()
+    eventStore.loadEvents()
   }, [])
-
+  console.log(eventStore.events)
   return (
     <Router></Router>
   );

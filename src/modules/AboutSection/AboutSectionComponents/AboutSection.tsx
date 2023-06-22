@@ -10,12 +10,12 @@ import Picture from '../../../UI/Picture'
 import Title from '../../../UI/Title/Title'
 
 import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionRight } from '../../../const/animation'
-import ApplicationStore from '../../../store/ApplicationStore'
 
 import profile from '../../../assets/images/profile-picture.jpg'
 import profileWebp from '../../../assets/images/profile-picture.webp'
 
 import classes from './AboutSection.module.scss'
+import { applicationStore } from '../../../store'
 
 export const AboutSection = memo(observer(() => {
 
@@ -36,9 +36,9 @@ export const AboutSection = memo(observer(() => {
                         alt='about-section picture'
                         className={classes.infoImg}
                     />
-                    <Title className={classes.infoSlogan}>{ApplicationStore.slogan}</Title>
+                    <Title className={classes.infoSlogan}>{applicationStore.slogan}</Title>
                 </motion.div>
-                <TextBlock className={classes.infoDesc} textBlock={ApplicationStore.aboutText}></TextBlock>
+                <TextBlock className={classes.infoDesc} textBlock={applicationStore.aboutText}></TextBlock>
             </div>
             <motion.div
                 initial={ANIMATION_HIDDEN}
@@ -47,7 +47,7 @@ export const AboutSection = memo(observer(() => {
             >
                 <UniversalList
                     className={classes.includedIn}
-                    items={ApplicationStore.includedIn}
+                    items={applicationStore.includedIn}
                     renderItem={
                         (item, index) => <MCard
                             className={classes.includedCard}

@@ -4,7 +4,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 import Section, { SectionType } from '../../../../components/Section/Section';
 import { MotionChildLeft, MotionParent } from '../../../../const/animation';
-import BlogsStore from '../../../../store/BlogsStore';
 import BlogText from '../BlogText/BlogText';
 import { MDateTime } from '../../../../UI/DateTime/DateTime';
 import Error404 from '../../../../components/Error404/Error404';
@@ -17,24 +16,25 @@ import arrorImage from '../../../../assets/icons/arror.svg'
 
 import classes from './IdBlogSection.module.scss'
 import Loader from '../../../../components/Loader/Loader';
+import { blogStore } from '../../../../store';
 
 export const IdBlogSection = observer(() => {
     const params = useParams();
     const navigate = useNavigate()
     if (!params.id) return null
     const onVKButtonClick = () => {
-        return `https://vk.com/taranova.yulia?w=wall${BlogsStore.ownerId}_${blog?.id}`
+        return `https://vk.com/taranova.yulia?w=wall${blogStore.ownerId}_${blog?.id}`
     }
-    BlogsStore.findSelectedBlog(+params.id)
-    const blog = BlogsStore.selectedBlog
-    if (BlogsStore.isLoading) {
+    blogStore.findSelectedBlog(+params.id)
+    const blog = blogStore.selectedBlog
+    if (blogStore.isLoading) {
         return (
             <Section sectionType={SectionType.fullSize} >
                 <Loader />
             </Section>
         )
     }
-    if (!blog || BlogsStore.error) {
+    if (!blog || blogStore.error) {
         return (
             <Error404
                 errorText='Публикация не найдена'

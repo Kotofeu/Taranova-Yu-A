@@ -11,9 +11,9 @@ import logo from '../../../../assets/icons/logo.png';
 
 
 import classes from './Header.module.scss'
-import ApplicationStore from '../../../../store/ApplicationStore';
 import { observer } from 'mobx-react-lite';
 import HeaderActiveLine from '../HeaderActiveLine/HeaderActiveLine';
+import { applicationStore } from '../../../../store';
 
 
 export const Header = observer(() => {
@@ -47,7 +47,7 @@ export const Header = observer(() => {
 
                     <nav className={`${classes.nav} ${isMenuOpen && classes.navActive}`}>
                         <div className={classes.linksList}>
-                            {ApplicationStore.headerLinks.map(link => {
+                            {applicationStore.headerLinks.map(link => {
                                 return (
                                     <NavLink
                                         to={link.link}
@@ -73,12 +73,12 @@ export const Header = observer(() => {
                         <ul className={classes.contactsList}>
                             <HeaderLink
                                 headerLinkType={HeaderLinkType.email}
-                                href={ApplicationStore.email}
+                                href={applicationStore.email}
 
                             />
                             <HeaderLink
                                 headerLinkType={HeaderLinkType.phone}
-                                href={ApplicationStore.tel}
+                                href={applicationStore.tel}
                             />
                         </ul>
                     </nav>

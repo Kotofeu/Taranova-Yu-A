@@ -4,8 +4,9 @@ import Picture from '../../../../UI/Picture';
 import classes from './ShortBlogCard.module.scss'
 import { NavLink } from 'react-router-dom';
 import DateTime from '../../../../UI/DateTime/DateTime';
-import BlogsStore, { Item } from '../../../../store/BlogsStore';
+import { Item } from '../../../../store/BlogsStore';
 import BlogText from '../BlogText/BlogText';
+import { blogStore } from '../../../../store';
 interface IBlockCard {
     className?: string,
     blog: Item,
@@ -16,7 +17,7 @@ export const ShortBlogCard: FC<IBlockCard> = memo(
     forwardRef(
         (props, ref: React.Ref<HTMLDivElement>) => {
             const { blog, className } = props;
-            const imageSrc = BlogsStore.getItemImage(blog.attachments[0], 600)
+            const imageSrc = blogStore.getItemImage(blog.attachments[0], 600)
             return (
                 <motion.article
                     className={`${className ? className : ''} ${classes.blogCard}`} ref={ref}

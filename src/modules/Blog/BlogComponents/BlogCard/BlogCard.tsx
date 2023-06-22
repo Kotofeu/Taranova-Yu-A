@@ -4,7 +4,7 @@ import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionParent, MotionChildLeft, Mot
 import Button from '../../../../UI/Button/Button'
 import { MDateTime } from '../../../../UI/DateTime/DateTime'
 import Picture from '../../../../UI/Picture'
-import BlogsStore, { Item } from '../../../../store/BlogsStore'
+import { Item } from '../../../../store/BlogsStore'
 import BlogText from '../BlogText/BlogText'
 import BlogRating from '../BlogRating/BlogRating'
 
@@ -14,6 +14,7 @@ import stepOverImage from '../../../../assets/icons/step over.svg'
 import VKImage from '../../../../assets/icons/VK.svg'
 
 import classes from './BlogCard.module.scss'
+import { blogStore } from '../../../../store'
 
 
 interface IBlogCard {
@@ -23,9 +24,9 @@ interface IBlogCard {
 const BlogCard: FC<IBlogCard> = memo((props) => {
     const { blog, className } = props
     const onVKButtonClick = () => {
-        return `https://vk.com/taranova.yulia?w=wall${BlogsStore.ownerId}_${blog.id}`
+        return `https://vk.com/taranova.yulia?w=wall${blogStore.ownerId}_${blog.id}`
     }
-    const imageSrc = BlogsStore.getItemImage(blog.attachments[0], 480);
+    const imageSrc = blogStore.getItemImage(blog.attachments[0], 480);
     return (
         <motion.article
             className={`${className ? className : ''} ${classes.blog}`}

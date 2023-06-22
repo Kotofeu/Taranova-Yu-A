@@ -19,7 +19,7 @@ interface ILink {
     link: string;
 }
 
-class BlogsStore {
+export class ApplicationStore {
     private _includedIn: ICard[] = [
         {
             cardImage: geniusesAcademy,
@@ -122,4 +122,3 @@ class BlogsStore {
     }
 
 }
-export default new BlogsStore();

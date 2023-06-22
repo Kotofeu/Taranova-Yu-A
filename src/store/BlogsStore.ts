@@ -138,7 +138,7 @@ export enum AttachmentType {
     Video = "video",
 }
 
-class BlogsStore {
+export class BlogsStore {
     private _blogs: IBlog | null = null;
     private _selectedBlog: Item | null = null
     private _ownerId: number = 236298625;
@@ -214,4 +214,3 @@ class BlogsStore {
             .finally(() => this.setIsLoading(false))
     }
 }
-export default new BlogsStore();

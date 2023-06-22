@@ -3,10 +3,11 @@ import { memo, useCallback, useState, FC, useMemo } from 'react'
 import { Grid } from '../../../../components/Grid/Grid'
 import Modal from '../../../../components/Modal/Modal'
 import { MotionChildUp } from '../../../../const/animation'
-import BlogsStore, { Item } from '../../../../store/BlogsStore'
+import { Item } from '../../../../store/BlogsStore'
 import { MButton } from '../../../../UI/Button/Button'
 import Picture, { MPicture } from '../../../../UI/Picture'
 import classes from './BlogImageGrid.module.scss'
+import { blogStore } from '../../../../store'
 interface IBlogImageGrid {
     blog: Item,
     className?: string,
@@ -21,8 +22,8 @@ const BlogImageGrid: FC<IBlogImageGrid> = memo((props) => {
     const imagesSrc = useMemo(() => {
         const attachments = blog.attachments
         return ({
-            gridImage: attachments.map(image => BlogsStore.getItemImage(image, 720)),
-            modalImage: attachments.map(image => BlogsStore.getItemImage(image))
+            gridImage: attachments.map(image => blogStore.getItemImage(image, 720)),
+            modalImage: attachments.map(image => blogStore.getItemImage(image))
         })
     }, [blog.attachments])
     return (
@@ -54,7 +55,7 @@ const BlogImageGrid: FC<IBlogImageGrid> = memo((props) => {
                         return (
                             <motion.a
                                 className={[classes.video, classes.imageBox].join(' ')}
-                                href={`https://vk.com/video${BlogsStore.ownerId}_${image.video?.id}`}
+                                href={`https://vk.com/video${blogStore.ownerId}_${image.video?.id}`}
                                 target="_blank"
                                 rel="noreferrer"
                                 key={image.video?.id}

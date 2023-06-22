@@ -8,9 +8,9 @@ import TextBlock from '../../../components/TextBlock/TextBlock'
 import UniversalList from '../../../components/UniversalList'
 import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionUp } from '../../../const/animation'
 import { MTitle, TitleType } from '../../../UI/Title/Title'
-import ApplicationStore from '../../../store/ApplicationStore'
 
 import classes from './BioSection.module.scss'
+import { applicationStore } from '../../../store'
 export const BioSection = memo(observer(() => {
     return (
         <Section
@@ -20,7 +20,7 @@ export const BioSection = memo(observer(() => {
         >
             <TextBlock
                 className={classes.textBlock}
-                textBlock={[{ title: "Lorem", text: ApplicationStore.bio }]}
+                textBlock={[{ title: "Lorem", text: applicationStore.bio }]}
             />
             <motion.div
                 initial={ANIMATION_HIDDEN}
@@ -41,7 +41,7 @@ export const BioSection = memo(observer(() => {
                 >
                     <UniversalList
                         className={classes.achievementsList}
-                        items={ApplicationStore.achievements}
+                        items={applicationStore.achievements}
                         renderItem={
                             (item, index) => <MCard
                                 className={classes.achievementsCard}
