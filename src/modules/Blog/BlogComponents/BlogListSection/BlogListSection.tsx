@@ -8,6 +8,7 @@ import Error404 from '../../../../components/Error404/Error404'
 
 import classes from './BlogListSection.module.scss'
 import { blogStore } from '../../../../store'
+import Title, { TitleType } from '../../../../UI/Title/Title'
 
 export const BlogListSection = memo(observer(() => {
 
@@ -23,15 +24,23 @@ export const BlogListSection = memo(observer(() => {
                         <Loader />
                     </div>
                 }
-                {blogStore.blogs?.publications.map(blog => {
-                    return (<BlogCard
-                        className={classes.blog}
-                        blog={blog}
-                        key={blog.id}
-                    />)
+                {
+                    !blogStore.isLoading && !blogStore.blogs?.publications?.length
+                        ? <Title className={classes.blogs_empty} titleType={[TitleType.posCetner]}>Публикации отсутствуют</Title>
+                        : null
                 }
-                )}
-
+                {
+                    blogStore.blogs?.publications?.length
+                        ?
+                        blogStore.blogs?.publications.map(blog => {
+                            return (<BlogCard
+                                className={classes.blog}
+                                blog={blog}
+                                key={blog.id}
+                            />)
+                        })
+                        : null
+                }
             </div>
 
         </Section>

@@ -11,7 +11,7 @@ export const ShortBlogSection = memo(observer(() => {
   if (blogStore.error) {
     return null
   }
-  if (!blogStore.isLoading && !blogStore.blogs?.publications.length) return null
+  if (!blogStore.isLoading && !blogStore.blogs?.publications?.length) return null
   return (
     <Section className={classes.shortBlog} title='Последние публикации'>
       <div

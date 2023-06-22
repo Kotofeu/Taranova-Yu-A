@@ -1,3 +1,4 @@
+@import '../../../../styles/settings.scss';
 .blogs {
     padding-top: 100px;
 
@@ -16,4 +17,8 @@
     &:last-child{
         margin-bottom: 0;
     }
+}
+.blogs_empty{
+    font-size: 18px;
+    color: $text-color;
 }
