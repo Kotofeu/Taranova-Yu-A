@@ -24,7 +24,7 @@
     top: 0;
     height: 100%;
     width: 20px;
-    display: block;
+    display: none;
     transition: transform .3s ease-in-out;
 }
 .before{
@@ -33,4 +33,11 @@
 .after{
     right: 5px;
     transform: translateX(150%);
+}
+
+@media (min-width: 767.98px) {
+    .before, .after{
+        display: block;
+
+    }
 }

@@ -24,6 +24,7 @@ const Button: FC<IButtonProps> = memo(
                     className={`${className ? className : ''} ${classes.button} `}
                     onClick={routeOption ? startRoute : onClick}
                     ref={ref}
+                    type='button'
                 >
                     {beforeImg ?
                         <img className={classes.before} src={beforeImg} alt="" />
