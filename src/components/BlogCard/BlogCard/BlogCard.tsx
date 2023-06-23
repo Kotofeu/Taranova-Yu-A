@@ -27,6 +27,7 @@ export const BlogCard: FC<IBlogCard> = memo((props) => {
         return `https://vk.com/taranova.yulia?w=wall${blogStore.ownerId}_${blog.id}`
     }
     const imageSrc = blogStore.getItemImage(blog.attachments[0], 480);
+    if (!imageSrc) return null
     return (
         <motion.article
             className={`${classes.blogCard} ${className}`}
