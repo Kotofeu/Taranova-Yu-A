@@ -1,5 +1,7 @@
+@import '../../../../styles/settings.scss';
+
 .blogCard {
-    background-color: #fff;
+    background-color: $primary-color;
     position: relative;
     overflow: hidden;
     cursor: pointer;
@@ -7,7 +9,7 @@
         position: absolute;
         transition: all .3s ease-in-out;
         content: 'Нажмите для просмотра';
-        background-color: #fff;
+        background-color: $primary-color;
         border-radius: 0 0 10px 0;
         font-weight: 500;
         padding: 5px;
@@ -15,7 +17,7 @@
         left: 0px;
         opacity: 0;
         transform: translateY(-100%);
-        color: #000;
+        color: $shadow-color;
     }
 }
 
@@ -34,7 +36,7 @@
     position: absolute;
     transform: translateY(100%);
     opacity: 0;
-    background-color: #fff;
+    background-color: $primary-color;
     bottom: 0;
     left: 0;
     right: 0;
@@ -56,7 +58,7 @@
 }
 
 .blogCard_date {
-    color: #707070;
+    color: $text-color;
     font-weight: 600;
     font-size: 14px;
 }

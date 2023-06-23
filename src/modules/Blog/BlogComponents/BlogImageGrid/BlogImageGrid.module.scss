@@ -23,7 +23,7 @@
 .grid_video {
     position: relative;
     display: block;
-    background-color: #FFF;
+    background-color: $primary-color;
 
     &::after,
     &::before {
@@ -49,12 +49,12 @@
 
         padding: 25px;
         border-radius: 50%;
-        background-color: rgba(0, 0, 0, .5);
+        background-color: rgba($shadow-color, .5);
     }
 
     &:hover {
         &::before {
-            background-color: rgba(0, 0, 0, .6);
+            background-color: rgba($shadow-color, .6);
 
         }
     }
@@ -80,11 +80,11 @@
     position: absolute;
     bottom: 10px;
     right: 15px;
-    background-color: #FF0000;
+    background-color: $red-color-600;
     border: none;
     border-radius: 15px;
     padding: 10px 15px;
-    color: #FFF;
+    color: $primary-color;
     font-size: 16px;
     font-weight: 600;
     box-sizing: content-box;

@@ -1,3 +1,5 @@
+@import '../../styles/settings.scss';
+
 .dateTime {
     display: flex;
 }
@@ -18,7 +20,7 @@
             right: 12px;
             top: 50%;
             transform: translateY(-50%);
-            color: #707070;
+            color: $text-color;
         }
     }
 }

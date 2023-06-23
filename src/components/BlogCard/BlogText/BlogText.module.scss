@@ -1,3 +1,4 @@
+@import '../../../styles/settings.scss';
 
 .text_paragraph{
     padding-top: 5px;
@@ -16,20 +17,20 @@
 .text_tag {
     padding: 8px 12px;
     border-radius: 2em;
-    color: #FFF;
+    color: $primary-color;
     font-weight: 600;
     word-break: break-all;
     text-align: center;
     &:nth-child(1n) {
-        background-image: linear-gradient(to right, #eb3941, #f15e64, #e14e53);
+        background-image: linear-gradient(to right, $red-color-600, $red-color-400, $red-color-500);
     }
 
     &:nth-child(2n) {
-        background-image: linear-gradient(to right, #667eea, #764ba2);
+        background-image: linear-gradient(to right, $blue-color-400, $blue-color-500);
     }
 
     &:nth-child(3n) {
-        background-image: linear-gradient(to right, #0ba360, #30dd8a);
+        background-image: linear-gradient(to right, $green-color-500, $green-color-600);
     }
 
 }

@@ -7,49 +7,64 @@ import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom';
 import readMore1 from '../../../../assets/icons/read__more_1.svg'
 import readMore2 from '../../../../assets/icons/read__more_2.svg'
+import { Event } from '../../../../store/EventStore'
+import DateTime from '../../../../UI/DateTime/DateTime'
 export enum EventCardType {
     vertical = classes.eventCard___vertical,
 }
 interface IEventCard {
-    index: number;
     className?: string;
-    pictureSrc: string;
-    date: string;
-    title: string;
-    type?: EventCardType;
+    event: Event;
+}
+const transformDateToUTCDate = (date: Date): Date => {
+    const newDate = new Date(date);
+    const UTCDate = new Date(
+        newDate.getUTCFullYear(),
+        newDate.getUTCMonth(),
+        newDate.getUTCDate(),
+        newDate.getUTCHours(),
+        newDate.getUTCMinutes(),
+        newDate.getUTCSeconds()
+    );
+    return UTCDate;
+
 }
 export const EventCard: FC<IEventCard> = memo(forwardRef((props, ref: React.Ref<HTMLDivElement>) => {
     const router = useNavigate()
-    const { index, className = '', pictureSrc, date, title, type } = props
+    const { className = '', event } = props
     const setRoute = () => {
-        router(`/event/${index}`)
+        router(`/event/${event.uid}`)
     }
+
     return (
-        <motion.article
-            className={`${classes.eventCard} ${type ? type : ''} ${className}`}
-            ref={ref}
-            onClick={setRoute}
-        >
-            <div className={classes.eventCard_imageBox}>
-                <Picture
-                    className={classes.eventCard_img}
-                    src={pictureSrc}
-                />
-            </div>
-
+        <article className={[classes.eventCard, className].join(' ')}>
+            <header className={classes.eventCard_header}>
+                <div className={classes.eventCard_headerAbout}>
+                    <h6 className={classes.eventCard_headerTitle}>
+                        {event.title}
+                    </h6>
+                    <div className={classes.eventCard_eventType}>
+                        {event.type.name}
+                    </div>
+                </div>
+                <div className={classes.eventCard_dates}>
+                    <div className={classes.eventCard_date}>
+                        <span className={classes.eventCard_dateLabel}>начало</span>
+                        <DateTime date={transformDateToUTCDate(event.startDate)} />
+                    </div>
+                    <div className={classes.eventCard_date}>
+                        <span className={classes.eventCard_dateLabel}>конец</span>
+                        <DateTime date={transformDateToUTCDate(event.endDate)} />
+                    </div>
+                </div>
+            </header>
+            <address className={classes.eventCard_address}>
+                {event.location}
+            </address>
             <div className={classes.eventCard_desc}>
-                <Title className={classes.eventCard_title}>{title}</Title>
-                <p className={classes.eventCard_date}>{date}</p>
-                <Button
-                    className={classes.eventCard_button}
-                    beforeImg={readMore1}
-                    afterImg={readMore2}
-                >
-                    Подробнее
-                </Button>
+                {event.description}
             </div>
-
-        </motion.article>
+        </article>
     )
 }))
 

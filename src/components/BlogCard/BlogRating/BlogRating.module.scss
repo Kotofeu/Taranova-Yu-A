@@ -1,3 +1,4 @@
+@import '../../../styles/settings.scss';
 .rating {
     box-sizing: content-box;
     min-width: 20px;
@@ -6,7 +7,7 @@
     padding: 5px 10px;
     text-align: center;
     
-    color: #fff;
+    color: $primary-color;
     font-weight: 500;
 
     display: flex;
@@ -27,7 +28,7 @@
 }
 
 .rating___likes {
-    background-color: #FD3145;
+    background-color: $red-color-600;
 
     &::before {
 
@@ -37,7 +38,7 @@
 }
 
 .rating___repost {
-    background-color: #8BB875;
+    background-color: $green-color-600;
 
     &::before {
 

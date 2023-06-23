@@ -1,75 +1,49 @@
-.eventCard {
-    height: 240px;
-    position: relative;
+@import '../../../../styles/settings.scss';
+.eventCard{
+
+
+}
+
+.eventCard_header{
     display: flex;
-    background-color: #fff;
-    cursor: pointer;
-
-    &___vertical {
-        height: auto;
-        flex-direction: column;
-
-        & .eventCard_button {
-            margin-top: 10px;
-        }
-
-        & .eventCard_desc {
-            padding: 20px;
-        }
-
-        & .eventCard_img {
-            max-height: 300px;
-        }
-    }
-}
-
-.eventCard_imageBox {
-    overflow: hidden;
-    flex-grow: 1;
-}
-
-.eventCard_img {
-    transition: transform .5s ease-in-out;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    will-change: transform;
-
-}
-
-.eventCard_desc {
-    display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    padding-left: 20px;
-    padding-right: 20px;
-
+    gap: 20px;
 }
 
-
-.eventCard_button {
-    margin-top: 30px;
+.eventCard_headerAbout{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
 }
+.eventCard_headerTitle{
 
-@media (any-hover: hover) {
-    .eventCard {
-        &:hover {
-            & .eventCard_button {
-                &::before {
-                    transform: translateX(-150%);
+}
+.eventCard_eventType{
 
-                }
-
-                &::after {
-                    transform: translateX(0%);
-
-                }
-            }
-
-            & .eventCard_img {
-                transform: scale(1.1);
-            }
-        }
+}
+.eventCard_dates{
+    display: grid;
+    align-items: flex-end;
+    flex-direction: column;
+    max-width: 230px;
+}
+.eventCard_date{
+    display: flex;
+    align-items: flex-end;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+.eventCard_dateLabel{
+    display: block;
+    &::after{
+        content: ":";
     }
+}
+.eventCard_address{
+    padding-top: 5px;
+}
+.eventCard_desc{
+    padding-top: 10px;
 }

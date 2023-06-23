@@ -1,10 +1,12 @@
+@import '../../styles/settings.scss';
+
 .section {
     overflow: hidden;
     padding: 1.6em 0;
-    background-color: rgb(255, 255, 255);
+    background-color: $primary-color;
 
     &:nth-child(even) {
-        background-color: #F5F5F5;
+        background-color: $neutral-color;
 
     }
 

@@ -17,10 +17,10 @@
         width: 64px;
         height: 64px;
         margin: 8px;
-        border: $secondary-color 8px solid;
+        border: $blue-color-600 8px solid;
         border-radius: 50%;
         animation: Loader 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-        border-color: $secondary-color transparent transparent transparent;
+        border-color: $blue-color-600 transparent transparent transparent;
 
         & div:nth-child(1) {
             animation-delay: -0.45s;
