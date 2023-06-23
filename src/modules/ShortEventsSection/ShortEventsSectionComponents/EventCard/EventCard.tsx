@@ -29,10 +29,11 @@ export const EventCard: FC<IEventCard> = memo(forwardRef((props, ref: React.Ref<
                 <h6 className={classes.eventCard_headerTitle}>
                     {event.title}
                 </h6>
-                <div className={classes.eventCard_headerAbout}>
-                    <div className={classes.eventCard_eventType}>
+                <div className={classes.eventCard_eventType}>
                         {event.type.name}
                     </div>
+                <div className={classes.eventCard_headerAbout}>
+
                     <div className={classes.eventCard_dates}>
                         <div className={classes.eventCard_date}>
                             <span className={classes.eventCard_dateLabel}>начало</span>

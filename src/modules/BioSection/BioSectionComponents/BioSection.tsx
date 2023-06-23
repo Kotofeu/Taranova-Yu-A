@@ -32,7 +32,7 @@ export const BioSection = memo(observer(() => {
                     titleType={[TitleType.posCetner]}
                     variants={MotionUp}
                 >
-                    Победитель
+                    Награды
                 </MTitle>
                 <motion.div
                     initial={ANIMATION_HIDDEN}
