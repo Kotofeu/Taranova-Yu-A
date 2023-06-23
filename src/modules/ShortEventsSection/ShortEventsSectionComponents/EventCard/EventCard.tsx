@@ -16,51 +16,45 @@ interface IEventCard {
     className?: string;
     event: Event;
 }
-const transformDateToUTCDate = (date: Date): Date => {
-    const newDate = new Date(date);
-    const UTCDate = new Date(
-        newDate.getUTCFullYear(),
-        newDate.getUTCMonth(),
-        newDate.getUTCDate(),
-        newDate.getUTCHours(),
-        newDate.getUTCMinutes(),
-        newDate.getUTCSeconds()
-    );
-    return UTCDate;
 
-}
 export const EventCard: FC<IEventCard> = memo(forwardRef((props, ref: React.Ref<HTMLDivElement>) => {
     const router = useNavigate()
     const { className = '', event } = props
     const setRoute = () => {
         router(`/event/${event.uid}`)
     }
-
     return (
         <article className={[classes.eventCard, className].join(' ')}>
             <header className={classes.eventCard_header}>
+                <h6 className={classes.eventCard_headerTitle}>
+                    {event.title}
+                </h6>
                 <div className={classes.eventCard_headerAbout}>
-                    <h6 className={classes.eventCard_headerTitle}>
-                        {event.title}
-                    </h6>
                     <div className={classes.eventCard_eventType}>
                         {event.type.name}
                     </div>
-                </div>
-                <div className={classes.eventCard_dates}>
-                    <div className={classes.eventCard_date}>
-                        <span className={classes.eventCard_dateLabel}>начало</span>
-                        <DateTime date={transformDateToUTCDate(event.startDate)} />
+                    <div className={classes.eventCard_dates}>
+                        <div className={classes.eventCard_date}>
+                            <span className={classes.eventCard_dateLabel}>начало</span>
+                            <DateTime date={event.startDate} />
+                        </div>
+                        <div className={classes.eventCard_date}>
+                            <span className={classes.eventCard_dateLabel}>конец</span>
+                            <DateTime date={event.endDate} />
+                        </div>
                     </div>
-                    <div className={classes.eventCard_date}>
-                        <span className={classes.eventCard_dateLabel}>конец</span>
-                        <DateTime date={transformDateToUTCDate(event.endDate)} />
-                    </div>
                 </div>
+                {
+                    event.location
+                        ? <address className={classes.eventCard_address}>
+                            {event.location}
+                        </address>
+                        : null
+
+                }
             </header>
-            <address className={classes.eventCard_address}>
-                {event.location}
-            </address>
+
+
             <div className={classes.eventCard_desc}>
                 {event.description}
             </div>
