@@ -73,11 +73,12 @@ const BlogImageGrid: FC<IBlogImageGrid> = memo((props) => {
                     return null
                 })}
             </Grid>
+            {imagesSrc.modalImage.map(image => <img style={{ display: 'none' }} src={image} key={image} alt={image}/>)}
             <Modal selectedId={selectedId} closeModal={closeModal}>
                 <motion.div className={classes.grid_modal} layoutId={selectedId || ''}>
                     <MPicture
                         className={classes.grid_modalImage}
-                        src={imagesSrc.modalImage[selectedId ? +selectedId : 0]}
+                        src={imagesSrc.gridImage[selectedId ? +selectedId : 0]}
                     />
                     <MButton
                         onClick={closeModal}
