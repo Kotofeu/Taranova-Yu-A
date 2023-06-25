@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion, useWillChange } from 'framer-motion'
 import { memo, useCallback, useState, FC, useMemo } from 'react'
 import { Grid } from '../../../../components/Grid/Grid'
 import Modal from '../../../../components/Modal/Modal'
@@ -16,6 +16,7 @@ interface IBlogImageGrid {
 }
 const BlogImageGrid: FC<IBlogImageGrid> = memo((props) => {
     const { blog, className } = props
+    const willChange = useWillChange()
     const [selectedId, setSelectedId] = useState<string | null>('')
     const itemsCount = blog.attachments.length
     const closeModal = useCallback(() => {
@@ -73,12 +74,16 @@ const BlogImageGrid: FC<IBlogImageGrid> = memo((props) => {
                     return null
                 })}
             </Grid>
-            {imagesSrc.modalImage.map(image => <img style={{ display: 'none' }} src={image} key={image} alt={image}/>)}
+            {imagesSrc.modalImage.map(image => <img style={{ display: 'none' }} src={image} key={image} alt={image} />)}
             <Modal selectedId={selectedId} closeModal={closeModal}>
-                <motion.div className={classes.grid_modal} layoutId={selectedId || ''}>
+                <motion.div
+                    className={classes.grid_modal}
+                    layoutId={selectedId || ''}
+                    style={{ willChange }}
+                >
                     <MPicture
                         className={classes.grid_modalImage}
-                        src={imagesSrc.gridImage[selectedId ? +selectedId : 0]}
+                        src={imagesSrc.modalImage[selectedId ? +selectedId : 0]}
                     />
                     <MButton
                         onClick={closeModal}
