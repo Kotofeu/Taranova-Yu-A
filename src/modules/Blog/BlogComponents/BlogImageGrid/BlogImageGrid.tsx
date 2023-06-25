@@ -1,11 +1,11 @@
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { memo, useCallback, useState, FC, useMemo } from 'react'
 import { Grid } from '../../../../components/Grid/Grid'
 import Modal from '../../../../components/Modal/Modal'
 import { MotionChildUp } from '../../../../utils/const/animation'
 import { Item } from '../../../../store/BlogsStore'
 import { MButton } from '../../../../UI/Button/Button'
-import Picture from '../../../../UI/Picture'
+import Picture, { MPicture } from '../../../../UI/Picture'
 import { blogStore } from '../../../../store'
 
 import classes from './BlogImageGrid.module.scss'
@@ -74,23 +74,24 @@ const BlogImageGrid: FC<IBlogImageGrid> = memo((props) => {
                 })}
             </Grid>
             {imagesSrc.modalImage.map(image => <img style={{ display: 'none' }} src={image} key={image} alt={image} />)}
-            <Modal selectedId={selectedId} closeModal={closeModal}>
-                <motion.div
-                    className={classes.grid_modal}
-                    layoutId={selectedId || ''}
-                >
-                    <img
-                        
-                        src={imagesSrc.modalImage[1]}
-                        alt="" />
-                    <MButton
-                        onClick={closeModal}
-                        className={classes.grid_closeBtn}
-                    >
-                        Закрыть окно
-                    </MButton>
-                </motion.div>
-            </Modal>
+            <AnimatePresence>
+                {selectedId && (
+                    <motion.div
+                        className={classes.grid_modal} layoutId={selectedId}>
+                        <motion.img
+                            className={classes.grid_modalImage}
+
+                            src={imagesSrc.modalImage[selectedId ? +selectedId : 0]}
+                        />
+                        <MButton
+                            onClick={closeModal}
+                            className={classes.grid_closeBtn}
+                        >
+                            Закрыть окно
+                        </MButton>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </>
     )
 })
