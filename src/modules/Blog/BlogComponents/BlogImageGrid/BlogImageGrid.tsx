@@ -79,7 +79,10 @@ const BlogImageGrid: FC<IBlogImageGrid> = memo((props) => {
                     className={classes.grid_modal}
                     layoutId={selectedId || ''}
                 >
-
+                    <MPicture
+                        className={classes.grid_modalImage}
+                        src={imagesSrc.modalImage[selectedId ? +selectedId : 0]}
+                    />
                     <MButton
                         onClick={closeModal}
                         className={classes.grid_closeBtn}
