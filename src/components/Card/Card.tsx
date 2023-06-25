@@ -1,47 +1,39 @@
 import { FC, memo, forwardRef } from 'react'
-import { motion } from 'framer-motion'
+import { Variants, motion } from 'framer-motion'
 import { MotionFlip, MotionUp } from '../../utils/const/animation';
 import Title, { TitleType } from '../../UI/Title/Title';
 import classes from './Card.module.scss'
-export interface ICard {
+import { ICard } from '../../store/ApplicationStore';
+export interface ICardProps {
     index?: number;
-    cardImage: string;
-    title: string;
-    desc?: string;
+    card: ICard;
     className?: string;
+    variants?: Variants;
 }
-const Card: FC<ICard> = memo(
+const Card: FC<ICardProps> = memo(
     forwardRef(
         (props, ref: React.Ref<HTMLElement>) => {
-            const { index, cardImage, title, desc, className = '' } = props
+            const { card, className = '', variants } = props
             return (
                 <motion.article ref={ref}
                     className={`${classes.card} ${className}`}
+                    variants = {variants}
                 >
-                    <motion.img
+                    <img
                         className={classes.card_img}
-                        src={cardImage}
-                        alt={title}
-                        variants={MotionFlip}
-                        custom={index}
+                        src={card.image}
+                        alt={card.name}
                     />
-                    <motion.div
+                    <div
                         className={classes.card_text}
-                        variants={MotionUp}
-                        custom={index}
                     >
                         <Title
                             className={classes.card_title}
                             titleType={[TitleType.posCetner]}
                         >
-                            {title}
+                            {card.name}
                         </Title>
-                        {
-                            desc
-                                ? <p className={classes.card_desc}>{desc}</p>
-                                : null
-                        }
-                    </motion.div>
+                    </div>
 
                 </motion.article>
             )

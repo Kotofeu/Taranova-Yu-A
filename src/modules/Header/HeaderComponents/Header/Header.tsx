@@ -73,12 +73,12 @@ export const Header = observer(() => {
                         <ul className={classes.header_contactsList}>
                             <HeaderLink
                                 headerLinkType={HeaderLinkType.email}
-                                href={applicationStore.email}
+                                href={applicationStore.email || '#'}
 
                             />
                             <HeaderLink
                                 headerLinkType={HeaderLinkType.phone}
-                                href={applicationStore.tel}
+                                href={applicationStore.phone || '#'}
                             />
                         </ul>
                     </nav>

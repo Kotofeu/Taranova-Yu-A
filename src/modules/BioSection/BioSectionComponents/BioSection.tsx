@@ -1,17 +1,16 @@
 import { motion } from 'framer-motion'
-import { memo } from 'react'
 import { observer } from 'mobx-react-lite'
 
-import { MCard } from '../../../components/Card/Card'
+import Card from '../../../components/Card/Card'
 import Section, { SectionType } from '../../../components/Section/Section'
 import TextBlock from '../../../components/TextBlock/TextBlock'
-import UniversalList from '../../../components/UniversalList'
-import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionUp } from '../../../utils/const/animation'
+import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionChildUp, MotionUp } from '../../../utils/const/animation'
 import { MTitle, TitleType } from '../../../UI/Title/Title'
 
 import classes from './BioSection.module.scss'
 import { applicationStore } from '../../../store'
-export const BioSection = memo(observer(() => {
+import MySlider from '../../../components/MySlider/MySlider'
+export const BioSection = observer(() => {
     return (
         <Section
             className={classes.bio}
@@ -20,7 +19,7 @@ export const BioSection = memo(observer(() => {
         >
             <TextBlock
                 className={classes.bio_textBlock}
-                textBlock={[{ title: "Lorem", text: applicationStore.bio }]}
+                textBlock={applicationStore.biography || []}
             />
             <motion.div
                 initial={ANIMATION_HIDDEN}
@@ -35,26 +34,40 @@ export const BioSection = memo(observer(() => {
                     Награды
                 </MTitle>
                 <motion.div
-                    initial={ANIMATION_HIDDEN}
-                    whileInView={ANIMATION_VISIBLE}
-                    viewport={{ once: true, margin: '-100px' }}
+                    className={classes.bio_achievementsList}
+                    variants={MotionChildUp}
                 >
-                    <UniversalList
-                        className={classes.bio_achievementsList}
-                        items={applicationStore.achievements}
-                        renderItem={
-                            (item, index) => <MCard
-                                className={classes.bio_achievementsCard}
-                                cardImage={item.cardImage}
-                                title={item.title}
-                                index={index}
-                                key={item.title} />
-                        }
+                    <MySlider
+                        items={applicationStore.awards || []}
+                        renderItem={award => {
+                            return (
+                                <Card
+                                    className={classes.bio_achievementsCard}
+                                    card={award}
+                                    key={award.name}
+                                />
+                            )
+                        }}
+                        settings={{
+                            slidesPerView: 1,
+                            spaceBetween: 20,
+                            navigation: { enabled: true },
+                            pagination: { clickable: true },
+                            autoHeight: true,
+                            breakpoints: {
+                                479.98: {
+                                    slidesPerView: 2,
+                                },
+                                767.98: {
+                                    slidesPerView: 3,
+                                },
+                                991.98: {
+                                    slidesPerView: 4,
+                                }
+                            }
+                        }}
                     />
                 </motion.div>
-
             </motion.div>
-
-
         </Section>)
-}))
+})

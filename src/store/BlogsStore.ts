@@ -92,13 +92,13 @@ export class BlogsStore {
     get error() {
         return this._error
     }
-    setIsLoading(loading: boolean) {
+    private setIsLoading(loading: boolean) {
         this._isLoading = loading
     }
-    setError(errorString: string) {
+    private setError(errorString: string) {
         this._error = errorString
     }
-    setBlogs(blogs: IBlog) {
+    private setBlogs(blogs: IBlog) {
         this._blogs = blogs
     }
     setSelectedBlog(blog: Item | null) {

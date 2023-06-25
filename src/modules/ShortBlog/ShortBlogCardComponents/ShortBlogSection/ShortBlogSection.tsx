@@ -1,4 +1,3 @@
-import { memo } from 'react'
 import { MShortBlogCard } from '../ShortBlogCard/ShortBlogCard'
 import Section from '../../../../components/Section/Section'
 import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionUp } from '../../../../utils/const/animation'
@@ -7,8 +6,9 @@ import Loader from '../../../../components/Loader/Loader'
 import classes from './ShortBlogSection.module.scss'
 import { blogStore } from '../../../../store'
 
-export const ShortBlogSection = memo(observer(() => {
+export const ShortBlogSection = observer(() => {
   if (blogStore.error) {
+    console.log(blogStore.error)
     return null
   }
   if (!blogStore.isLoading && !blogStore.blogs?.publications?.length) return null
@@ -37,4 +37,4 @@ export const ShortBlogSection = memo(observer(() => {
     </Section>
 
   )
-}))
+})

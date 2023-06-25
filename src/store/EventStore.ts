@@ -38,13 +38,13 @@ export class EventStore {
     get error() {
         return this._error
     }
-    setIsLoading(loading: boolean) {
+    private setIsLoading(loading: boolean) {
         this._isLoading = loading
     }
-    setError(errorString: string) {
+    private setError(errorString: string) {
         this._error = errorString
     }
-    setEvents(events: EventsJSON) {
+    private setEvents(events: EventsJSON) {
         this._events = events
     }
     loadEvents = async () => {

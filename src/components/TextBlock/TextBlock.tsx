@@ -4,8 +4,8 @@ import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionChildLeft, MotionParent } fr
 import { MTitle } from '../../UI/Title/Title'
 import classes from './TextBlock.module.scss'
 export interface ITextBlockItem {
-    title: string,
-    text: string,
+    title: string;
+    text: string;
 }
 interface ITextBlock {
     textBlock: ITextBlockItem[];

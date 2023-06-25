@@ -1,4 +1,3 @@
-import { memo } from 'react'
 import { observer } from 'mobx-react-lite'
 
 import Section, { SectionType } from '../../../../components/Section/Section'
@@ -10,7 +9,7 @@ import { blogStore } from '../../../../store'
 import Title, { TitleType } from '../../../../UI/Title/Title'
 import { BlogCard } from '../../../../components/BlogCard'
 
-export const BlogListSection = memo(observer(() => {
+export const BlogListSection = observer(() => {
 
     if (blogStore.error) {
         return <Error404 errorText={blogStore.error} />
@@ -45,4 +44,4 @@ export const BlogListSection = memo(observer(() => {
 
         </Section>
     )
-}))
+})

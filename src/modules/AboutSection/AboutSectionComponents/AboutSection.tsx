@@ -1,24 +1,21 @@
 import { motion } from 'framer-motion'
-import { memo } from 'react'
 import { observer } from 'mobx-react-lite'
 
-import { MCard } from '../../../components/Card/Card'
+import Card from '../../../components/Card/Card'
 import Section, { SectionType } from '../../../components/Section/Section'
 import TextBlock from '../../../components/TextBlock/TextBlock'
-import UniversalList from '../../../components/UniversalList'
 import Picture from '../../../UI/Picture'
 import Title from '../../../UI/Title/Title'
+import MySlider from '../../../components/MySlider/MySlider'
 
-import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionRight } from '../../../utils/const/animation'
+import { MotionChildUp, MotionRight } from '../../../utils/const/animation'
 
 import profile from '../../../assets/images/profile-picture.jpg'
-import profileWebp from '../../../assets/images/profile-picture.webp'
 
-import classes from './AboutSection.module.scss'
 import { applicationStore } from '../../../store'
+import classes from './AboutSection.module.scss'
 
-export const AboutSection = memo(observer(() => {
-
+export const AboutSection = observer(() => {
     return (
         <Section
             className={classes.about}
@@ -31,8 +28,7 @@ export const AboutSection = memo(observer(() => {
                     variants={MotionRight}
                 >
                     <Picture
-                        srcWebp={profileWebp}
-                        src={profile}
+                        src={applicationStore.image || profile}
                         alt='about-section picture'
                         className={classes.about_proileImg}
                     />
@@ -40,27 +36,45 @@ export const AboutSection = memo(observer(() => {
                 </motion.div>
                 <TextBlock className={classes.about_desc} textBlock={applicationStore.aboutText}></TextBlock>
             </div>
-            <motion.div
-                initial={ANIMATION_HIDDEN}
-                whileInView={ANIMATION_VISIBLE}
-                viewport={{ once: true, margin: '-100px' }}
-            >
-                <UniversalList
+            <div>
+                <motion.div
                     className={classes.about_includedIn}
-                    items={applicationStore.includedIn}
-                    renderItem={
-                        (item, index) => <MCard
-                            className={classes.about_includedCard}
-                            cardImage={item.cardImage}
-                            title={item.title}
-                            index={index}
-                            key={item.title}
-                        />
-                    }
-                />
-            </motion.div>
+                    variants={MotionChildUp}
+                >
+                    <MySlider
+                        items={applicationStore.organizations || []}
+                        renderItem={org => {
+                            return (
+                                <Card
+                                    className={classes.about_includedCard}
+                                    card={org}
+                                    key={org.name}
+                                />
+                            )
+                        }}
+                        settings={{
+                            slidesPerView: 1,
+                            spaceBetween: 20,
+                            navigation: { enabled: true },
+                            pagination: { clickable: true },
+                            autoHeight: true,
+                            breakpoints: {
+                                479.98: {
+                                    slidesPerView: 2,
+                                },
+                                767.98: {
+                                    slidesPerView: 3,
+                                },
+                                991.98: {
+                                    slidesPerView: 4,
+                                }
+                            }
+                        }}
+                    />
+                </motion.div>
+            </div>
 
         </Section>
 
     )
-}))
+})

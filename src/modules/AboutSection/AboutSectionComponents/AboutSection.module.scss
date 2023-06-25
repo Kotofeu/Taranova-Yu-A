@@ -42,11 +42,7 @@
 }
 
 .about_includedIn {
-  gap: 20px;
-  display: flex;
-  padding-top: 2em;
-  justify-content: center;
-  flex-wrap: wrap;
+  padding-top: 3em;
 }
 
 .about_includedCard {
@@ -63,20 +59,14 @@
 
 @media (min-width: 479.98px) {
   .about_includedCard {
-    width: calc(50% - 10px);
-
     & * {
       font-size: 14px;
     }
-
     & img {
       height: 90px;
     }
   }
 
-  .about_includedIn {
-    gap: 15px;
-  }
 }
 
 @media (min-width: 575.98px) {
@@ -86,8 +76,6 @@
   }
 
   .about_includedIn {
-    gap: 20px;
-
     & * {
       font-size: 15px;
     }
@@ -118,8 +106,6 @@
   }
 
   .about_includedCard {
-    width: 100%;
-
     & * {
       font-size: 15px;
     }
