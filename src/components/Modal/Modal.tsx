@@ -3,7 +3,7 @@ import { FC, ReactNode } from 'react'
 import classes from './Modal.module.scss'
 interface IModal {
     key?: string;
-    selectedId: any;
+    selectedId: string | undefined;
     children: ReactNode;
     closeModal: () => void;
 }
@@ -12,7 +12,8 @@ const Modal: FC<IModal> = (props) => {
     return (
         <AnimatePresence initial = {false}> 
             {selectedId && (
-                <motion.div className={classes.modal} key={key}>
+                <motion.div className={classes.modal} key={key} 
+                layoutId={selectedId}>
                     <motion.div
                         className={[classes.modal_inner, 'container'].join(' ')}
                     >
@@ -21,9 +22,6 @@ const Modal: FC<IModal> = (props) => {
                     <motion.button
                         onClick={closeModal}
                         className={classes.modal_close}
-                        initial={{opacity: 0}}
-                        exit={{opacity: 0}}
-                        animate={{opacity: 1}}
                     />
                 </motion.div >
             )}

@@ -77,7 +77,6 @@ const BlogImageGrid: FC<IBlogImageGrid> = memo((props) => {
             <Modal selectedId={selectedId} closeModal={closeModal}>
                 <motion.div
                     className={classes.grid_modal}
-                    layoutId={selectedId}
                 >
                     <motion.img
                         className={classes.grid_modalImage}
