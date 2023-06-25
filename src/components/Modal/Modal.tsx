@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion, useWillChange} from 'framer-motion'
 import { FC, ReactNode } from 'react'
 import classes from './Modal.module.scss'
 interface IModal {
@@ -8,6 +8,7 @@ interface IModal {
 }
 const Modal: FC<IModal> = (props) => {
     const { selectedId, children, closeModal } = props
+    const willChange = useWillChange()
     return (
         <AnimatePresence>
             {selectedId && (
@@ -16,6 +17,7 @@ const Modal: FC<IModal> = (props) => {
                     initial={{ opacity: 0 }}
                     exit={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
+                    style={{willChange}}
                 >
                     <motion.div
                         className={classes.modal_inner}
