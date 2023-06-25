@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { memo, useCallback, useState, FC, useMemo } from 'react'
 import { Grid } from '../../../../components/Grid/Grid'
 import Modal from '../../../../components/Modal/Modal'
@@ -16,10 +16,10 @@ interface IBlogImageGrid {
 }
 const BlogImageGrid: FC<IBlogImageGrid> = memo((props) => {
     const { blog, className } = props
-    const [selectedId, setSelectedId] = useState<string | null>('')
+    const [selectedId, setSelectedId] = useState<string>()
     const itemsCount = blog.attachments.length
     const closeModal = useCallback(() => {
-        setSelectedId(null)
+        setSelectedId(undefined)
     }, [])
     const imagesSrc = useMemo(() => {
         const attachments = blog.attachments
@@ -74,24 +74,22 @@ const BlogImageGrid: FC<IBlogImageGrid> = memo((props) => {
                 })}
             </Grid>
             {imagesSrc.modalImage.map(image => <img style={{ display: 'none' }} src={image} key={image} alt={image} />)}
-            <AnimatePresence>
-                {selectedId && (
-                    <motion.div
-                        className={classes.grid_modal} layoutId={selectedId}>
-                        <motion.img
-                            className={classes.grid_modalImage}
-
-                            src={imagesSrc.modalImage[selectedId ? +selectedId : 0]}
-                        />
-                        <MButton
-                            onClick={closeModal}
-                            className={classes.grid_closeBtn}
-                        >
-                            Закрыть окно
-                        </MButton>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+            <Modal selectedId={selectedId} closeModal={closeModal}>
+                <motion.div
+                    layoutId={selectedId}
+                >
+                    <motion.img
+                        className={classes.grid_modalImage}
+                        src={imagesSrc.modalImage[selectedId ? +selectedId : 0]}
+                    />
+                    <MButton
+                        onClick={closeModal}
+                        className={classes.grid_closeBtn}
+                    >
+                        Закрыть окно
+                    </MButton>
+                </motion.div>
+            </Modal>
         </>
     )
 })
