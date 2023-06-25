@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { memo, useCallback, useState, FC, useMemo } from 'react'
+import { memo, useState, FC, useMemo } from 'react'
 import { Grid } from '../../../../components/Grid/Grid'
 import Modal from '../../../../components/Modal/Modal'
 import { MotionChildUp } from '../../../../utils/const/animation'

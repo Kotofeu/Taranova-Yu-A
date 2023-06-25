@@ -1,6 +1,5 @@
 import { FC, memo, forwardRef } from 'react'
 import { Variants, motion } from 'framer-motion'
-import { MotionFlip, MotionUp } from '../../utils/const/animation';
 import Title, { TitleType } from '../../UI/Title/Title';
 import classes from './Card.module.scss'
 import { ICard } from '../../store/ApplicationStore';

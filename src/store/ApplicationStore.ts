@@ -2,7 +2,6 @@ import { makeAutoObservable } from 'mobx';
 import { ITextBlockItem } from '../components/TextBlock/TextBlock';
 
 import defaultImage from '../assets/images/profile-picture.jpg'
-import defaultOrg from '../assets/icons/default_org.svg'
 
 import { $host, IBaseInerface } from '.';
 
