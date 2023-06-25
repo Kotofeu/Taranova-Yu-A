@@ -10,7 +10,7 @@ interface IModal {
 const Modal: FC<IModal> = (props) => {
     const { key = 'modal', selectedId, children, closeModal } = props
     return (
-        <AnimatePresence onExitComplete={closeModal}>
+        <AnimatePresence onExitComplete={closeModal} initial = {false}>
             {selectedId && (
                 <motion.div className={[classes.modal, 'container'].join(' ')} key={key}>
                     {children}
