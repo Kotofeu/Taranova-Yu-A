@@ -39,13 +39,13 @@ const BlogImageGrid: FC<IBlogImageGrid> = memo((props) => {
                         return (
                             <motion.div
                                 className={classes.grid_imageBox}
-                                layoutId={imagesSrc.gridImage[index]}
-                                onClick={() => setSelectedId(imagesSrc.gridImage[index])}
                                 key={image.photo?.id}
                                 variants={MotionChildUp}
                             >
-                                <Picture
+                                <MPicture
                                     className={classes.grid_image}
+                                    layoutId={imagesSrc.gridImage[index]}
+                                    onClick={() => setSelectedId(imagesSrc.gridImage[index])}
                                     src={imagesSrc.gridImage[index]}
                                     alt={image.photo?.text}
                                 />

@@ -10,10 +10,15 @@ interface IModal {
 const Modal: FC<IModal> = (props) => {
     const { key = 'modal', selectedId, children, closeModal } = props
     return (
-        <AnimatePresence initial = {false}> 
+        <AnimatePresence initial={false}>
             {selectedId && (
-                <motion.div className={classes.modal} key={key} 
-                layoutId={selectedId}>
+                <motion.div
+                    className={classes.modal}
+                    key={key}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    layoutId={selectedId}>
                     <motion.div
                         className={[classes.modal_inner, 'container'].join(' ')}
                     >
