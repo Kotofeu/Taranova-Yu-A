@@ -39,8 +39,8 @@ const BlogImageGrid: FC<IBlogImageGrid> = memo((props) => {
                         return (
                             <motion.div
                                 className={classes.grid_imageBox}
-                                layoutId={index.toString()}
-                                onClick={() => setSelectedId(index.toString())}
+                                layoutId={imagesSrc.gridImage[index]}
+                                onClick={() => setSelectedId(imagesSrc.gridImage[index])}
                                 key={image.photo?.id}
                                 variants={MotionChildUp}
                             >
@@ -77,11 +77,11 @@ const BlogImageGrid: FC<IBlogImageGrid> = memo((props) => {
             <Modal selectedId={selectedId} closeModal={closeModal}>
                 <motion.div
                     className={classes.grid_modal}
-                    layoutId={'modal'}
+                    layoutId={selectedId}
                 >
                     <motion.img
                         className={classes.grid_modalImage}
-                        src={imagesSrc.modalImage[selectedId ? +selectedId : 0]}
+                        src={selectedId}
                     />
                     <MButton
                         onClick={closeModal}
