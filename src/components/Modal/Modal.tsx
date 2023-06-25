@@ -11,19 +11,22 @@ const Modal: FC<IModal> = (props) => {
     return (
         <AnimatePresence>
             {selectedId && (
-                <motion.div className={classes.modal}>
+                <motion.div
+                    className={classes.modal}
+                    initial={{ opacity: 0 }}
+                    exit={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                >
                     <motion.div
-                        className={[classes.modal_inner, 'container'].join(' ')}
+                        className={classes.modal_inner}
                     >
                         {children}
+
                     </motion.div>
                     <motion.button
-                        onClick={closeModal}
-                        className={classes.modal_close}
-                        initial={{opacity: 0}}
-                        exit={{opacity: 0}}
-                        animate={{opacity: 1}}
-                    />
+                            onClick={closeModal}
+                            className={classes.modal_close}
+                        />
                 </motion.div >
             )}
         </AnimatePresence>
