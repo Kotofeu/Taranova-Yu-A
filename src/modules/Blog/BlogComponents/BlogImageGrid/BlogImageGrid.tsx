@@ -5,7 +5,7 @@ import Modal from '../../../../components/Modal/Modal'
 import { MotionChildUp } from '../../../../utils/const/animation'
 import { Item } from '../../../../store/BlogsStore'
 import { MButton } from '../../../../UI/Button/Button'
-import Picture, { MPicture } from '../../../../UI/Picture'
+import Picture from '../../../../UI/Picture'
 import { blogStore } from '../../../../store'
 
 import classes from './BlogImageGrid.module.scss'
@@ -79,7 +79,10 @@ const BlogImageGrid: FC<IBlogImageGrid> = memo((props) => {
                     className={classes.grid_modal}
                     layoutId={selectedId || ''}
                 >
-                    <img  className={classes.grid_modalImage} src={imagesSrc.modalImage[selectedId ? +selectedId : 0]} alt="" />
+                    <img
+                        
+                        src={imagesSrc.modalImage[1]}
+                        alt="" />
                     <MButton
                         onClick={closeModal}
                         className={classes.grid_closeBtn}
