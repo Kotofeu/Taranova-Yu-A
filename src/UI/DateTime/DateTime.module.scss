@@ -1,4 +1,3 @@
-@import '../../styles/settings.scss';
 
 .dateTime {
     display: flex;
@@ -8,19 +7,15 @@
     color: inherit;
     font-weight: 600;
     font-size: inherit;
-
+    padding-left: .5em;
+    border-left: 1px solid;
+    border-color: inherit;
     &___time {
-        padding-right: 30px;
-
+        border-left: none;
+        border-right: 1px solid;
+        padding-right: .5em;
+        padding-left: 0;
         position: relative;
 
-        &::after {
-            content: "|";
-            position: absolute;
-            right: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: $text-color;
-        }
     }
 }

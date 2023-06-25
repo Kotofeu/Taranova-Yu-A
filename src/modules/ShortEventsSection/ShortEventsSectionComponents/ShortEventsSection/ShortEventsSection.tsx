@@ -35,16 +35,16 @@ export const ShortEventsSection = observer(() => {
               )
             }}
             settings={{
+              //autoHeight: true,
               slidesPerView: 1,
               spaceBetween: 20,
               navigation: { enabled: true },
               pagination: { clickable: true },
-              autoHeight: true,
-              breakpoints: {
+              /*breakpoints: {
                 767.98: {
                   slidesPerView: 2,
                 }
-              }
+              }*/
             }}
           />
           : null
