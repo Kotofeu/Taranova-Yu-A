@@ -33,6 +33,7 @@
   }
 
   & img {
+    max-width: 150px;
     height: 80px;
   }
 }
@@ -44,6 +45,7 @@
     }
 
     & img {
+      max-width: 120px;
       height: 90px;
     }
   }
