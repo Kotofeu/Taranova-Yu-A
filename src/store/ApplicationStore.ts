@@ -26,11 +26,13 @@ export interface IData extends IBaseInerface {
 }
 
 export interface ICard  extends IBaseInerface{
+    id: number;
     name: string;
     image: string;
 }
 
 export interface IBiography  extends IBaseInerface{
+    id: number;
     title: string;
     text: string;
 }

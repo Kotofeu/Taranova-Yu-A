@@ -30,7 +30,7 @@ export const MotionLeft = isDesktop ? {
 } : undefined
 export const MotionUp = isDesktop ? {
     [ANIMATION_HIDDEN]: {
-        y: 50,
+        y: 30,
         opacity: 0
     },
     [ANIMATION_VISIBLE]: (custom: number) => ({

@@ -1,23 +1,26 @@
 @import '../../../../styles/settings.scss';
-.blogList {
+
+.eventList{
     padding-top: 100px;
+
 }
-.blogList_loader{
-    padding-top: 180px;
-}
-.blogList_list {
-    padding-top: 40px;
+.eventList_list{
+    padding-top: 50px;
     height: 100%;
     position: relative;
-}
 
-.blogList_blog {
+}
+.eventList_loader{
+    padding-top: 180px;
+
+}
+.eventList_empty{
+    font-size: 18px;
+    color: $text-color;
+}
+.eventList_blog{
     margin-bottom: 20px;
     &:last-child{
         margin-bottom: 0;
     }
-}
-.blogList_empty{
-    font-size: 18px;
-    color: $text-color;
 }

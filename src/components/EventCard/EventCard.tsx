@@ -2,8 +2,8 @@ import { FC, memo, forwardRef } from 'react'
 import classes from './/EventCard.module.scss'
 import { motion } from 'framer-motion'
 //import { useNavigate } from 'react-router-dom';
-import { Event } from '../../../../store/EventStore'
-import DateTime from '../../../../UI/DateTime/DateTime'
+import { Event } from '../../store/EventStore'
+import DateTime from '../../UI/DateTime/DateTime'
 export enum EventCardType {
     vertical = classes.eventCard___vertical,
 }
@@ -19,14 +19,14 @@ export const EventCard: FC<IEventCard> = memo(forwardRef((props, ref: React.Ref<
         router(`/event/${event.uid}`)
     }*/
     return (
-        <article className={[classes.eventCard, className].join(' ')}>
+        <motion.article className={[classes.eventCard, className].join(' ')} ref = {ref}>
             <header className={classes.eventCard_header}>
                 <h6 className={classes.eventCard_headerTitle}>
                     {event.title}
                 </h6>
 
                 <div className={classes.eventCard_headerAbout}>
-                <div className={classes.eventCard_eventType}>
+                    <div className={classes.eventCard_eventType}>
                         {event.type.name}
                     </div>
                     <div className={classes.eventCard_dates}>
@@ -52,9 +52,24 @@ export const EventCard: FC<IEventCard> = memo(forwardRef((props, ref: React.Ref<
 
 
             <div className={classes.eventCard_desc}>
-                {event.description}
+                {
+                    event.description.split('\n')
+                        .map(item => {
+                            if (!item) return null
+                            return (
+                                <p
+                                    className={classes.text_text}
+                                    key={event.uid + item}
+                                >
+                                    {item}
+                                </p>
+                            )
+                        }
+
+                        )
+                }
             </div>
-        </article>
+        </motion.article>
     )
 }))
 

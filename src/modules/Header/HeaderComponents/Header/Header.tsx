@@ -97,6 +97,7 @@ export const Header = observer(() => {
                                     : ''
                                 }`}
                             onClick={onBurgerClick}
+                            title='Меню'
                         >
                             <span />
                             <span />

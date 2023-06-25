@@ -1,4 +1,4 @@
-import { EventCard } from '../EventCard/EventCard'
+import { EventCard } from '../../../../components/EventCard/EventCard'
 import Section from '../../../../components/Section/Section'
 import { observer } from 'mobx-react-lite'
 import { eventStore } from '../../../../store'

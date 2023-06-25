@@ -1,4 +1,4 @@
-@import '../../../../styles/settings.scss';
+@import '../../styles/settings.scss';
 
 .eventCard {
     display: flex;
@@ -73,4 +73,5 @@
     font-size: 14px;
     line-height: 1.4em;
     color: $text-color;
+    text-align: justify;
 }

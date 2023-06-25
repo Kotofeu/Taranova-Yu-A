@@ -48,7 +48,7 @@ export const AboutSection = observer(() => {
                                 <Card
                                     className={classes.about_includedCard}
                                     card={org}
-                                    key={org.name}
+                                    key={org.id}
                                 />
                             )
                         }}

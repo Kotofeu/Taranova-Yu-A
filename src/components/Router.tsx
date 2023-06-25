@@ -29,6 +29,7 @@ const Blogs = lazy(() =>
 */
 import Layout from './Layout'
 import ScrollToTop from './ScrollToTop'
+import Events from '../pages/Events'
 const Router = () => {
     return (
         <BrowserRouter>
@@ -41,9 +42,8 @@ const Router = () => {
                         <Route path=':id' element={<Blog />} />
                     </Route>
                     <Route path='event'>
-                        <Route index element={<Blogs />} />
+                        <Route index element={<Events/>} />
                         <Route path=':id' element={<Blog />} />
-                        <Route path='*' element={<Navigate to="/" replace />} />
                     </Route>
                     <Route path='*' element={<Navigate to="/" replace />} />
                 </Route>

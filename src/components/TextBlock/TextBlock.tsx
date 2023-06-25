@@ -4,6 +4,7 @@ import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionChildLeft, MotionParent } fr
 import { MTitle } from '../../UI/Title/Title'
 import classes from './TextBlock.module.scss'
 export interface ITextBlockItem {
+    id?: number;
     title: string;
     text: string;
 }
@@ -14,18 +15,18 @@ interface ITextBlock {
 
 const TextBlock: FC<ITextBlock> = memo(
     (props) => {
-        const { textBlock, className = ''} = props
+        const { textBlock, className = '' } = props
         return (
             <motion.div
                 className={[classes.text, className].join(' ')}
                 initial={ANIMATION_HIDDEN}
                 whileInView={ANIMATION_VISIBLE}
-                viewport={{ once: true, margin: '-100px' }}
+                viewport={{ once: true, margin: '-90px' }}
                 variants={MotionParent}
             >
                 {textBlock.map(item =>
                     <motion.div
-                        key={item.title}
+                        key={item.id || item.title}
                         className={classes.text_block}
                     >
                         <MTitle className={classes.text_title} variants={MotionChildLeft}>
@@ -33,16 +34,20 @@ const TextBlock: FC<ITextBlock> = memo(
                         </MTitle>
                         {
                             item.text.split('\n')
-                                .map(item =>
-                                    <motion.p
-                                        className={classes.text_text}
-                                        key={item}
-                                        variants={MotionChildLeft}
-                                    >
-                                        {item}
-                                    </motion.p>
-                                )}
-
+                                .map(item => {
+                                    if (!item) return null
+                                    return (
+                                        <motion.p
+                                            className={classes.text_text}
+                                            key={item}
+                                            variants={MotionChildLeft}
+                                        >
+                                            {item}
+                                        </motion.p>
+                                    )
+                                }
+                                )
+                        }
                     </motion.div>
                 )}
             </motion.div>

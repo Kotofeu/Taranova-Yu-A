@@ -44,7 +44,7 @@ export const BioSection = observer(() => {
                                 <Card
                                     className={classes.bio_achievementsCard}
                                     card={award}
-                                    key={award.name}
+                                    key={award.id}
                                 />
                             )
                         }}
