@@ -112,3 +112,7 @@ h5,
 h6 {
   color: $title-color;
 }
+*, *:before, *:after {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
