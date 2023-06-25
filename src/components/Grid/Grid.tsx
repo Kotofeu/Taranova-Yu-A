@@ -27,9 +27,9 @@ export const Grid: FC<IGrid> = forwardRef((props, ref: React.Ref<HTMLDivElement>
 
 
     return (
-        <motion.div className={[itemsCountClass, className].join(' ')} ref={ref}>
+        <div className={[itemsCountClass, className].join(' ')} ref={ref}>
             {children}
-        </motion.div>
+        </div>
     )
 })
 

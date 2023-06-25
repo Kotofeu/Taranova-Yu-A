@@ -6,8 +6,7 @@ import Section, { SectionType } from '../../../../components/Section/Section'
 import classes from './EventsListSection.module.scss'
 import Loader from '../../../../components/Loader/Loader'
 import Title, { TitleType } from '../../../../UI/Title/Title'
-import { MEventCard } from '../../../../components/EventCard/EventCard'
-import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionParent } from '../../../../utils/const/animation'
+import { EventCard } from '../../../../components/EventCard/EventCard'
 export const EventsListSection = observer(() => {
 
     if (eventStore.error) {
@@ -37,14 +36,11 @@ export const EventsListSection = observer(() => {
                     eventStore.events?.events?.length
                         ?
                         eventStore.events?.events.map(event => {
-                            return (<MEventCard
+                            return (<EventCard
                                 className={classes.eventList_blog}
                                 event={event}
                                 key={event.uid}
-                                initial={ANIMATION_HIDDEN}
-                                whileInView={ANIMATION_VISIBLE}
-                                viewport={{ once: true, margin: "-40px" }}
-                                variants={MotionParent}
+                                isAnimate = {true}
                             />)
                         })
                         : null

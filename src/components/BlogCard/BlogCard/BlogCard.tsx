@@ -8,7 +8,13 @@ import VKImage from '../../../assets/icons/VK.svg'
 
 import { Item } from '../../../store/BlogsStore'
 import { blogStore } from '../../../store'
-import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionChildLeft, MotionChildUp, MotionParent } from '../../../utils/const/animation'
+import {
+    ANIMATION_HIDDEN,
+    ANIMATION_VISIBLE,
+    MotionChildLeft,
+    MotionChildUp,
+    MotionParent
+} from '../../../utils/const/animation'
 import Picture from '../../../UI/Picture'
 import { MDateTime } from '../../../UI/DateTime/DateTime'
 import Button from '../../../UI/Button/Button'
@@ -22,7 +28,7 @@ interface IBlogCard {
     className?: string;
 }
 export const BlogCard: FC<IBlogCard> = memo((props) => {
-    const { blog, className = ''} = props
+    const { blog, className = '' } = props
     const onVKButtonClick = () => {
         return `https://vk.com/taranova.yulia?w=wall${blogStore.ownerId}_${blog.id}`
     }
