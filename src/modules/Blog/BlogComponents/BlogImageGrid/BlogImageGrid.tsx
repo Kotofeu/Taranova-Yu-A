@@ -16,10 +16,10 @@ interface IBlogImageGrid {
 }
 const BlogImageGrid: FC<IBlogImageGrid> = memo((props) => {
     const { blog, className } = props
-    const [selectedId, setSelectedId] = useState<string>()
+    const [selectedId, setSelectedId] = useState<string | null>('')
     const itemsCount = blog.attachments.length
     const closeModal = useCallback(() => {
-        setSelectedId(undefined)
+        setSelectedId(null)
     }, [])
     const imagesSrc = useMemo(() => {
         const attachments = blog.attachments
@@ -76,7 +76,8 @@ const BlogImageGrid: FC<IBlogImageGrid> = memo((props) => {
             {imagesSrc.modalImage.map(image => <img style={{ display: 'none' }} src={image} key={image} alt={image} />)}
             <Modal selectedId={selectedId} closeModal={closeModal}>
                 <motion.div
-                    layoutId={selectedId}
+                    className={classes.grid_modal}
+                    layoutId={selectedId || undefined}
                 >
                     <motion.img
                         className={classes.grid_modalImage}
