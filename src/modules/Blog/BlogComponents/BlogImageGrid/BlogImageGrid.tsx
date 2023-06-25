@@ -16,11 +16,17 @@ interface IBlogImageGrid {
 }
 const BlogImageGrid: FC<IBlogImageGrid> = memo((props) => {
     const { blog, className } = props
-    const [selectedId, setSelectedId] = useState<string>()
+    const [selectedImg, setSelectedImg] = useState<number | null>(null);
+    const [isOpen, setIsOpen] = useState<boolean>(false)
     const itemsCount = blog.attachments.length
-    const closeModal = useCallback(() => {
-        setSelectedId(undefined)
-    }, [])
+    const openModal = (index: number) => {
+        setIsOpen(true)
+        setSelectedImg(index)
+    }
+    const closeModal = () => {
+        setIsOpen(false)
+        setSelectedImg(null)
+    }
     const imagesSrc = useMemo(() => {
         const attachments = blog.attachments
         return ({
@@ -41,11 +47,10 @@ const BlogImageGrid: FC<IBlogImageGrid> = memo((props) => {
                                 className={classes.grid_imageBox}
                                 key={image.photo?.id}
                                 variants={MotionChildUp}
+                                onClick={() => openModal(index)}
                             >
                                 <MPicture
                                     className={classes.grid_image}
-                                    layoutId={imagesSrc.gridImage[index]}
-                                    onClick={() => setSelectedId(imagesSrc.gridImage[index])}
                                     src={imagesSrc.gridImage[index]}
                                     alt={image.photo?.text}
                                 />
@@ -64,7 +69,10 @@ const BlogImageGrid: FC<IBlogImageGrid> = memo((props) => {
                                 variants={MotionChildUp}
 
                             >
-                                <Picture className={classes.grid_image} src={imagesSrc.gridImage[index]} alt={image.video?.description}
+                                <Picture
+                                    className={classes.grid_image}
+                                    src={imagesSrc.gridImage[index]}
+                                    alt={image.video?.description}
                                 />
                             </motion.a>
 
@@ -74,13 +82,13 @@ const BlogImageGrid: FC<IBlogImageGrid> = memo((props) => {
                 })}
             </Grid>
             {imagesSrc.modalImage.map(image => <img style={{ display: 'none' }} src={image} key={image} alt={image} />)}
-            <Modal selectedId={selectedId} closeModal={closeModal}>
+            <Modal isOpen={isOpen} closeModal={closeModal}>
                 <motion.div
                     className={classes.grid_modal}
                 >
                     <motion.img
                         className={classes.grid_modalImage}
-                        src={selectedId}
+                        src={imagesSrc.modalImage[selectedImg || 0]}
                     />
                     <MButton
                         onClick={closeModal}

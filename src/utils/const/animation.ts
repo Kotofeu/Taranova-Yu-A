@@ -1,5 +1,6 @@
 export const ANIMATION_HIDDEN = 'hidden'
 export const ANIMATION_VISIBLE = 'visible'
+export const ANIMATION_EXIT = 'exit'
 const transition = { type: "spring", bounce: 0.30, duration: 0.6 }
 const isDesktop: boolean = window.innerWidth >= 768
 
@@ -86,5 +87,21 @@ export const MotionChildUp = isDesktop ? {
         transition: {
             type: "spring", bounce: 0.20, damping: 13
         }
+    }
+} : undefined
+
+export const MotionShow = isDesktop ? {
+
+    [ANIMATION_HIDDEN]: {
+        scale: 0,
+        opacity: 0,
+    },
+    [ANIMATION_VISIBLE]: {
+        scale: 1,
+        opacity: 1,
+    },
+    [ANIMATION_EXIT]: {
+        scale: 0,
+        opacity: 0,
     }
 } : undefined
