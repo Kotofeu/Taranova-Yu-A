@@ -8,7 +8,7 @@ import { blogStore } from '../../../../store'
 
 export const ShortBlogSection = observer(() => {
   if (blogStore.error) {
-    console.log(blogStore.error)
+    console.log(blogStore.error.message)
     return null
   }
   if (!blogStore.isLoading && !blogStore.blogs?.publications?.length) return null

@@ -7,16 +7,11 @@ import { motion } from 'framer-motion'
 import classes from './ShortEventsSection.module.scss'
 import { MotionChildUp } from '../../../../utils/const/animation'
 import Loader from '../../../../components/Loader/Loader'
-import Error from '../../../../components/Error/Error'
 
 export const ShortEventsSection = observer(() => {
   if (eventStore.error) {
-    console.log(eventStore.error)
-    return (
-      <Error
-        errorText={eventStore.error.message}
-      />
-    )
+    console.log(eventStore.error.message)
+    return null
   }
   return (
     <Section className={classes.shortBlog} title='Предстоящие мероприятия'>

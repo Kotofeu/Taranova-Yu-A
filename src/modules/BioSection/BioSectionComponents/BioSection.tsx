@@ -11,6 +11,7 @@ import classes from './BioSection.module.scss'
 import { applicationStore } from '../../../store'
 import MySlider from '../../../components/MySlider/MySlider'
 export const BioSection = observer(() => {
+    if (!applicationStore?.biography?.length) return null
     return (
         <Section
             className={classes.bio}
