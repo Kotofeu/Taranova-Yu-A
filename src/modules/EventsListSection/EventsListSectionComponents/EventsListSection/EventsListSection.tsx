@@ -8,7 +8,7 @@ import Loader from '../../../../components/Loader/Loader'
 import Title, { TitleType } from '../../../../UI/Title/Title'
 import { EventCard, EventCardType } from '../../../../components/EventCard/EventCard'
 export const EventsListSection = observer(() => {
-
+    console.log(eventStore.error?.message)
     if (eventStore.error) {
         return <Error errorText={eventStore.error.message} />
     }

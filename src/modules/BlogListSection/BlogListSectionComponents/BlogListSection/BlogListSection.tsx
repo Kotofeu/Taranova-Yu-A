@@ -12,6 +12,7 @@ import { BlogCard } from '../../../../components/BlogCard'
 export const BlogListSection = observer(() => {
 
     if (blogStore.error) {
+        console.log(blogStore.error.message)
         return (
             <Error
                 errorText={blogStore.error.message}
