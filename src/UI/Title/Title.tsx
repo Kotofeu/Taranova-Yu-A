@@ -1,9 +1,6 @@
 import { motion } from 'framer-motion';
 import React, { FC } from 'react'
 import classes from './Title.module.scss'
-interface ITitleProps extends React.AllHTMLAttributes<HTMLHeadElement> {
-    titleType?: TitleType[];
-}
 export enum TitleType {
     primaryTitle = classes.title___primaryTitle,
     posCetner = classes.title___posCetner,
@@ -11,6 +8,10 @@ export enum TitleType {
     lineLeft = classes.title___lineLeft,
     sectionTitle = classes.title___sectionTitle,
 }
+interface ITitleProps extends React.AllHTMLAttributes<HTMLHeadElement> {
+    titleType?: TitleType[];
+}
+
 const Title: FC<ITitleProps> =
     React.memo(
         React.forwardRef(

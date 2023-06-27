@@ -19,7 +19,7 @@ import { MButton } from '../../UI/Button/Button';
 export enum EventCardType {
     fullSize = classes.eventCard___fullSize,
 }
-interface IEventCard {
+interface IEventCard{
     className?: string;
     event: Event;
     isAnimate?: boolean;
@@ -29,6 +29,7 @@ interface IEventCard {
 export const EventCard: FC<IEventCard> = memo(forwardRef((props, ref: Ref<HTMLElement>) => {
     const { className = '', event, isAnimate = false, eventCardType = '' } = props
     return (
+
         <motion.article
             className={[classes.eventCard, eventCardType, className].join(' ')}
             ref={ref}
