@@ -3,7 +3,7 @@ import { memo, useState, FC, useMemo } from 'react'
 import { Grid } from '../../../../components/Grid/Grid'
 import Modal from '../../../../components/Modal/Modal'
 import { MotionChildUp } from '../../../../utils/const/animation'
-import { Item } from '../../../../store/BlogsStore'
+import { Blog } from '../../../../store/BlogsStore'
 import { MButton } from '../../../../UI/Button/Button'
 import Picture, { MPicture } from '../../../../UI/Picture'
 import { blogStore } from '../../../../store'
@@ -11,7 +11,7 @@ import { blogStore } from '../../../../store'
 import classes from './BlogImageGrid.module.scss'
 
 interface IBlogImageGrid {
-    blog: Item;
+    blog: Blog;
     className?: string;
 }
 const BlogImageGrid: FC<IBlogImageGrid> = memo((props) => {

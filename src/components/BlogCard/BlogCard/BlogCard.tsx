@@ -6,7 +6,7 @@ import readMore2 from '../../../assets/icons/read__more_2.svg'
 import stepOverImage from '../../../assets/icons/step over.svg'
 import VKImage from '../../../assets/icons/VK.svg'
 
-import { Item } from '../../../store/BlogsStore'
+import { Blog } from '../../../store/BlogsStore'
 import { blogStore } from '../../../store'
 import {
     ANIMATION_HIDDEN,
@@ -21,10 +21,11 @@ import Button from '../../../UI/Button/Button'
 import { BlogRating } from '../'
 import { BlogText } from '../'
 import classes from './BlogCard.module.scss'
+import { BLOG_ROUTE } from '../../../utils/const/routes'
 
 
 interface IBlogCard {
-    blog: Item;
+    blog: Blog;
     className?: string;
 }
 export const BlogCard: FC<IBlogCard> = memo((props) => {
@@ -82,7 +83,7 @@ export const BlogCard: FC<IBlogCard> = memo((props) => {
                         className={classes.blogCard_button}
                         beforeImg={readMore1}
                         afterImg={readMore2}
-                        routeOption={`/blog/${blog.id}`}
+                        routeOption={`${BLOG_ROUTE}/${blog.id}`}
                     >
                         Подробнее
                     </Button>

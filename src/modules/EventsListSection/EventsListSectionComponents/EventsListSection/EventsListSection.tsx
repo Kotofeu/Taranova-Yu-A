@@ -6,11 +6,11 @@ import Section, { SectionType } from '../../../../components/Section/Section'
 import classes from './EventsListSection.module.scss'
 import Loader from '../../../../components/Loader/Loader'
 import Title, { TitleType } from '../../../../UI/Title/Title'
-import { EventCard } from '../../../../components/EventCard/EventCard'
+import { EventCard, EventCardType } from '../../../../components/EventCard/EventCard'
 export const EventsListSection = observer(() => {
 
     if (eventStore.error) {
-        return <Error errorText={eventStore.error} />
+        return <Error errorText={eventStore.error.message} />
     }
     return (
         <Section className={classes.eventList} title='Мероприятия'
@@ -41,6 +41,7 @@ export const EventsListSection = observer(() => {
                                 event={event}
                                 key={event.uid}
                                 isAnimate = {true}
+                                eventCardType={EventCardType.fullSize}
                             />)
                         })
                         : null

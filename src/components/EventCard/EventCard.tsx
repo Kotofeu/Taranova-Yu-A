@@ -1,28 +1,36 @@
 import { FC, memo, forwardRef, Ref } from 'react'
-import classes from './/EventCard.module.scss'
 import { motion } from 'framer-motion'
-//import { useNavigate } from 'react-router-dom';
 import { Event } from '../../store/EventStore'
-import DateTime from '../../UI/DateTime/DateTime'
-import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionChildLeft, MotionLeft, MotionParent } from '../../utils/const/animation'
+import DateTime from '../../UI/DateTime/DateTime';
+import readMore1 from '../../assets/icons/read__more_1.svg'
+import readMore2 from '../../assets/icons/read__more_2.svg'
+import {
+    ANIMATION_HIDDEN,
+    ANIMATION_VISIBLE,
+    MotionChildLeft,
+    MotionParent
+} from '../../utils/const/animation'
+
+import classes from './/EventCard.module.scss'
+import { EVENT_ROUTE } from '../../utils/const/routes';
+import { MButton } from '../../UI/Button/Button';
+
+
 export enum EventCardType {
-    vertical = classes.eventCard___vertical,
+    fullSize = classes.eventCard___fullSize,
 }
 interface IEventCard {
     className?: string;
     event: Event;
     isAnimate?: boolean;
+    eventCardType?: EventCardType;
 }
 
 export const EventCard: FC<IEventCard> = memo(forwardRef((props, ref: Ref<HTMLElement>) => {
-    //const router = useNavigate()
-    const { className = '', event, isAnimate = false} = props
-    /*const setRoute = () => {
-        router(`/event/${event.uid}`)
-    }*/
+    const { className = '', event, isAnimate = false, eventCardType = '' } = props
     return (
         <motion.article
-            className={[classes.eventCard, className].join(' ')}
+            className={[classes.eventCard, eventCardType, className].join(' ')}
             ref={ref}
             initial={isAnimate ? ANIMATION_HIDDEN : undefined}
             whileInView={isAnimate ? ANIMATION_VISIBLE : undefined}
@@ -39,7 +47,7 @@ export const EventCard: FC<IEventCard> = memo(forwardRef((props, ref: Ref<HTMLEl
 
                 <motion.div
                     className={classes.eventCard_headerAbout}
-                    variants={isAnimate ? MotionChildLeft: undefined}
+                    variants={isAnimate ? MotionChildLeft : undefined}
                 >
                     <div className={classes.eventCard_eventType}>
                         {event.type.name}
@@ -59,7 +67,7 @@ export const EventCard: FC<IEventCard> = memo(forwardRef((props, ref: Ref<HTMLEl
                     event.location
                         ? <motion.address
                             className={classes.eventCard_address}
-                            variants={isAnimate ? MotionChildLeft: undefined}
+                            variants={isAnimate ? MotionChildLeft : undefined}
                         >
                             {event.location}
                         </motion.address>
@@ -68,25 +76,46 @@ export const EventCard: FC<IEventCard> = memo(forwardRef((props, ref: Ref<HTMLEl
                 }
             </header>
 
-
-            <div className={classes.eventCard_desc}>
-                {
-                    event.description.split('\n')
-                        .map(item => {
-                            if (!item) return null
-                            return (
-                                <motion.p
-                                    className={classes.text_text}
-                                    key={event.uid + item}
-                                    variants={isAnimate ? MotionChildLeft: undefined}
+            {
+                event.description.length > 0 ?
+                    <>
+                        <div className={classes.eventCard_desc}>
+                            {
+                                event.description.split('\n')
+                                    .map(item => {
+                                        if (!item) return null
+                                        return (
+                                            <motion.p
+                                                className={classes.text_text}
+                                                key={event.uid + item}
+                                                variants={isAnimate ? MotionChildLeft : undefined}
+                                            >
+                                                {item}
+                                            </motion.p>
+                                        )
+                                    }
+                                    )
+                            }
+                        </div>
+                        {
+                            !eventCardType
+                                ?
+                                <MButton
+                                    className={classes.eventCard_button}
+                                    beforeImg={readMore1}
+                                    afterImg={readMore2}
+                                    routeOption={`${EVENT_ROUTE}/${event.uid}`}
                                 >
-                                    {item}
-                                </motion.p>
-                            )
+                                    Подробнее
+                                </MButton>
+                                : null
                         }
-                    )
-                }
-            </div>
+                    </>
+
+                    : null
+            }
+
+
         </motion.article>
     )
 }))

@@ -2,51 +2,36 @@ import { EventCard } from '../../../../components/EventCard/EventCard'
 import Section from '../../../../components/Section/Section'
 import { observer } from 'mobx-react-lite'
 import { eventStore } from '../../../../store'
-import MySlider from '../../../../components/MySlider/MySlider'
 import { motion } from 'framer-motion'
 
 import classes from './ShortEventsSection.module.scss'
 import { MotionChildUp } from '../../../../utils/const/animation'
 import Loader from '../../../../components/Loader/Loader'
+import Error from '../../../../components/Error/Error'
 
 export const ShortEventsSection = observer(() => {
   if (eventStore.error) {
     console.log(eventStore.error)
-    return null
+    return (
+      <Error
+        errorText={eventStore.error.message}
+      />
+    )
   }
   return (
-    <Section className={classes.shortBlog} title='Последние мероприятия'>
+    <Section className={classes.shortBlog} title='Предстоящие мероприятия'>
       <motion.div
-        className={classes.shortBlog_slider}
+        className={classes.shortBlog_events}
         variants={MotionChildUp}
       >
         {eventStore.isLoading && <Loader />}
         {!eventStore.isLoading && eventStore.events?.events?.length
-          ? <MySlider
-            slideClass={classes.shortBlog_slide}
-            items={eventStore.events?.events || []}
-            renderItem={event => {
-              return (
-                <EventCard
-                  className={classes.shortBlog_event}
-                  key={event.uid}
-                  event={event}
-                />
-              )
-            }}
-            settings={{
-              //autoHeight: true,
-              slidesPerView: 1,
-              spaceBetween: 20,
-              navigation: { enabled: true },
-              pagination: { clickable: true },
-              /*breakpoints: {
-                767.98: {
-                  slidesPerView: 2,
-                }
-              }*/
-            }}
-          />
+          ? eventStore.events.events.map(event =>
+            <EventCard
+              className={classes.shortBlog_event}
+              key={event.uid}
+              event={event}
+            />)
           : null
         }
 

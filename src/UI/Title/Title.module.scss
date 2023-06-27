@@ -41,12 +41,18 @@
     font-size: 20px;
 
   }
+
+  &___primaryTitle {
+    font-size: 22px;
+  }
 }
 
 
 @media (min-width: 479.98px) {
 
-  .title___sectionTitle {
+
+  .title___sectionTitle,
+  .title___primaryTitle {
     font-size: 24px;
 
     &::after {
@@ -54,10 +60,16 @@
     }
 
   }
+
+  .title___primaryTitle {
+    font-size: 26px;
+  }
 }
 
 @media (min-width: 575.98px) {
-  .title___sectionTitle {
+
+  .title___sectionTitle,
+  .title___primaryTitle {
     font-size: 28px;
     line-height: 1.5em;
     letter-spacing: 0.05em;
@@ -68,10 +80,16 @@
 
     }
   }
+
+  .title___primaryTitle {
+    font-size: 30px;
+  }
 }
 
 @media (min-width: 767.98px) {
-  .title___sectionTitle {
+
+  .title___sectionTitle,
+  .title___primaryTitle {
     font-size: 32px;
     line-height: 1.6em;
 
@@ -79,6 +97,10 @@
       bottom: -.4em;
 
     }
+  }
+
+  .title___primaryTitle {
+    font-size: 34px;
   }
 }
 

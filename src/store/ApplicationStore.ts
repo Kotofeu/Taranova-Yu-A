@@ -4,6 +4,8 @@ import { ITextBlockItem } from '../components/TextBlock/TextBlock';
 import defaultImage from '../assets/images/profile-picture.jpg'
 
 import { $host, IBaseInerface } from '.';
+import { BLOG_ROUTE, EVENT_ROUTE, HOME_ROUTE } from '../utils/const/routes';
+import { AxiosError } from 'axios';
 
 interface ILink {
     title: string;
@@ -67,13 +69,13 @@ export class ApplicationStore {
     ]
 
     private _headerLinks: ILink[] = [
-        { title: "Главная", link: "/" },
-        { title: "Публикации", link: "/blog" },
-        { title: "Мероприятия", link: "/event" }
+        { title: "Главная", link: HOME_ROUTE },
+        { title: "Публикации", link: BLOG_ROUTE },
+        { title: "Мероприятия", link: EVENT_ROUTE }
     ]
 
     private _isLoading: boolean = true
-    private _error: string | null = null
+    private _error: AxiosError | null = null
     get isLoading() {
         return this._isLoading
     }
@@ -116,7 +118,7 @@ export class ApplicationStore {
     private setIsLoading(loading: boolean) {
         this._isLoading = loading
     }
-    private setError(errorString: string) {
+    private setError(errorString: AxiosError) {
         this._error = errorString
     }
 

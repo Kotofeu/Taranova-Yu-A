@@ -3,6 +3,7 @@ import { MotionChildUp } from '../../utils/const/animation'
 import { MButton } from '../../UI/Button/Button'
 import Section, { SectionType } from '../Section/Section'
 import classes from './Error.module.scss'
+import { HOME_ROUTE } from '../../utils/const/routes'
 interface IError404 {
     errorText: string;
     routTo?: string;
@@ -11,14 +12,14 @@ interface IError404 {
 const Error: FC<IError404> = memo((
     {
         errorText,
-        routTo = '/',
+        routTo = HOME_ROUTE,
         buttonText = 'Вернуться на главную'
     }: IError404) => {
     return (
         <Section
             className={classes.error}
             title={errorText}
-            sectionType={SectionType.fullSize}
+            sectionType={SectionType.firstSection}
         >
             <div className={classes.error_inner}>
                 <MButton

@@ -1,5 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 import { $host, IBaseInerface } from '.';
+import { AxiosError } from 'axios';
 
 export interface EventsJSON extends IBaseInerface {
     events: Event[];
@@ -24,8 +25,9 @@ export interface Type extends IBaseInerface  {
 
 export class EventStore {
     private _events: EventsJSON | null = null;
+    private _selectedEvent: Event | null = null
     private _isLoading: boolean = true
-    private _error: string | null = null
+    private _error: AxiosError | null = null
     constructor() {
         makeAutoObservable(this, {}, { deep: true })
     }
@@ -38,14 +40,23 @@ export class EventStore {
     get error() {
         return this._error
     }
+    get selectedEvent() {
+        return this._selectedEvent
+    }
     private setIsLoading(loading: boolean) {
         this._isLoading = loading
     }
-    private setError(errorString: string) {
+    private setError(errorString: AxiosError) {
         this._error = errorString
     }
     private setEvents(events: EventsJSON) {
         this._events = events
+    }
+    private setSelectedEvent(event: Event | null) {
+        this._selectedEvent = event
+    }
+    findSelectedEvent(uid: string) {
+        this.setSelectedEvent(this.events?.events.find(event => event.uid === uid) || null);
     }
     loadEvents = async () => {
         this.setIsLoading(true)

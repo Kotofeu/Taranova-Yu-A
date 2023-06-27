@@ -5,7 +5,8 @@ import { MTitle, TitleType } from '../../UI/Title/Title'
 import classes from './Section.module.scss'
 
 export enum SectionType {
-    fullSize = classes.section___fullSize
+    fullSize = classes.section___fullSize,
+    firstSection = classes.section___firstSection,
 }
 interface ISection {
     title?: string;
@@ -17,7 +18,9 @@ interface ISection {
 }
 const Section: FC<ISection> = (props) => {
     const { title, className = '', children, sectionType, sectionAnimation } = props
-
+    const isFirstSection: boolean = sectionType === SectionType.firstSection
+    const titleClasses: TitleType[] = [TitleType.posCetner,TitleType.lineCenter,TitleType.sectionTitle]
+    if (isFirstSection) titleClasses.push(TitleType.primaryTitle)
     return (
         <section className={`${classes.section} ${sectionType ? sectionType : ''} ${className}`}>
             <motion.div
@@ -30,7 +33,7 @@ const Section: FC<ISection> = (props) => {
                 {title &&
                     <div>
                         <MTitle
-                            titleType={[TitleType.posCetner, TitleType.lineCenter, TitleType.sectionTitle]}
+                            titleType={titleClasses}
                             variants={MotionUp}
                         >
                             {title}

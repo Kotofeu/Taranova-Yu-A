@@ -14,6 +14,7 @@ import classes from './Header.module.scss'
 import { observer } from 'mobx-react-lite';
 import HeaderActiveLine from '../HeaderActiveLine/HeaderActiveLine';
 import { applicationStore } from '../../../../store';
+import { HOME_ROUTE } from '../../../../utils/const/routes';
 
 
 export const Header = observer(() => {
@@ -37,7 +38,7 @@ export const Header = observer(() => {
         <header className={classes.header}>
             <div className='container'>
                 <div className={classes.header_inner}>
-                    <NavLink to={'/'}>
+                    <NavLink to={HOME_ROUTE}>
                         <img
                             className={classes.header_logo}
                             src={logo}

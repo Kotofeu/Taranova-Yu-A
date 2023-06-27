@@ -4,12 +4,13 @@ import Picture from '../../../../UI/Picture';
 import classes from './ShortBlogCard.module.scss'
 import { NavLink } from 'react-router-dom';
 import DateTime from '../../../../UI/DateTime/DateTime';
-import { Item } from '../../../../store/BlogsStore';
+import { Blog } from '../../../../store/BlogsStore';
 import { blogStore } from '../../../../store';
 import { BlogText } from '../../../../components/BlogCard';
+import { BLOG_ROUTE } from '../../../../utils/const/routes';
 interface IBlockCard {
     className?: string;
-    blog: Item;
+    blog: Blog;
 
 }
 export const ShortBlogCard: FC<IBlockCard> = memo(
@@ -22,7 +23,7 @@ export const ShortBlogCard: FC<IBlockCard> = memo(
                 <motion.article
                     className={`${classes.blogCard} ${className}`} ref={ref}
                 >
-                    <NavLink to={`/blog/${blog.id}`}>
+                    <NavLink to={`${BLOG_ROUTE}/${blog.id}`}>
                         <Picture
                             src={imageSrc}
                             alt={blog.text}

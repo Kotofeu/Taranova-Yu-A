@@ -1,27 +1,33 @@
 @import '../../styles/settings.scss';
 
 .eventCard {
+    padding-bottom: 20px;
+    position: relative;
     display: flex;
     flex-direction: column;
-    padding: 20px;
     background-color: $primary-color;
     border: 1px solid $neutral-color;
-    border-radius: 8px;
+    border-radius: 14px;
     box-shadow: 0px 2px 4px rgba($shadow-color, 0.1);
-    overflow: hidden;
+    &___fullSize {
+        &>.eventCard_desc {
+            display: block;
+            overflow-y: auto;
+        }
+    }
 }
-
-.eventCard___vertical {
-    flex-direction: row;
-}
-
 .eventCard_header {
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
+    padding: 20px;
+    padding-bottom: 0px;
+
 }
 
 .eventCard_headerTitle {
+    transition: color .2s ease-in-out;
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 5px;
@@ -71,8 +77,21 @@
 }
 
 .eventCard_desc {
+    overflow: hidden;
+    flex-grow: 1;
     font-size: 14px;
     line-height: 1.4em;
     color: $text-color;
     text-align: justify;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    padding: 0px 20px;
+}
+.eventCard_button{
+    margin-left: auto;
+    margin-right: 20px;
+    margin-top: 10px;
+    margin-bottom: -40px;
 }

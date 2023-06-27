@@ -17,6 +17,7 @@ import classes from './BlogSection.module.scss'
 import Loader from '../../../../components/Loader/Loader';
 import { blogStore } from '../../../../store';
 import { BlogText } from '../../../../components/BlogCard';
+import { BLOG_ROUTE } from '../../../../utils/const/routes';
 
 export const BlogSection = observer(() => {
     const params = useParams();
@@ -29,7 +30,7 @@ export const BlogSection = observer(() => {
     const blog = blogStore.selectedBlog
     if (blogStore.isLoading) {
         return (
-            <Section sectionType={SectionType.fullSize} >
+            <Section sectionType={SectionType.firstSection} >
                 <Loader />
             </Section>
         )
@@ -38,7 +39,7 @@ export const BlogSection = observer(() => {
         return (
             <Error404
                 errorText='Публикация не найдена'
-                routTo='/blog'
+                routTo={BLOG_ROUTE}
                 buttonText='Вернуться к публикациям'
             />
         )
@@ -47,7 +48,7 @@ export const BlogSection = observer(() => {
         <Section
             className={classes.blog}
             sectionAnimation={MotionParent}
-            sectionType={SectionType.fullSize}
+            sectionType={SectionType.firstSection}
         >
             <header className={classes.blog_header}>
                 <div

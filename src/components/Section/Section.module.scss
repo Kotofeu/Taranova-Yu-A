@@ -7,16 +7,13 @@
 
     &:nth-child(even) {
         background-color: $neutral-color;
-
     }
-
-    &:first-child {
-        padding-top: 90px;
-    }
-
 }
 
-.section___fullSize {
+.section___fullSize,.section___firstSection {
     min-height: 100vh;
     min-height: 100dvh;
+}
+.section___firstSection{
+    padding-top: 100px;
 }

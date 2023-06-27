@@ -5,6 +5,7 @@ interface ITitleProps extends React.AllHTMLAttributes<HTMLHeadElement> {
     titleType?: TitleType[];
 }
 export enum TitleType {
+    primaryTitle = classes.title___primaryTitle,
     posCetner = classes.title___posCetner,
     lineCenter = classes.title___lineCenter,
     lineLeft = classes.title___lineLeft,
@@ -17,20 +18,26 @@ const Title: FC<ITitleProps> =
                 const { className = '', titleType, children } = props
                 const classList: string = titleType ? titleType.join(' ') : ''
                 const isSectionTitle: boolean = classList.includes(TitleType.sectionTitle.toString())
+                const isPrimaryTitle: boolean = classList.includes(TitleType.primaryTitle.toString())
                 const classNameString: string = `${classes.title} ${classList} ${className}`
+                if (isPrimaryTitle) {
+                    return (
+                        <h1 className={classNameString} ref={ref}>
+                            {children}
+                        </h1>
+                    )
+                }
+                if (isSectionTitle) {
+                    return (
+                        <h2 className={classNameString} ref={ref}>
+                            {children}
+                        </h2>
+                    )
+                }
                 return (
-                    <>
-                        {
-                            isSectionTitle
-                                ? <h2 className={classNameString} ref={ref}>
-                                    {children}
-                                </h2>
-                                :
-                                <h5 className={classNameString} ref={ref}>
-                                    {children}
-                                </h5>
-                        }
-                    </>
+                    <h5 className={classNameString} ref={ref}>
+                        {children}
+                    </h5>
                 )
             }))
 

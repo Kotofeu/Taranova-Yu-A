@@ -1,12 +1,13 @@
 import { makeAutoObservable } from 'mobx';
 import { $host, IBaseInerface } from '.';
+import { AxiosError } from 'axios';
 
 export interface IBlog extends IBaseInerface {
-    publications: Item[];
+    publications: Blog[];
     serverTime: any;
 }
 
-export interface Item extends IBaseInerface {
+export interface Blog extends IBaseInerface {
     comments: Comments;
     hash: string;
     attachments: Attachment[];
@@ -70,10 +71,10 @@ interface Reposts extends IBaseInerface {
 
 export class BlogsStore {
     private _blogs: IBlog | null = null;
-    private _selectedBlog: Item | null = null
+    private _selectedBlog: Blog | null = null
     private _ownerId: number = 236298625;
     private _isLoading: boolean = true
-    private _error: string | null = null
+    private _error: AxiosError | null = null
     constructor() {
         makeAutoObservable(this, {}, { deep: true })
     }
@@ -95,13 +96,13 @@ export class BlogsStore {
     private setIsLoading(loading: boolean) {
         this._isLoading = loading
     }
-    private setError(errorString: string) {
+    private setError(errorString: AxiosError) {
         this._error = errorString
     }
     private setBlogs(blogs: IBlog) {
         this._blogs = blogs
     }
-    setSelectedBlog(blog: Item | null) {
+    private setSelectedBlog(blog: Blog | null) {
         this._selectedBlog = blog
     }
     findSelectedBlog(id: number) {
@@ -126,7 +127,7 @@ export class BlogsStore {
         this.setIsLoading(true)
         await $host.get('/getPublicationsVK')
             .then((data) => this.setBlogs(data.data))
-            .catch(error => this.setError(error))
+            .catch((error) => this.setError(error))
             .finally(() => this.setIsLoading(false))
     }
 }

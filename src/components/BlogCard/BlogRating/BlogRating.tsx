@@ -1,8 +1,8 @@
 import { FC, memo } from 'react'
 import classes from './BlogRating.module.scss'
-import { Item } from '../../../store/BlogsStore'
+import { Blog } from '../../../store/BlogsStore'
 interface IBlogRating {
-    blog: Item;
+    blog: Blog;
     className?: string;
 }
 export const BlogRating: FC<IBlogRating> = memo((props) => {

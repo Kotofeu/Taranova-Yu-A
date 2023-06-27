@@ -20,7 +20,7 @@ export const AboutSection = observer(() => {
         <Section
             className={classes.about}
             title='Таранова Юлия Анатольевна'
-            sectionType={SectionType.fullSize}
+            sectionType={SectionType.firstSection}
         >
             <div className={classes.about_info}>
                 <motion.div
@@ -58,6 +58,7 @@ export const AboutSection = observer(() => {
                             navigation: { enabled: true },
                             pagination: { clickable: true },
                             autoHeight: true,
+                            autoplay: true,
                             breakpoints: {
                                 479.98: {
                                     slidesPerView: 2,

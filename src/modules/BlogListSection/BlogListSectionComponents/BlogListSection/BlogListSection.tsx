@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite'
 
 import Section, { SectionType } from '../../../../components/Section/Section'
 import Loader from '../../../../components/Loader/Loader'
-import Error404 from '../../../../components/Error/Error'
+import Error from '../../../../components/Error/Error'
 
 import classes from './BlogListSection.module.scss'
 import { blogStore } from '../../../../store'
@@ -12,11 +12,16 @@ import { BlogCard } from '../../../../components/BlogCard'
 export const BlogListSection = observer(() => {
 
     if (blogStore.error) {
-        return <Error404 errorText={blogStore.error} />
+        console.log(blogStore.error)
+        return (
+            <Error
+                errorText={blogStore.error.message}
+            />
+        )
     }
     return (
         <Section className={classes.blogList} title='Публикации'
-            sectionType={SectionType.fullSize}>
+            sectionType={SectionType.firstSection}>
             <div className={classes.blogList_list}>
                 {blogStore.isLoading &&
                     <div className={classes.blogList_loader}>
