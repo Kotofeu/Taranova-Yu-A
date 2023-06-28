@@ -1,5 +1,4 @@
 import { makeAutoObservable } from 'mobx';
-import { ITextBlockItem } from '../components/TextBlock/TextBlock';
 
 import defaultImage from '../assets/images/profile-picture.jpg'
 
@@ -23,8 +22,9 @@ export interface IData extends IBaseInerface {
     image?: string;
     slogan?: string;
     organizations?: ICard[];
-    biography?: IBiography[];
+    biography?: ITextBlock[];
     awards?: ICard[];
+    basicInfo?: ITextBlock[];
 }
 
 export interface ICard  extends IBaseInerface{
@@ -33,13 +33,17 @@ export interface ICard  extends IBaseInerface{
     image: string;
 }
 
-export interface IBiography  extends IBaseInerface{
+export interface ITextBlock  extends IBaseInerface{
     id: number;
     title: string;
     text: string;
 }
 
 export class ApplicationStore {
+    private _defaultText = {
+        title: 'XXXXXXXXXXXX XXXXXXX',
+        text: 'XXXXXXXXXXX XXXXXXXXXX XXXXXXXXXXXXX XXXXXXXXXXXXXX XXXXXXXXX XXXX XXXXXXX XXXXXXX'
+    }
     private _defaulData: IGeneralData  = {
         serverTime: new Date(),
         generalData: {
@@ -47,26 +51,10 @@ export class ApplicationStore {
             email: 'xxxxxxxxx@xxxxx.xx',
             phone: '+7 (xxx) xxx-xx-xx',
             image: defaultImage,
+            basicInfo: [{id: 1, ...this._defaultText}, {id: 2, ...this._defaultText}, {id: 2, ...this._defaultText}]
         }
     }
     private _generalData: IGeneralData | null = this._defaulData
-
-    private _aboutText: ITextBlockItem[] = [
-        {
-            title: 'Дата и место рождения',
-            text: '20 июня 1968 г., г. Калининград'
-        },
-        {
-            title: 'Образование',
-            text: `Высшее 
-             Калининградский государственный технический университет, специальность «Автоматизированные системы управления» (1990 г.) 
-             Калининградская высшая школа управления,специальность «Менеджмент» (2008 г.).`
-        },
-        {
-            title: 'Адрес приемной',
-            text: 'г. Калининград, ул.Рокоссовского 16-18 (отдельный вход) Академия гениев'
-        },
-    ]
 
     private _headerLinks: ILink[] = [
         { title: "Главная", link: HOME_ROUTE },
@@ -91,8 +79,8 @@ export class ApplicationStore {
     get slogan() {
         return this.generalData?.generalData?.slogan
     }
-    get aboutText() {
-        return this._aboutText
+    get basicInfo() {
+        return this.generalData?.generalData?.basicInfo
     }
     get awards() {
         return this._generalData?.generalData?.awards

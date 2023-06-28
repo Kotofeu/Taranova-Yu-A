@@ -34,7 +34,7 @@ export const AboutSection = observer(() => {
                     />
                     <Title className={classes.about_slogan}>{applicationStore.slogan}</Title>
                 </motion.div>
-                <TextBlock className={classes.about_desc} textBlock={applicationStore.aboutText}></TextBlock>
+                <TextBlock className={classes.about_desc} textBlock={applicationStore.basicInfo || []}></TextBlock>
             </div>
             <div>
                 <motion.div
