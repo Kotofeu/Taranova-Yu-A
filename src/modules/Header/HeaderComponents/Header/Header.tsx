@@ -15,11 +15,13 @@ import { observer } from 'mobx-react-lite';
 import HeaderActiveLine from '../HeaderActiveLine/HeaderActiveLine';
 import { applicationStore } from '../../../../store';
 import { HOME_ROUTE } from '../../../../utils/const/routes';
+import HeaderMessageForm from '../HeaderMessageForm/HeaderMessageForm';
 
 
 export const Header = observer(() => {
     const { scrollYProgress } = useScroll();
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
+    const [isMessageOpen, setIsMessageOpen] = useState<boolean>(false)
     const scaleX = useSpring(scrollYProgress, {
         stiffness: 150,
         damping: 30,
@@ -46,7 +48,11 @@ export const Header = observer(() => {
                         </img>
                     </NavLink>
 
-                    <nav className={`${classes.header_nav} ${isMenuOpen && classes.header_nav___active}`}>
+                    <nav className={
+                        [
+                            classes.header_nav,
+                            isMenuOpen && classes.header_nav___active
+                        ].join(' ')}>
                         <div className={classes.header_linksList}>
                             {applicationStore.headerLinks.map(link => {
                                 return (
@@ -56,7 +62,10 @@ export const Header = observer(() => {
                                         className=
                                         {
                                             ({ isActive }) =>
-                                                [classes.header_link, isActive ? classes.header_link___active : ''].join(' ')
+                                                [
+                                                    classes.header_link,
+                                                    isActive ? classes.header_link___active : ''
+                                                ].join(' ')
                                         }
                                         onClick={onLinkClick}
                                         end
@@ -88,6 +97,7 @@ export const Header = observer(() => {
                             className={classes.header_modalBtn}
                             beforeImg={planImage}
                             afterImg={messageImage}
+                            onClick={() => setIsMessageOpen(true)}
                         >
                             Написать обращение
                         </Button>
@@ -100,13 +110,15 @@ export const Header = observer(() => {
                             onClick={onBurgerClick}
                             title='Меню'
                         >
-                            <span />
-                            <span />
-                            <span />
+                            <span /><span /><span />
                         </button>
                     </div>
                 </div>
             </div >
+            <HeaderMessageForm
+                isOpen={isMessageOpen}
+                closeModal={() => setIsMessageOpen(false)}
+            />
             <motion.div
                 className={classes.header_scrollProgress}
                 style={{ scaleX: scaleX }}

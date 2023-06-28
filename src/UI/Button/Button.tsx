@@ -10,11 +10,20 @@ interface IButtonProps {
     beforeImg?: string;
     afterImg?: string;
     routeOption?: string;
+    type?: "button" | "submit" | "reset";
 }
 const Button: FC<IButtonProps> = memo(
     forwardRef(
         (props, ref: React.LegacyRef<HTMLButtonElement>) => {
-            const { children, onClick, className = '', beforeImg, afterImg, routeOption } = props
+            const {
+                children,
+                onClick,
+                className = '',
+                beforeImg,
+                afterImg,
+                routeOption,
+                type = 'button'
+            } = props
             const router = useNavigate()
             const startRoute = () => {
                 if (routeOption) router(routeOption)
@@ -24,7 +33,7 @@ const Button: FC<IButtonProps> = memo(
                     className={`${classes.button} ${className}`}
                     onClick={routeOption ? startRoute : onClick}
                     ref={ref}
-                    type='button'
+                    type={type}
                 >
                     {beforeImg ?
                         <img className={classes.button_before} src={beforeImg} alt="" />
