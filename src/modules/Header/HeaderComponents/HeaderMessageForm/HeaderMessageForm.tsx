@@ -9,7 +9,7 @@ import PhoneInput from 'react-phone-number-input';
 const NAME = 'name'
 const PHONE = 'phone'
 const EMAIL = 'email'
-const THEME = 'theme'
+const SUBJECT = 'subject'
 const TEXT = 'text'
 const FILES = 'files'
 interface IHeaderMessageForm {
@@ -21,7 +21,7 @@ interface IMessageForm {
     [NAME]: string;
     [PHONE]: string;
     [EMAIL]: string;
-    [THEME]: string;
+    [SUBJECT]: string;
     [TEXT]: string;
     [FILES]?: FileList;
 }
@@ -31,37 +31,41 @@ const HeaderMessageForm: FC<IHeaderMessageForm> = memo((props) => {
         [NAME]: '',
         [PHONE]: '',
         [EMAIL]: '',
-        [THEME]: '',
+        [SUBJECT]: '',
         [TEXT]: '',
         [FILES]: undefined
     })
     const sendMessage = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         if (messageFields) {
-            const isValidEmail = emailValidation(messageFields.email)
+            const isValidEmail = emailValidation(messageFields[EMAIL])
             if (!isValidEmail) {
                 alert('email')
                 return;
             }
-            if (!messageFields.name && messageFields.name.length < 2) {
+            if (!messageFields[NAME] && messageFields[NAME].length < 2) {
                 alert('name')
                 return;
             }
-            if (!messageFields.theme) {
+            if (!messageFields[SUBJECT]) {
                 alert('theme')
                 return;
             }
-            if (!messageFields.text) {
-                alert('texe')
+            if (!messageFields[TEXT]) {
+                alert('text')
                 return;
             }
             const formData = new FormData()
-            formData.append("name", messageFields.name)
-            formData.append("phone", messageFields.phone)
-            formData.append("email", messageFields.email)
-            formData.append("theme", messageFields.theme)
-            formData.append("text", messageFields.text)
-
+            formData.append(NAME, messageFields[NAME])
+            formData.append(PHONE, messageFields[PHONE])
+            formData.append(EMAIL, messageFields[EMAIL])
+            formData.append(SUBJECT, messageFields[SUBJECT])
+            formData.append(TEXT, messageFields[TEXT])
+            if (messageFields[FILES]) {
+                for (let i = 0; i < messageFields[FILES].length; i++) {
+                    formData.append(FILES, messageFields[FILES][i], messageFields[FILES][i].name)
+                }
+            }
             $host.post('', formData)
         }
         else {
@@ -77,7 +81,8 @@ const HeaderMessageForm: FC<IHeaderMessageForm> = memo((props) => {
             }));
         },
         []
-    ); return (
+    ); 
+    return (
         <Modal isOpen={isOpen} closeModal={closeModal}>
             <div
                 className={[classes.messageModal, className].join(' ')}
@@ -93,7 +98,7 @@ const HeaderMessageForm: FC<IHeaderMessageForm> = memo((props) => {
                         onChange={() => onChangeInputHandler}
                     />
 
-                    <input placeholder='Тема сообщения' type="text" name={THEME} value={messageFields[THEME]} onChange={onChangeInputHandler} />
+                    <input placeholder='Тема сообщения' type="text" name={SUBJECT} value={messageFields[SUBJECT]} onChange={onChangeInputHandler} />
                     <input placeholder='Выше сообщение' type="text" name={TEXT} value={messageFields[TEXT]} onChange={onChangeInputHandler} />
                     <div className={classes.messageModal_buttonBox}>
                         <Button

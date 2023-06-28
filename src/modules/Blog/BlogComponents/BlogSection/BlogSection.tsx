@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useParams, useNavigate } from 'react-router-dom';
 
 import Section, { SectionType } from '../../../../components/Section/Section';
-import { MotionChildLeft, MotionParent } from '../../../../utils/const/animation';
+import { ANIMATION_HIDDEN, ANIMATION_VISIBLE, MotionChildLeft, MotionParent } from '../../../../utils/const/animation';
 import { MDateTime } from '../../../../UI/DateTime/DateTime';
 import Error404 from '../../../../components/Error/Error';
 import BlogImageGrid from '../BlogImageGrid/BlogImageGrid';
@@ -24,18 +24,17 @@ export const BlogSection = observer(() => {
     const navigate = useNavigate()
     if (!params.id) return null
     const onVKButtonClick = () => {
-        return `https://vk.com/taranova.yulia?w=wall${blogStore.ownerId}_${blog?.id}`
+        return `https://vk.com/taranova.yulia?w=wall${blogStore.ownerId}_${blogStore.selectedBlog?.id}`
     }
-    blogStore.findSelectedBlog(+params.id)
-    const blog = blogStore.selectedBlog
-    if (blogStore.isLoading) {
+    blogStore.setSelectedBlog(+params.id)
+    if (blogStore.isLoading || !blogStore.selectedBlog) {
         return (
             <Section sectionType={SectionType.firstSection} >
                 <Loader />
             </Section>
         )
     }
-    if (!blog || blogStore.error) {
+    if (!blogStore.selectedBlog || blogStore.error) {
         return (
             <Error404
                 errorText='Публикация не найдена'
@@ -76,16 +75,20 @@ export const BlogSection = observer(() => {
                 </div>
                 <MDateTime
                     className={classes.blog_dateTime}
-                    date={blog.date}
+                    date={blogStore.selectedBlog.date}
                     variants={MotionChildLeft}
                 />
             </header>
 
-            <div className={blog.attachments.length < 2 ? classes.blog_inner : null}>
-                <div className={classes.blog_text}>
-                    <BlogText text={blog.text} animationType={MotionChildLeft} />
-                </div>
-                <BlogImageGrid className={classes.blog_grid} blog={blog} />
+            <div className={blogStore.selectedBlog.attachments.length < 2 ? classes.blog_inner : null}>
+                <motion.div className={classes.blog_text}
+                    initial={ANIMATION_HIDDEN}
+                    whileInView={ANIMATION_VISIBLE}
+                    viewport={{ once: true }}
+                    variants={MotionParent}>
+                    <BlogText text={blogStore.selectedBlog.text} animationType={MotionChildLeft} />
+                </motion.div>
+                <BlogImageGrid className={classes.blog_grid} blog={blogStore.selectedBlog} />
             </div>
 
         </Section >

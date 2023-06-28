@@ -102,13 +102,9 @@ export class BlogsStore {
     private setBlogs(blogs: IBlog) {
         this._blogs = blogs
     }
-    private setSelectedBlog(blog: Blog | null) {
-        this._selectedBlog = blog
+    setSelectedBlog(id: number) {
+        this._selectedBlog = this.blogs?.publications.find(blog => blog.id === id) || null
     }
-    findSelectedBlog(id: number) {
-        this.setSelectedBlog(this.blogs?.publications.find(blog => blog.id === id) || null);
-    }
-
     getItemImage(blog: Attachment, maxHeight: number = 1080) {
         const photoSrc = blog?.photo?.sizes.reduce((acc, photo) => {
             if (photo.height <= maxHeight && acc.height < photo.height) acc = photo
