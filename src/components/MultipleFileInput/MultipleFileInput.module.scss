@@ -1,0 +1,29 @@
+@import '../../styles/settings.scss';
+.multipleFileInput{
+
+}
+.multipleFileInput_input{
+    display: inline-block;
+    cursor: pointer;
+    padding: 7px 10px;
+    border-radius: 10px;
+    color: $title-color;
+    font-weight: 600;
+    background-color: $blue-color-600;
+}
+.multipleFileInput_info{
+
+}
+.multipleFileInput_fileSize{
+    margin-bottom: 5px;
+    margin-top: 5px;
+
+}
+.multipleFileInput_fileList{
+    list-style:inside;
+}
+.multipleFileInput_fileName{
+}
+.multipleFileInput_error{
+    color: red;
+}

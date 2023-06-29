@@ -16,27 +16,27 @@ const Title: FC<ITitleProps> =
     React.memo(
         React.forwardRef(
             (props, ref: React.LegacyRef<HTMLHeadingElement>) => {
-                const { className = '', titleType, children } = props
+                const { className = '', titleType, children, title } = props
                 const classList: string = titleType ? titleType.join(' ') : ''
                 const isSectionTitle: boolean = classList.includes(TitleType.sectionTitle.toString())
                 const isPrimaryTitle: boolean = classList.includes(TitleType.primaryTitle.toString())
                 const classNameString: string = `${classes.title} ${classList} ${className}`
                 if (isPrimaryTitle) {
                     return (
-                        <h1 className={classNameString} ref={ref}>
+                        <h1 className={classNameString} title={title} ref={ref}>
                             {children}
                         </h1>
                     )
                 }
                 if (isSectionTitle) {
                     return (
-                        <h2 className={classNameString} ref={ref}>
+                        <h2 className={classNameString} title={title} ref={ref}>
                             {children}
                         </h2>
                     )
                 }
                 return (
-                    <h5 className={classNameString} ref={ref}>
+                    <h5 className={classNameString} title={title} ref={ref}>
                         {children}
                     </h5>
                 )

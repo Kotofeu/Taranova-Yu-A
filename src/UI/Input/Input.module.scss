@@ -1,0 +1,114 @@
+@import '../../styles/settings.scss';
+
+.inputBox {
+    position: relative;
+    padding: 11px 0 0;
+    width: 100%;
+    background-color: $primary-color;
+
+    &___isError {
+        & .inputBox_input {
+            border-bottom: 2px solid $red-color-600 !important;
+
+        }
+
+        & .inputBox_label {
+            color: $red-color-600 !important;
+
+        }
+    }
+}
+
+.inputBox_input {
+    width: 100%;
+    font-family: inherit;
+    border: 0;
+    border-bottom: 2px solid $text-color;
+    outline: 0;
+    font-size: inherit;
+    padding: 7px 0;
+    padding-right: 40px;
+    background: transparent;
+    transition: border-color, color 0.2s;
+    font-weight: 500;
+    color: $text-color;
+
+    &::placeholder {
+        color: transparent;
+    }
+
+    &:placeholder-shown~.inputBox_label {
+        font-size: inherit;
+        cursor: text;
+        top: 20px;
+    }
+
+}
+
+.inputBox_label {
+    position: absolute;
+    white-space:nowrap;
+    word-wrap: break-word;
+    width: 100%;
+    overflow: hidden;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 13px;
+    font-weight: 600;
+    color: $text-color;
+    background-color: inherit;
+    pointer-events: none;
+}
+
+
+.inputBox_input:focus {
+    ~.inputBox_label {
+        position: absolute;
+        top: 0;
+        display: block;
+        transition: 0.2s;
+        font-size: 13px;
+        color: $text-color;
+        font-weight: 600;
+    }
+
+    color: $text-color;
+    border-image: linear-gradient(to right, $blue-color-600, $blue-color-500);
+    border-image-slice: 1;
+}
+
+.inputBox_input {
+
+    &:required,
+    &:invalid {
+        box-shadow: none;
+    }
+}
+.inputBox_info{
+    position: absolute;
+    top: 60%;
+    right: 0;
+    transform: translateY(-50%);
+    box-sizing: content-box;
+    height: 20px;
+    width: 20px;
+    padding: 5px;
+    pointer-events: none;
+}
+
+.inputBox_input:-webkit-autofill,
+.inputBox_input:-webkit-autofill:hover,
+.inputBox_input:-webkit-autofill:focus,
+.inputBox_input:-webkit-autofill,
+.inputBox_input:-webkit-autofill:hover,
+.inputBox_input:-webkit-autofill:focus,
+.inputBox_input:-webkit-autofill,
+.inputBox_input:-webkit-autofill:hover,
+.inputBox_input:-webkit-autofill:focus {
+    border-image: linear-gradient(to right, $blue-color-600, $blue-color-500);
+    border-image-slice: 1;
+    -webkit-text-fill-color: $text-color;
+    -webkit-box-shadow: 0 0 0px 1000px none inset;
+    transition: background-color 5000s ease-in-out 0s;
+}

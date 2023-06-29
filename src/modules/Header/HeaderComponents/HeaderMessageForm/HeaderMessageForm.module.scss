@@ -1,27 +1,117 @@
 @import '../../../../styles/settings.scss';
-.messageModal{
+
+.messageModal {
     position: relative;
     z-index: 1;
     max-height: 100%;
-    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+}
+
+.messageModal_form {
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    position: relative;
+    box-shadow: -2px 3px 9px -2px $title-color;
+    padding: 25px 30px 15px 30px;
+    background-color: $primary-color;
+    border-radius: 5px;
+}
+
+.messageModal_message {}
+
+.messageModal_title {
+    text-align: center;
+    font-size: 24px;
+    color: $title-color;
+    font-weight: 600;
 
 }
-.messageModal_closeBtn{
-    position: absolute;
-    bottom: 10px;
-    right: 15px;
-    background-color: $red-color-600;
-    border: none;
-    border-radius: 15px;
-    padding: 10px 15px;
-    color: $primary-color;
-    font-size: 16px;
-    font-weight: 600;
-    box-sizing: content-box;
-    transition: transform .3s ease-in-out;
-    will-change: transform;
+.messageModal_inputBox {
+    display: flex;
+    gap: 20px;
+    row-gap: 15px;
+    align-items: center;
+}
 
-    &:hover {
-        transform: scale(1.1);
+.messageModal_input {
+    font-size: 16px;
+}
+.messageModal_text{
+    &___error{
+        & .messageModal_textTitle{
+            color: $red-color-600;
+        }
+        & .messageModal_textArea{
+            border: 2px solid $red-color-600 !important;
+        }
     }
+}
+.messageModal_textTitle {
+    padding-bottom: 5px;
+    padding-top: 5px;
+    color: $text-color;
+    font-size: 16px;
+    font-weight: 600 !important;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.messageModal_textTitleImg{
+    height: 18px;
+    width: 18px;
+}
+
+.messageModal_textArea {
+    display: block;
+    padding: 7px 9px;
+    background-color: transparent;
+    outline: none;
+    border: 2px solid $text-color;
+    border-radius: 4px;
+    width: 100%;
+    resize: vertical;
+    max-height: 200px;
+    min-height: 70px;
+
+    &:focus {
+        border: 2px solid $blue-color-600;
+    }
+}
+
+.messageModal_buttonBox {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+    margin-top: 10px;
+
+}
+.messageModal_phone{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.messageModal_phoneInput{
+
+}
+.messageModal_phoneLabel{
+    font-size: 13px;
+    font-weight: 600;
+    color: $text-color;
+}
+.messageModal_button {
+    padding: 7px 10px;
+    border-radius: 10px;
+    font-size: 18px;
+    background-color: transparent;
+    color: $blue-color-600;
+    &___send {
+        //color: $green-color-600;
+    }
+}
+.messageModal_phoneInput{
+    border: none;
+    outline: none;
+    font-size: 16px;
+    font-weight: 500;
 }
