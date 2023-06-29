@@ -15,8 +15,6 @@ interface IHeaderMessageForm {
 
 const HeaderMessageModal: FC<IHeaderMessageForm> = observer((props) => {
     const { className = '', isOpen, closeModal } = props;
-
-    console.log(appealStore.isEnable)
     useEffect(() => {
         const storedDate = localStorage.getItem(appealStore.lastAppealCreate);
         const timeToNext = (): number => {
