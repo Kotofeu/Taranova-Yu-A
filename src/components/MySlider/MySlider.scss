@@ -28,6 +28,13 @@
   --swiper-pagination-bullet-vertical-gap: 6px;
 }
 
+.swiper {
+  & *::after, & *::before{
+    word-break: keep-all !important;
+
+  }
+}
+
 .swiper,
 swiper-container {
   margin-left: auto;
