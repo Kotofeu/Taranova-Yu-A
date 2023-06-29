@@ -34,6 +34,7 @@ export const BlogSection = observer(() => {
             </Section>
         )
     }
+
     if (!blogStore.selectedBlog || blogStore.error) {
         return (
             <Error404
@@ -42,6 +43,13 @@ export const BlogSection = observer(() => {
                 buttonText='Вернуться к публикациям'
             />
         )
+    }
+    const goBackHandler = () => {
+        if (window.history.state && window.history.state.idx > 0) {
+            navigate(-1);
+        } else {
+            navigate('/', { replace: true });
+        }
     }
     return (
         <Section
@@ -55,10 +63,10 @@ export const BlogSection = observer(() => {
                 >
                     <MButton
                         className={classes.blog_backButton}
-                        onClick={() => navigate(-1)}
                         afterImg={arrorImage}
                         beforeImg={arrorImage}
                         variants={MotionChildLeft}
+                        onClick={goBackHandler}
                     >
                         Назад
                     </MButton>
