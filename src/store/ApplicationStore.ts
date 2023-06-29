@@ -27,31 +27,32 @@ export interface IData extends IBaseInerface {
     basicInfo?: ITextBlock[];
 }
 
-export interface ICard  extends IBaseInerface{
+export interface ICard extends IBaseInerface {
     id: number;
     name: string;
     image: string;
 }
 
-export interface ITextBlock  extends IBaseInerface{
+export interface ITextBlock extends IBaseInerface {
     id: number;
     title: string;
     text: string;
 }
 
 export class ApplicationStore {
+    private _requestСode: number | null = null;
     private _defaultText = {
         title: 'XXXXXXXXXXXX XXXXXXX',
         text: 'XXXXXXXXXXX XXXXXXXXXX XXXXXXXXXXXXX XXXXXXXXXXXXXX XXXXXXXXX XXXX XXXXXXX XXXXXXX'
     }
-    private _defaulData: IGeneralData  = {
+    private _defaulData: IGeneralData = {
         serverTime: new Date(),
         generalData: {
             slogan: "XXXXXX XXXXXXXXXXXX XXXXXX XXXXXX XXXXXXXXXXXXXXXXXXXXXXXX",
             email: 'xxxxxxxxx@xxxxx.xx',
             phone: '+7 (xxx) xxx-xx-xx',
             image: defaultImage,
-            basicInfo: [{id: 1, ...this._defaultText}, {id: 2, ...this._defaultText}, {id: 2, ...this._defaultText}]
+            basicInfo: [{ id: 1, ...this._defaultText }, { id: 2, ...this._defaultText }, { id: 2, ...this._defaultText }]
         }
     }
     private _generalData: IGeneralData | null = this._defaulData
@@ -64,6 +65,9 @@ export class ApplicationStore {
 
     private _isLoading: boolean = true
     private _error: AxiosError | null = null
+    get requestСode(){
+        return this._requestСode
+    }
     get isLoading() {
         return this._isLoading
     }
@@ -97,9 +101,10 @@ export class ApplicationStore {
     get phone() {
         return this._generalData?.generalData?.phone
     }
-    get image(){
+    get image() {
         return this._generalData?.generalData.image
     }
+    
     constructor() {
         makeAutoObservable(this, {}, { deep: true })
     }
@@ -113,7 +118,7 @@ export class ApplicationStore {
     private setGeneralData(data: IGeneralData) {
         this._generalData = data
     }
-    
+
     loadGeneralData = async () => {
         this.setIsLoading(true)
         await $host.get('/getGeneralData')

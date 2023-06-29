@@ -15,7 +15,7 @@ import { observer } from 'mobx-react-lite';
 import HeaderActiveLine from '../HeaderActiveLine/HeaderActiveLine';
 import { applicationStore } from '../../../../store';
 import { HOME_ROUTE } from '../../../../utils/const/routes';
-import HeaderMessageForm from '../HeaderMessageForm/HeaderMessageForm';
+import HeaderMessageModal from '../HeaderMessageModal/HeaderMessageModal';
 
 
 export const Header = observer(() => {
@@ -115,7 +115,7 @@ export const Header = observer(() => {
                     </div>
                 </div>
             </div >
-            <HeaderMessageForm
+            <HeaderMessageModal
                 isOpen={isMessageOpen}
                 closeModal={() => setIsMessageOpen(false)}
             />

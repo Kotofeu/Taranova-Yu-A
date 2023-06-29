@@ -1,0 +1,70 @@
+@import '../../../../styles/settings.scss';
+
+.messageModal {
+    position: relative;
+    z-index: 1;
+    max-height: 100%;
+    max-width: 610px;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-shadow: -2px 3px 9px -2px $title-color;
+    padding: 15px;
+    background-color: $primary-color;
+    border-radius: 5px;
+    transition: height 2.2s ease-in-out;
+}
+
+.messageModal_title {
+    text-align: center;
+    font-size: 24px;
+    color: $title-color;
+    font-weight: 600;
+
+}
+.messageModal_titleError{
+    display: block;
+    font-size: 16px;
+    color: $red-color-600;
+    padding-top: 6px;
+
+}
+.messageModal_subTitle{
+    width: 100%;
+    text-align: center;
+    color: $blue-color-600;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.3em;
+    & span{
+        display: block;
+    }
+}
+.messageModal_button{
+    margin-top: 15px;
+    width: 100%;
+    background-color: $blue-color-600;
+}
+.messageModal_form{
+    padding-top: 10px;
+}
+.messageModal_loader{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba($neutral-color, .5);
+}
+@media (min-width: 575.98px) {
+    .messageModal {
+        padding: 20px 20px 15px 20px;
+    }
+}
+
+@media (min-width: 767.98px) {
+    .messageModal {
+        padding: 25px 30px 15px 30px;
+
+    }
+}

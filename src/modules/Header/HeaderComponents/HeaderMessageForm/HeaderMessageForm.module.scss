@@ -1,22 +1,7 @@
 @import '../../../../styles/settings.scss';
 
-.messageModal {
-    position: relative;
-    z-index: 1;
-    max-height: 100%;
 
-    max-width: 610px;
-    width: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
-    box-shadow: -2px 3px 9px -2px $title-color;
-    padding: 15px;
-    background-color: $primary-color;
-    border-radius: 5px;
-
-}
-
-.messageModal_form {
+.messageForm {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -24,15 +9,7 @@
 }
 
 
-.messageModal_title {
-    text-align: center;
-    font-size: 24px;
-    color: $title-color;
-    font-weight: 600;
-
-}
-
-.messageModal_inputBox {
+.messageForm_inputBox {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
@@ -40,24 +17,24 @@
     align-items: center;
 }
 
-.messageModal_input {
+.messageForm_input {
     padding-top: 13px !important;
     font-size: 16px;
 }
 
-.messageModal_text {
+.messageForm_text {
     &___error {
-        & .messageModal_textTitle {
+        & .messageForm_textTitle {
             color: $red-color-600;
         }
 
-        & .messageModal_textArea {
+        & .messageForm_textArea {
             border: 2px solid $red-color-600 !important;
         }
     }
 }
 
-.messageModal_textTitle {
+.messageForm_textTitle {
     padding-bottom: 5px;
     padding-top: 5px;
     color: $text-color;
@@ -66,7 +43,7 @@
     padding-bottom: 10px;
 }
 
-.messageModal_textError {
+.messageForm_textError {
     display: block;
     font-size: 13px;
     font-weight: 400;
@@ -74,7 +51,7 @@
     margin-top: 3px;
 }
 
-.messageModal_textArea {
+.messageForm_textArea {
     display: block;
     padding: 7px 9px;
     background-color: transparent;
@@ -91,7 +68,7 @@
     }
 }
 
-.messageModal_buttonBox {
+.messageForm_buttonBox {
     display: flex;
     gap: 15px;
     row-gap: 8px;
@@ -101,7 +78,7 @@
 
 }
 
-.messageModal_button {
+.messageForm_button {
     padding: 2px;
     border-radius: 10px;
     font-size: 18px;
@@ -113,14 +90,14 @@
     }
 }
 
-.messageModal_fileInput {
+.messageForm_fileInput {
     font-size: 17px;
     font-weight: 600;
     margin-top: 5px;
 }
 
 
-.messageModal_phoneInput {
+.messageForm_phoneInput {
     border: none;
     outline: none;
     font-size: 16px;
@@ -128,28 +105,28 @@
     border-bottom: 2px solid $text-color;
 
 }
-
+.messageForm_loader{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba($neutral-color, .5);
+}
 @media (min-width: 575.98px) {
-    .messageModal {
-        padding: 20px 20px 15px 20px;
-    }
 
-    .messageModal_form {
+    .messageForm_form {
         gap: 15px;
     }
 
-    .messageModal_inputBox {
+    .messageForm_inputBox {
         row-gap: 15px;
     }
 }
 
 @media (min-width: 767.98px) {
-    .messageModal {
-        padding: 25px 30px 15px 30px;
 
-    }
-
-    .messageModal_inputBox {
+    .messageForm_inputBox {
         flex-wrap: nowrap;
     }
 }
