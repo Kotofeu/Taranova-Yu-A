@@ -10,7 +10,6 @@ import MultipleFileInput from '../../../../components/MultipleFileInput/Multiple
 import Input from '../../../../UI/Input/Input';
 import Title from '../../../../UI/Title/Title';
 
-import infoImage from '../../../../assets/icons/info.svg'
 const NAME = 'name'
 const PHONE = 'phone'
 const EMAIL = 'email'
@@ -62,8 +61,8 @@ const HeaderMessageForm: FC<IHeaderMessageForm> = memo((props) => {
             isValidForm = checkError(EMAIL, 'Введите email в формате example@xxxx.xx', !emailValidation(messageFields[EMAIL]));
             isValidForm = checkError(PHONE, 'Введите телефон в формате +7 999 999 99 99', !isValidPhoneNumber(messageFields[PHONE]));
             isValidForm = checkError(NAME, 'Введенное ФИО не должно быть короче 2 символов', messageFields[NAME].length < 2);
-            isValidForm = checkError(SUBJECT, 'Введите тему сообщения', !messageFields[SUBJECT]);
-            isValidForm = checkError(TEXT, 'Введите текст сообщения', !messageFields[TEXT]);
+            isValidForm = checkError(SUBJECT, 'Введите тему обращения', !messageFields[SUBJECT]);
+            isValidForm = checkError(TEXT, 'Введите текст обращения', !messageFields[TEXT]);
             isValidForm = !errors[FILES]
             if (!isValidForm) return;
             const formData = new FormData();
@@ -113,7 +112,7 @@ const HeaderMessageForm: FC<IHeaderMessageForm> = memo((props) => {
             >
                 <form className={classes.messageModal_form} onSubmit={sendMessage}>
                     <h3 className={classes.messageModal_title}>
-                        Отправка сообщения
+                        Отправка обращения
                     </h3>
                     <div className={classes.messageModal_inputBox}>
                         <Input
@@ -126,7 +125,7 @@ const HeaderMessageForm: FC<IHeaderMessageForm> = memo((props) => {
                         />
                         <Input
                             className={classes.messageModal_input}
-                            placeholder='Ваш номер телефона *'
+                            placeholder='Номер телефона *'
                             error={errors[PHONE]}
                             name={PHONE}
                             value={messageFields[PHONE]}
@@ -136,7 +135,7 @@ const HeaderMessageForm: FC<IHeaderMessageForm> = memo((props) => {
                     </div>
                     <Input
                         className={classes.messageModal_input}
-                        placeholder='Ваша электронная почта *'
+                        placeholder='Электронная почта *'
                         error={errors[EMAIL]}
                         name={EMAIL}
                         value={messageFields[EMAIL]}
@@ -144,7 +143,7 @@ const HeaderMessageForm: FC<IHeaderMessageForm> = memo((props) => {
                     />
                     <Input
                         className={classes.messageModal_input}
-                        placeholder='Тема сообщения *'
+                        placeholder='Тема обращения *'
                         error={errors[SUBJECT]}
                         name={SUBJECT}
                         value={messageFields[SUBJECT]}
@@ -159,14 +158,14 @@ const HeaderMessageForm: FC<IHeaderMessageForm> = memo((props) => {
                         <Title className={classes.messageModal_textTitle}
                             title={errors[TEXT]}
                         >
-                            <span>Ваше сообщение *</span>
+                            <span>
+                                Ваше обращение *
+                            </span>
                             {
                                 errors[TEXT]
-                                    ? <img
-                                        className={classes.messageModal_textTitleImg}
-                                        src={infoImage}
-                                        alt='Info'
-                                    />
+                                    ? <span className={classes.messageModal_textError}>
+                                        {errors[TEXT]}
+                                    </span>
                                     : null
                             }
                         </Title>
@@ -175,7 +174,7 @@ const HeaderMessageForm: FC<IHeaderMessageForm> = memo((props) => {
                             name={TEXT}
                             value={messageFields[TEXT]}
                             onChange={handleChange}
-                            placeholder='Ваше сообщение'
+                            placeholder='Текст вашего ображения'
                         />
 
                     </div>

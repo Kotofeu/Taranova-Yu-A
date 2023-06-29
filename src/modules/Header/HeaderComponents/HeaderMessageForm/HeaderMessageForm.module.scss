@@ -4,18 +4,23 @@
     position: relative;
     z-index: 1;
     max-height: 100%;
+
+    max-width: 610px;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-shadow: -2px 3px 9px -2px $title-color;
+    padding: 15px;
+    background-color: $primary-color;
+    border-radius: 5px;
+
 }
 
 .messageModal_form {
-    padding-top: 10px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
     position: relative;
-    box-shadow: -2px 3px 9px -2px $title-color;
-    padding: 25px 30px 15px 30px;
-    background-color: $primary-color;
-    border-radius: 5px;
 }
 
 
@@ -31,11 +36,12 @@
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    row-gap: 15px;
+    row-gap: 10px;
     align-items: center;
 }
 
 .messageModal_input {
+    padding-top: 13px !important;
     font-size: 16px;
 }
 
@@ -57,14 +63,15 @@
     color: $text-color;
     font-size: 16px;
     font-weight: 600 !important;
-    display: flex;
-    align-items: center;
-    gap: 6px;
+    padding-bottom: 10px;
 }
 
-.messageModal_textTitleImg {
-    height: 18px;
-    width: 18px;
+.messageModal_textError {
+    display: block;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1em;
+    margin-top: 3px;
 }
 
 .messageModal_textArea {
@@ -122,9 +129,27 @@
 
 }
 
-@media (min-width: 767.98px) {
-    .messageModal_inputBox{
-        flex-wrap: nowrap;
+@media (min-width: 575.98px) {
+    .messageModal {
+        padding: 20px 20px 15px 20px;
+    }
+
+    .messageModal_form {
+        gap: 15px;
+    }
+
+    .messageModal_inputBox {
+        row-gap: 15px;
     }
 }
 
+@media (min-width: 767.98px) {
+    .messageModal {
+        padding: 25px 30px 15px 30px;
+
+    }
+
+    .messageModal_inputBox {
+        flex-wrap: nowrap;
+    }
+}

@@ -1,7 +1,6 @@
 import { ChangeEvent, memo, FC, HTMLInputTypeAttribute } from 'react'
 
 import PhoneInput from 'react-phone-number-input/input';
-import infoImage from '../../assets/icons/info.svg'
 import classes from './Input.module.scss'
 interface IInput {
     className?: string;
@@ -65,16 +64,11 @@ const Input: FC<IInput> = memo((props) => {
             >
                 {placeholder}
             </label>
-            {
-                error
-                    ? <img
-                        className={classes.inputBox_info}
-                        src={infoImage}
-                        alt='more info'
-                        data-descr={error ?? title}
-                    />
-                    : null
-
+            {error
+                ? <label className={classes.inputBox_error} htmlFor={id}>
+                    {error}
+                </label>
+                : null
             }
 
         </div>

@@ -5,7 +5,7 @@
     padding: 11px 0 0;
     width: 100%;
     background-color: $primary-color;
-
+    
     &___isError {
         & .inputBox_input {
             border-bottom: 2px solid $red-color-600 !important;
@@ -27,7 +27,6 @@
     outline: 0;
     font-size: inherit;
     padding: 7px 0;
-    padding-right: 40px;
     background: transparent;
     transition: border-color, color 0.2s;
     font-weight: 500;
@@ -85,24 +84,12 @@
         box-shadow: none;
     }
 }
-.inputBox_info{
-    position: absolute;
-    top: 60%;
-    right: 0;
-    transform: translateY(-50%);
-    box-sizing: content-box;
-    height: 20px;
-    width: 20px;
-    padding: 5px;
-    pointer-events: none;
+.inputBox_error{
+    font-size: 13px;
+    margin-top: 4px;
+    color: $red-color-600;
 }
 
-.inputBox_input:-webkit-autofill,
-.inputBox_input:-webkit-autofill:hover,
-.inputBox_input:-webkit-autofill:focus,
-.inputBox_input:-webkit-autofill,
-.inputBox_input:-webkit-autofill:hover,
-.inputBox_input:-webkit-autofill:focus,
 .inputBox_input:-webkit-autofill,
 .inputBox_input:-webkit-autofill:hover,
 .inputBox_input:-webkit-autofill:focus {
@@ -111,4 +98,24 @@
     -webkit-text-fill-color: $text-color;
     -webkit-box-shadow: 0 0 0px 1000px none inset;
     transition: background-color 5000s ease-in-out 0s;
+
+    appearance: menulist-button;
+    background-image: none !important;
+    color: $title-color !important;
+}
+
+
+.inputBox_input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}
+.inputBox_input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{height:auto}
+.inputBox_input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}
+.inputBox_input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}
+.inputBox_input[type=password]::-ms-reveal,
+.inputBox_input[type=password]::-ms-clear
+{
+    display: none;
+}
+
+.inputBox_input::-webkit-outer-spin-button,
+.inputBox_input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
 }
