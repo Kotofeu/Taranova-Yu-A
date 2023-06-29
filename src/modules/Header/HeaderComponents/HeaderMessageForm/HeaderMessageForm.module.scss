@@ -18,7 +18,6 @@
     border-radius: 5px;
 }
 
-.messageModal_message {}
 
 .messageModal_title {
     text-align: center;
@@ -27,8 +26,10 @@
     font-weight: 600;
 
 }
+
 .messageModal_inputBox {
     display: flex;
+    flex-wrap: wrap;
     gap: 20px;
     row-gap: 15px;
     align-items: center;
@@ -37,16 +38,19 @@
 .messageModal_input {
     font-size: 16px;
 }
-.messageModal_text{
-    &___error{
-        & .messageModal_textTitle{
+
+.messageModal_text {
+    &___error {
+        & .messageModal_textTitle {
             color: $red-color-600;
         }
-        & .messageModal_textArea{
+
+        & .messageModal_textArea {
             border: 2px solid $red-color-600 !important;
         }
     }
 }
+
 .messageModal_textTitle {
     padding-bottom: 5px;
     padding-top: 5px;
@@ -57,7 +61,8 @@
     align-items: center;
     gap: 6px;
 }
-.messageModal_textTitleImg{
+
+.messageModal_textTitleImg {
     height: 18px;
     width: 18px;
 }
@@ -82,36 +87,44 @@
 .messageModal_buttonBox {
     display: flex;
     gap: 15px;
+    row-gap: 8px;
     justify-content: flex-end;
     margin-top: 10px;
+    flex-wrap: wrap;
 
 }
-.messageModal_phone{
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-.messageModal_phoneInput{
 
-}
-.messageModal_phoneLabel{
-    font-size: 13px;
-    font-weight: 600;
-    color: $text-color;
-}
 .messageModal_button {
-    padding: 7px 10px;
+    padding: 2px;
     border-radius: 10px;
     font-size: 18px;
     background-color: transparent;
     color: $blue-color-600;
+
     &___send {
         //color: $green-color-600;
     }
 }
-.messageModal_phoneInput{
+
+.messageModal_fileInput {
+    font-size: 17px;
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+
+.messageModal_phoneInput {
     border: none;
     outline: none;
     font-size: 16px;
     font-weight: 500;
+    border-bottom: 2px solid $text-color;
+
 }
+
+@media (min-width: 767.98px) {
+    .messageModal_inputBox{
+        flex-wrap: nowrap;
+    }
+}
+

@@ -1,102 +1,121 @@
-import React, { useState } from 'react';
-import classes from './MultipleFileInput.module.scss';
 
-interface IMultipleFileInput {
+import React, { useState, useEffect, memo } from 'react';
+import classes from './MultipleFileInput.module.scss'
+interface IMultipleFileInputProps {
   className?: string;
-  title?: string;
-  showFileName?: boolean;
-  handleFilesChange: (files: FileList | undefined) => void;
-  maxFileSize?: number;
+  maxFiles?: number;
   maxTotalSize?: number;
-  maxFilesCount?: number;
-  accept?: string[]
+  values: FileList | undefined;
+  onChange: (files: FileList | undefined) => void;
+  setError: (error: string | undefined) => void;
+  title?: string;
+  error?: string;
 }
 
-const MultipleFileInput: React.FC<IMultipleFileInput> = ({
+const MultipleFileInput: React.FC<IMultipleFileInputProps> = memo(({
   className = '',
-  title = 'Выбрать файлы',
-  showFileName = true,
-  handleFilesChange,
-  maxFileSize = 1024000,
-  maxTotalSize = 10240000,
-  maxFilesCount = 10,
-  accept,
+  maxFiles = 10,
+  maxTotalSize = 20 * 1024 * 1024, // 10MB
+  values,
+  onChange,
+  title = 'Выберите файл',
+  setError,
+  error
 }) => {
-  const [selectedFiles, setSelectedFiles] = useState<FileList | undefined>(undefined);
-  const [error, setError] = useState<string | null>(null);
+  const [fileList, setFileList] = useState<FileList | undefined>(undefined);
+  const [isDragOver, setIsDragOver] = useState<boolean>(false);
+  useEffect(() => {
+    if (values) {
+      setFileList(values);
+    }
+  }, [values]);
 
-  const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i; // фильтр на картинки
-  const dropFiles = (files?: FileList) => {
-    setSelectedFiles(files);
-    handleFilesChange(files);
-  }
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const files = event.target.files;
-
-    if (!files || !files.length) {
+  const handleFileChange = (files: FileList | null) => {
+    const selectedFiles = files;
+    if (!selectedFiles) return;
+    const filesArray = Array.from(selectedFiles);
+    if (filesArray.length > maxFiles) {
+      deleteFiles()
+      setError(`Превышено максимальное количество файлов (${maxFiles}) на ${filesArray.length - maxFiles}`);
       return;
     }
-
-    const totalSize = Array.from(files).reduce((acc, curr) => acc + curr.size, 0);
-
+    const totalSize = filesArray.reduce(
+      (accumulator, file) => accumulator + file.size,
+      0
+    );
     if (totalSize > maxTotalSize) {
-      setError(`Превышен максимальный общий размер файлов. Максимальный размер: ${maxTotalSize / 1000}KB`);
-      dropFiles()
+      deleteFiles()
+      const bigger = Math.round((totalSize - maxTotalSize) / 1024 / 1024 * 100) / 100
+      setError(`Превышен общий размер файлов (${maxTotalSize / 1024 / 1024}МБ) на ${bigger}МБ`);
       return;
     }
-
-    if (files.length > maxFilesCount) {
-      setError(`Превышено максимальное количество файлов. Допустимо выбрать не более ${maxFilesCount} файлов.`);
-      dropFiles()
-      return;
-    }
-
-    Array.from(files).forEach((file) => {
-      if (file.size > maxFileSize) {
-        setError(`Превышен размер файла ${file.name}. Максимальный размер: ${maxFileSize / 1000}KB`);
-        dropFiles()
-        return;
-      }
-
-      if (!allowedExtensions.exec(file.name)) {
-        setError(`Неподдерживаемый формат файла ${file.name}. Допустимые форматы: ${accept?.join('')}`);
-        dropFiles()
-        return;
-      }
-    });
-    dropFiles(files)
-    setError(null);
+    setError(undefined)
+    setFileList(selectedFiles);
+    onChange(selectedFiles);
   };
+  const deleteFiles = () => {
+    setFileList(undefined);
+    onChange(undefined);
+  }
+  const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    const droppedFiles = event.dataTransfer.files;
+    handleFileChange(droppedFiles);
+    setIsDragOver(false)
 
+  };
+  const onDragOver = (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    if (!isDragOver){
+      setIsDragOver(true)
+    }
+  };
+  const onDragLeave = (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    setIsDragOver(false)
+  };
   return (
-    <div className={`${classes.multipleFileInput} ${className}`}>
-      <label className={classes.multipleFileInput_input}>
-        {title}
-        <input type="file" multiple accept={accept?.join('') || '*'} onChange={handleInputChange} style={{ display: 'none' }} />
+    <div
+      onDragOver={onDragOver}
+      onDragLeave={onDragLeave}
+      onDrop={handleDrop}
+      className={
+        [
+          classes.multipleInput,
+          isDragOver ? classes.multipleInput___isHover : '',
+          error ? classes.multipleInput___isError : '',
+          className
+        ].join(' ')}
+    >
+      <label
+        className={classes.multipleInput_input}
+        title={
+          fileList ? Array.from(fileList).map((file, index) => `${index + 1}. ${file.name}`)
+            .join('\n')
+            : title
+        }
+        htmlFor={title}
+      >
+        {error?.length ? error : title}
+        <input
+          id={title}
+          type="file"
+          multiple
+          onChange={(event) => handleFileChange(event.target.files)}
+          style={{ display: 'none' }}
+        />
+        {
+          fileList?.length
+            ? <span className={classes.multipleInput_inputHint}>
+                {`Всего файлов: ${fileList.length}. \n Наведите, чтобы посмотреть`}
+            </span>
+            : null
+        }
+
       </label>
 
-      {selectedFiles && !showFileName && !error && (
-        <div className={classes.multipleFileInput_fileSize}>Прикреплено файлов: {selectedFiles.length}</div>
-      )}
-
-      {selectedFiles && showFileName && !error && (
-        <div className={classes.multipleFileInput_info}>
-          <div className={classes.multipleFileInput_fileSize}>
-            Общий размер выбранных файлов: {Math.round(Array.from(selectedFiles).reduce((acc, curr) => acc + curr.size, 0) / 1000)}KB
-          </div>
-          <ul className={classes.multipleFileInput_fileList}>
-            {Array.from(selectedFiles).map((file, index) => (
-              <li key={index} className={classes.multipleFileInput_fileName}>
-                {file.name}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      {error && <div className={classes.multipleFileInput_error}>{error}</div>}
     </div>
   );
-};
+});
 
 export default MultipleFileInput;

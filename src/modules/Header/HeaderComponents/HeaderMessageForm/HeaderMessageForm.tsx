@@ -1,11 +1,11 @@
-import { FC, memo, useState, useCallback, ChangeEvent, FormEvent, SetStateAction } from 'react'
+import { FC, memo, useState, useCallback, ChangeEvent, FormEvent } from 'react'
 import Modal from '../../../../components/Modal/Modal'
 import Button from '../../../../UI/Button/Button';
 
 import classes from './HeaderMessageForm.module.scss'
 import { emailValidation } from '../../../../utils/helpers/validationFields';
 import { $host } from '../../../../store';
-import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input/input';
+import { isValidPhoneNumber } from 'react-phone-number-input/input';
 import MultipleFileInput from '../../../../components/MultipleFileInput/MultipleFileInput';
 import Input from '../../../../UI/Input/Input';
 import Title from '../../../../UI/Title/Title';
@@ -17,108 +17,97 @@ const EMAIL = 'email'
 const SUBJECT = 'subject'
 const TEXT = 'text'
 const FILES = 'files'
-
 interface IHeaderMessageForm {
     className?: string;
     isOpen: boolean;
     closeModal: () => void;
 }
 
-interface IMessageForm {
+interface IMessageBase {
     [NAME]: string;
     [PHONE]: string;
     [EMAIL]: string;
     [SUBJECT]: string;
     [TEXT]: string;
-    [FILES]?: FileList;
-}
 
+}
+interface IMessageForm extends IMessageBase {
+    [FILES]?: FileList
+}
+interface IMessageErrors extends IMessageBase {
+    [FILES]: string
+}
+const defaultFields = {
+    [NAME]: '',
+    [PHONE]: '',
+    [EMAIL]: '',
+    [SUBJECT]: '',
+    [TEXT]: '',
+}
 const HeaderMessageForm: FC<IHeaderMessageForm> = memo((props) => {
     const { className = '', isOpen, closeModal } = props;
-    const [messageFields, setMessageFields] = useState<IMessageForm>({
-        [NAME]: '',
-        [PHONE]: '',
-        [EMAIL]: '',
-        [SUBJECT]: '',
-        [TEXT]: '',
-        [FILES]: undefined
-    });
-    const [nameError, setNameError] = useState<string>();
-    const [phoneError, setPhoneError] = useState<string>();
-    const [emailError, setEmailError] = useState<string>();
-    const [subjectError, setSubjectError] = useState<string>();
-    const [textError, setTextError] = useState<string>();
 
-    const checkError = (isError: boolean, setState: (value: SetStateAction<string | undefined>) => void, errorText: string): boolean => {
-        if (isError) {
-            setState(errorText);
-            return false;
-        } else {
-            setState(undefined);
-            return true;
-        }
+    const [messageFields, setMessageFields] = useState<IMessageForm>(defaultFields);
+    const [errors, setErrors] = useState<Partial<IMessageErrors>>(defaultFields);
+
+    const checkError = (field: keyof IMessageForm, errorText: string, isError: boolean = true): boolean => {
+        setErrors((prevErrors) => ({ ...prevErrors, [field]: isError ? errorText : undefined }));
+        return !isError;
     };
-
-    const sendMessage = (event: FormEvent<HTMLFormElement>) => {
+    const sendMessage = (event: FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
         if (messageFields) {
             let isValidForm = true;
-            isValidForm = checkError(!emailValidation(messageFields[EMAIL]), setEmailError, "Введите email в формате example@xxxx.xx");
-            isValidForm = checkError(!isValidPhoneNumber(messageFields[PHONE]), setPhoneError, "Введите телефон в формате +7 999 999 99 99");
-            isValidForm = checkError(!messageFields[NAME], setNameError, "Введите ваше ФИО");
-            isValidForm = checkError(messageFields[NAME].length < 2, setNameError, "Введенное ФИО не должно быть короче 2 символов");
-            isValidForm = checkError(!messageFields[SUBJECT], setSubjectError, "Введите тему сообщения");
-            isValidForm = checkError(!messageFields[TEXT], setTextError, "Введите текст сообщения");
 
+            isValidForm = checkError(EMAIL, 'Введите email в формате example@xxxx.xx', !emailValidation(messageFields[EMAIL]));
+            isValidForm = checkError(PHONE, 'Введите телефон в формате +7 999 999 99 99', !isValidPhoneNumber(messageFields[PHONE]));
+            isValidForm = checkError(NAME, 'Введенное ФИО не должно быть короче 2 символов', messageFields[NAME].length < 2);
+            isValidForm = checkError(SUBJECT, 'Введите тему сообщения', !messageFields[SUBJECT]);
+            isValidForm = checkError(TEXT, 'Введите текст сообщения', !messageFields[TEXT]);
+            isValidForm = !errors[FILES]
             if (!isValidForm) return;
-
             const formData = new FormData();
-            formData.append(NAME, messageFields[NAME]);
-            formData.append(PHONE, messageFields[PHONE]);
-            formData.append(EMAIL, messageFields[EMAIL]);
-            formData.append(SUBJECT, messageFields[SUBJECT]);
-            formData.append(TEXT, messageFields[TEXT]);
-
-            if (messageFields[FILES]) {
-                for (let i = 0; i < messageFields[FILES].length; i++) {
-                    formData.append(FILES, messageFields[FILES][i], messageFields[FILES][i].name);
+            Object.entries(messageFields).forEach(([key, value]) => {
+                if (key === FILES && value) {
+                    for (let i = 0; i < value.length; i++) {
+                        formData.append(FILES, value[i], value[i].name);
+                    }
+                } else {
+                    formData.append(key, value);
                 }
-            }
-
-            console.log(formData.getAll(TEXT));
-            //$host.post('/addAppeal', formData);
-        } else {
-            alert('all');
+            });
         }
     };
 
-    const onAddFiles = (files: FileList | undefined) => {
-        setMessageFields((prev) => ({
-            ...prev,
-            [FILES]: files
-        }));
-    };
+    const onAddFiles = useCallback((files: FileList | undefined) => {
+        setMessageFields((prevFields) => ({ ...prevFields, [FILES]: files }));
+    }, []);
 
-    const onChangePhone = (phone: string) => {
-        setMessageFields((prev) => ({
-            ...prev,
-            [PHONE]: phone,
-        }));
-    };
-
-    const onChangeInputHandler = useCallback(
-        (event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
+    const handleChange = useCallback(
+        (event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>): void => {
             event.preventDefault();
-            setMessageFields((prev: IMessageForm) => ({
-                ...prev,
-                [event.target.name]: event.target.value ?? '',
-                files: prev.files
-            }));
+            setMessageFields((prevFields) => ({ ...prevFields, [event.target.name]: event.target.value }));
         },
         []
     );
+    const hanglerPhoneChange = useCallback(
+        (phone: string) => {
+            setMessageFields(prevFields => (
+                {
+                    ...prevFields,
+                    [PHONE]: phone
+                }
+            ))
+        },
+        []
+    )
+    const resetForm = useCallback((): void => {
+        setMessageFields(defaultFields);
+        setErrors({});
+        closeModal();
+    }, [defaultFields, closeModal]);
     return (
-        <Modal isOpen={isOpen} closeModal={closeModal}>
+        <Modal isOpen={isOpen} closeModal={resetForm}>
             <div
                 className={[classes.messageModal, className].join(' ')}
             >
@@ -130,55 +119,49 @@ const HeaderMessageForm: FC<IHeaderMessageForm> = memo((props) => {
                         <Input
                             className={classes.messageModal_input}
                             placeholder='Ваше ФИО *'
-                            error={nameError}
+                            error={errors[NAME]}
                             name={NAME}
                             value={messageFields[NAME]}
-                            onChange={onChangeInputHandler}
+                            onChange={handleChange}
                         />
-                        <div className={classes.messageModal_phone}>
-                            <span className={classes.messageModal_phoneLabel}>
-                                Ваш номер телефона
-                            </span>
-                            <PhoneInput
-                                className={classes.messageModal_phoneInput}
-                                country='RU'
-                                onChange={(phone) => onChangePhone(phone?.toString() || '')}
-                                international
-                                withCountryCallingCode
-                                value={messageFields[PHONE]}
-                            />
-
-                        </div>
-
+                        <Input
+                            className={classes.messageModal_input}
+                            placeholder='Ваш номер телефона *'
+                            error={errors[PHONE]}
+                            name={PHONE}
+                            value={messageFields[PHONE]}
+                            type='number'
+                            onChangeWithValue={hanglerPhoneChange}
+                        />
                     </div>
                     <Input
                         className={classes.messageModal_input}
-                        placeholder='Ваш адрес электронной почты *'
-                        error={emailError}
+                        placeholder='Ваша электронная почта *'
+                        error={errors[EMAIL]}
                         name={EMAIL}
                         value={messageFields[EMAIL]}
-                        onChange={onChangeInputHandler}
+                        onChange={handleChange}
                     />
                     <Input
                         className={classes.messageModal_input}
                         placeholder='Тема сообщения *'
-                        error={subjectError}
+                        error={errors[SUBJECT]}
                         name={SUBJECT}
                         value={messageFields[SUBJECT]}
-                        onChange={onChangeInputHandler}
+                        onChange={handleChange}
                     />
                     <div className={
                         [
                             classes.messageModal_text,
-                            textError ? classes.messageModal_text___error : ''
+                            errors[TEXT] ? classes.messageModal_text___error : ''
                         ].join(' ')}
                     >
                         <Title className={classes.messageModal_textTitle}
-                            title={textError}
+                            title={errors[TEXT]}
                         >
                             <span>Ваше сообщение *</span>
                             {
-                                textError
+                                errors[TEXT]
                                     ? <img
                                         className={classes.messageModal_textTitleImg}
                                         src={infoImage}
@@ -191,11 +174,19 @@ const HeaderMessageForm: FC<IHeaderMessageForm> = memo((props) => {
                             className={classes.messageModal_textArea}
                             name={TEXT}
                             value={messageFields[TEXT]}
-                            onChange={onChangeInputHandler}
+                            onChange={handleChange}
+                            placeholder='Ваше сообщение'
                         />
 
                     </div>
-                    <MultipleFileInput handleFilesChange={onAddFiles} />
+                    <MultipleFileInput
+                        className={classes.messageModal_fileInput}
+                        values={messageFields[FILES]}
+                        onChange={onAddFiles}
+                        setError={(error) => checkError(FILES, error || '')}
+                        error={errors[FILES]}
+                        title='Перенесите файлы или нажмите на поле'
+                    />
                     <div className={classes.messageModal_buttonBox}>
                         <Button
                             type='submit'
@@ -209,7 +200,7 @@ const HeaderMessageForm: FC<IHeaderMessageForm> = memo((props) => {
                             Отправить
                         </Button>
                         <Button
-                            onClick={closeModal}
+                            onClick={resetForm}
                             className={classes.messageModal_button}
                         >
                             Отмена

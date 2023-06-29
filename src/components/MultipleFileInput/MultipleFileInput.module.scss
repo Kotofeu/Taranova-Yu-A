@@ -1,29 +1,40 @@
 @import '../../styles/settings.scss';
-.multipleFileInput{
 
+.multipleInput {
+    border: 2px dashed $text-color;
+    border-radius: 4px;
+    &___isError{
+        border: 2px solid $red-color-600;
+        & .multipleInput_input{
+            color: $red-color-600;
+        }
+    }
+    &___isHover{
+        border: 2px solid $blue-color-600;
+    }
 }
-.multipleFileInput_input{
-    display: inline-block;
+
+.multipleInput_input {
+    padding: 16px;
+    font: inherit;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    display: block;
     cursor: pointer;
-    padding: 7px 10px;
-    border-radius: 10px;
+    display: block;
+}
+
+
+.multipleInput_fileList {
+    list-style: inside;
+    text-align: center;
+}
+
+.multipleInput_inputHint{
+    display: block;
+    padding-top: 7px;
     color: $title-color;
-    font-weight: 600;
-    background-color: $blue-color-600;
-}
-.multipleFileInput_info{
-
-}
-.multipleFileInput_fileSize{
-    margin-bottom: 5px;
-    margin-top: 5px;
-
-}
-.multipleFileInput_fileList{
-    list-style:inside;
-}
-.multipleFileInput_fileName{
-}
-.multipleFileInput_error{
-    color: red;
+    font-size: 14px;
+    font-weight: 400;
 }
