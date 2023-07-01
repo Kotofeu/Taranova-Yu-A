@@ -56,7 +56,7 @@
 
 }
 .blogCard_tags{
-    display: none;
+    display: none !important;
 }
 .blogCard_date {
     color: $text-color;
@@ -96,7 +96,7 @@
             transform: translateY(-100%);
         }
         & .blogCard_tags{
-            display: flex;
+            display: flex  !important;
         }
         & .blogCard_date {
             font-size: 14px;

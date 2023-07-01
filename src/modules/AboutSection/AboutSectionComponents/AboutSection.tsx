@@ -58,7 +58,6 @@ export const AboutSection = observer(() => {
                             navigation: { enabled: true },
                             pagination: { clickable: true },
                             autoHeight: true,
-                            autoplay: true,
                             breakpoints: {
                                 479.98: {
                                     slidesPerView: 2,

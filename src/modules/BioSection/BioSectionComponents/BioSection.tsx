@@ -57,7 +57,6 @@ export const BioSection = observer(() => {
                             spaceBetween: 20,
                             navigation: { enabled: true },
                             pagination: { clickable: true },
-                            autoplay: true,
                             autoHeight: true,
                             breakpoints: {
                                 479.98: {
