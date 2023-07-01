@@ -5,7 +5,8 @@
     position: relative;
     overflow: hidden;
     cursor: pointer;
-    &::after{
+
+    &::after {
         position: absolute;
         transition: all .3s ease-in-out;
         content: 'Нажмите для просмотра';
@@ -15,8 +16,6 @@
         padding: 5px;
         top: 0px;
         left: 0px;
-        opacity: 0;
-        transform: translateY(-100%);
         color: $shadow-color;
     }
 }
@@ -34,8 +33,7 @@
     transition: all .3s ease-in-out;
     padding-top: 5px;
     position: absolute;
-    transform: translateY(100%);
-    opacity: 0;
+
     background-color: $primary-color;
     bottom: 0;
     left: 0;
@@ -49,18 +47,22 @@
 
 .blogCard_title {
     flex-grow: 1;
-    display: -webkit-box;
     -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;  
+    -webkit-box-orient: vertical;
     overflow: hidden;
     font-weight: 500;
     padding-top: 5px;
-}
+    display: none;
 
+}
+.blogCard_tags{
+    display: none;
+}
 .blogCard_date {
     color: $text-color;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 18px;
+    justify-content: center;
 }
 
 @media (any-hover: hover) {
@@ -68,15 +70,38 @@
         &:hover .blogCard_desc {
             transform: translateY(0);
             opacity: 1;
-    
         }
+
         &:hover .blogCard_img {
             transform: scale(1.1);
         }
+
         &:hover::after {
-            
+
             opacity: 1;
             transform: translateY(0%);
         }
     }
+
+    .blogCard {
+        & .blogCard_desc {
+            transform: translateY(100%);
+            opacity: 0;
+        }
+        & .blogCard_title {
+            display: -webkit-box;
+        }
+        &::after {
+            opacity: 0;
+            transform: translateY(-100%);
+        }
+        & .blogCard_tags{
+            display: flex;
+        }
+        & .blogCard_date {
+            font-size: 14px;
+            justify-content: flex-start;
+        }
+    }
+
 }

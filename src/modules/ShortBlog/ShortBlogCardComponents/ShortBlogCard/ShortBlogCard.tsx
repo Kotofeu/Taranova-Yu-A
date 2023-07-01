@@ -33,6 +33,7 @@ export const ShortBlogCard: FC<IBlockCard> = memo(
                             <DateTime className={classes.blogCard_date} date={blog.date} />
                             <BlogText
                                 className={classes.blogCard_title}
+                                tagClassName={classes.blogCard_tags}
                                 text={blog.text}
                                 tagsCount={2}
                                 textRowCount={3}

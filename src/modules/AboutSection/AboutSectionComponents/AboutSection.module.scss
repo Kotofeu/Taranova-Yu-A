@@ -23,6 +23,7 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
+  max-width: 320px;
 }
 
 .about_proileImg {
@@ -70,12 +71,13 @@
     }
   }
 
+
 }
 
 @media (min-width: 575.98px) {
   .about_infoLeft {
-
     max-width: 35%;
+    min-width: 200px;
   }
 
   .about_includedIn {

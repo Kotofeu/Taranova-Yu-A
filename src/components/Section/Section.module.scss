@@ -5,7 +5,7 @@
     padding: 1.6em 0;
     background-color: $primary-color;
 
-    &:nth-child(even) {
+    &:nth-child(odd) {
         background-color: $neutral-color;
     }
 }

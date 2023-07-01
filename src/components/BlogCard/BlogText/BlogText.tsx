@@ -6,13 +6,14 @@ import useTextBlogСonversion from '../../../utils/hooks/useTextBlogСonversion'
 interface IBlogText {
     text: string;
     className?: string;
+    tagClassName?: string;
     animationType?: Variants;
     textRowCount?: number;
     tagsCount?: number;
 
 }
 export const BlogText: FC<IBlogText> = memo((props) => {
-    const { text, className, animationType, textRowCount, tagsCount } = props
+    const { text, className = '',tagClassName = '', animationType, textRowCount, tagsCount } = props
     const [desc, tags] = useTextBlogСonversion(text)
     return (
         <>
@@ -32,7 +33,7 @@ export const BlogText: FC<IBlogText> = memo((props) => {
                     })
                 }
             </div>
-            <div className={classes.text_tagBox}>
+            <div className={[classes.text_tagBox, tagClassName].join(' ')}>
                 {
                     tags && tags.map((tag, index) => {
                         if ((tagsCount && (index + 1 > tagsCount)) || !tag) return null
