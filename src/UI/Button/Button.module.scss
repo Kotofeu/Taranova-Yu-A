@@ -2,7 +2,7 @@
 .button{
     background-color: $blue-color-600;
     color: $primary-color;
-    padding: 10px 28px;
+    padding: 10px 14px;
     border: none;
     overflow: hidden;
     font-weight: 600;
@@ -35,7 +35,11 @@
     transform: translateX(150%);
 }
 
-@media (min-width: 767.98px) {
+@media (any-hover: hover){
+    .button{
+        padding: 10px 30px;
+
+    }
     .button_before, .button_after{
         display: block;
 

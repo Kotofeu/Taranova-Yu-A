@@ -90,11 +90,6 @@
 
 .header_modalBtn {
     position: relative;
-    padding: 10px 10px;
-
-    & img {
-        display: none;
-    }
 }
 
 
@@ -185,11 +180,7 @@
     }
 
     .header_modalBtn {
-        padding: 10px 28px;
 
-        & img {
-            display: block;
-        }
     }
 
     .header_contactsList {
