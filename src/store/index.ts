@@ -8,11 +8,7 @@ export interface IBaseInerface {
 }
 
 export const $host = axios.create({
-    baseURL: process.env.REACT_APP_GET_URL,
-    auth: {
-        username: `${process.env.REACT_APP_USER_NAME}`,
-        password: `${process.env.REACT_APP_USER_PASSWORD}`
-    }
+    baseURL: process.env.REACT_APP_GET_URL
 })
 
 
