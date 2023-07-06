@@ -44,14 +44,14 @@ const HeaderMessageModal: FC<IHeaderMessageForm> = observer((props) => {
     return (
         <Modal isOpen={isOpen} closeModal={closeModal}>
             <div className={[classes.messageModal, className].join(' ')}>
-                {appealStore.isEnable ? (
+                {appealStore.isEnable || appealStore.error?.message ? (
                     <h2 className={classes.messageModal_title}>
                         <span>Отправка обращения</span>
                         <span className={classes.messageModal_titleError}>{appealStore.error?.message}</span>
                     </h2>
                 ) : null}
 
-                {!appealStore.isEnable ? (
+                {!appealStore.isEnable && !appealStore.error?.message ? (
                     <div>
                         <h4 className={classes.messageModal_subTitle}>
                             {appealStore.code ? (
