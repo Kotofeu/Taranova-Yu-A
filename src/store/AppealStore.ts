@@ -37,7 +37,7 @@ export class AppealStore {
     private setIsLoading(loading: boolean) {
         this._isLoading = loading
     }
-    private setError(errorString: AxiosError) {
+    private setError(errorString: AxiosError | null) {
         this._error = errorString
     }
     private setCode(code: AppealJSON) {
@@ -54,6 +54,7 @@ export class AppealStore {
                 this.setIsEnable(false);
                 const currentTimestamp = new Date().getTime();
                 localStorage.setItem(this.lastAppealCreate, (currentTimestamp + this.delay).toString());
+                this.setError(null)
             })
             .catch((error: AxiosError) => this.setError(error))
             .finally(() => this.setIsLoading(false))
