@@ -5,27 +5,25 @@ import classes from './ShortBlogCard.module.scss'
 import { NavLink } from 'react-router-dom';
 import DateTime from '../../../../UI/DateTime/DateTime';
 import { Blog } from '../../../../store/BlogsStore';
-import { blogStore } from '../../../../store';
 import { BlogText } from '../../../../components/BlogCard';
 import { BLOG_ROUTE } from '../../../../utils/const/routes';
 interface IBlockCard {
     className?: string;
     blog: Blog;
-
+    image: string;
 }
 export const ShortBlogCard: FC<IBlockCard> = memo(
 
     forwardRef(
         (props, ref: React.Ref<HTMLDivElement>) => {
-            const { blog, className = '' } = props;
-            const imageSrc = blogStore.getItemImage(blog.attachments[0], 600)
+            const { blog, className = '', image } = props;
             return (
                 <motion.article
                     className={`${classes.blogCard} ${className}`} ref={ref}
                 >
                     <NavLink to={`${BLOG_ROUTE}/${blog.id}`}>
                         <Picture
-                            src={imageSrc}
+                            src={image}
                             alt={blog.text}
                             className={classes.blogCard_img}
                         />

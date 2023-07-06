@@ -13,6 +13,9 @@ export const ShortEventsSection = observer(() => {
     console.log(eventStore.error.message)
     return null
   }
+  if (!eventStore.isLoading && !eventStore.events?.events?.length){
+    return null
+  }
   return (
     <Section className={classes.shortBlog} title='Предстоящие мероприятия'>
       <motion.div

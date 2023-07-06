@@ -11,7 +11,7 @@ import classes from './BioSection.module.scss'
 import { applicationStore } from '../../../store'
 import MySlider from '../../../components/MySlider/MySlider'
 export const BioSection = observer(() => {
-    if (!applicationStore?.biography?.length) {
+    if (!applicationStore?.biography?.length && !applicationStore.awards?.length) {
         console.log(applicationStore.error?.message)
         return null
     }
@@ -21,10 +21,16 @@ export const BioSection = observer(() => {
             title='Краткая биография'
             sectionType={SectionType.fullSize}
         >
-            <TextBlock
-                className={classes.bio_textBlock}
-                textBlock={applicationStore.biography || []}
-            />
+            {
+                applicationStore?.biography?.length
+                    ? <TextBlock
+                        className={classes.bio_textBlock}
+                        textBlock={applicationStore.biography || []}
+                    />
+                    : null
+            }
+
+
             <motion.div
                 initial={ANIMATION_HIDDEN}
                 whileInView={ANIMATION_VISIBLE}

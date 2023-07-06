@@ -19,20 +19,25 @@ export const ShortBlogSection = observer(() => {
       >
         {blogStore.isLoading && <Loader />}
 
-        { blogStore.blogs?.publications.map((blog, index) => {
-              if (index >= 3) return null
-              return (
-                <MShortBlogCard
-                  className={classes.shortBlog_blog}
-                  key={blog.id}
-                  blog={blog}
-                  initial={ANIMATION_HIDDEN}
-                  whileInView={ANIMATION_VISIBLE}
-                  viewport={{ once: true, margin: "-140px" }}
-                  variants={MotionUp}
-                  custom={index}
-                />)
-            })}
+        {blogStore.blogs?.publications.map((blog, index) => {
+          let count = 1
+          const imageSrc = blogStore.getItemImage(blog.attachments[0], 600)
+          if (count >= 3) return null
+          if (!imageSrc) return null
+          count = count + 1
+          return (
+            <MShortBlogCard
+              className={classes.shortBlog_blog}
+              image={imageSrc}
+              key={blog.id}
+              blog={blog}
+              initial={ANIMATION_HIDDEN}
+              whileInView={ANIMATION_VISIBLE}
+              viewport={{ once: true, margin: "-140px" }}
+              variants={MotionUp}
+              custom={index}
+            />)
+        })}
       </div>
     </Section>
 
