@@ -7,11 +7,13 @@ import classes from './ShortBlogSection.module.scss'
 import { blogStore } from '../../../../store'
 
 export const ShortBlogSection = observer(() => {
+  let count = 0
   if (blogStore.error) {
     console.log(blogStore.error.message)
     return null
   }
   if (!blogStore.isLoading && !blogStore.blogs?.publications?.length) return null
+
   return (
     <Section className={classes.shortBlog} title='Последние публикации'>
       <div
@@ -20,7 +22,7 @@ export const ShortBlogSection = observer(() => {
         {blogStore.isLoading && <Loader />}
 
         {blogStore.blogs?.publications.map((blog, index) => {
-          let count = 1
+
           const imageSrc = blogStore.getItemImage(blog.attachments[0], 600)
           if (count >= 3) return null
           if (!imageSrc) return null
